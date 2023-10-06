@@ -1,16 +1,22 @@
 # Simple TOML Settings <!-- omit in toc -->
 
-This repository is a template for a basic Python project using
-[Poetry](https://python-poetry.org/), with assorted Linting and Testing
-libraries installed as standard. It also uses
-[pre-commit](https://pre-commit.com/).
+A Python library to save your settings in a TOML file.
 
+- [Usage](#usage)
 - [Development setup](#development-setup)
   - [Task Runner](#task-runner)
   - [Linting](#linting)
   - [Pre-commit](#pre-commit)
 - [License](#license)
 - [Credits](#credits)
+
+## Usage
+
+This is a library to save your settings in a TOML file.  It is designed to be
+simple to use and to be able to save and load settings from a TOML file.
+
+At the moment there is no functionality, I am just setting up the project and
+migrating over the code from within another project that is using this functionality.
 
 ## Development setup
 
@@ -26,7 +32,7 @@ Then, activate the virtual environment:
 $ poetry shell
 ```
 
-Now, you can start to code the meat of your application.
+Now, you can start to develop the app.
 
 ### Task Runner
 
@@ -86,4 +92,4 @@ This project is released under the terms of the MIT license.
 
 The original Python boilerplate for this package was created using
 [Pymaker](https://github.com/seapagan/py-maker) by [Grant
-Ramsay](https://github.com/seapagan)
+Ramsay (seapagan)](https://github.com/seapagan)

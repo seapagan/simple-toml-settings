@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "simple-toml-settings"
 version = "0.1.0"
-description = "A Python library to save your settings in a TOML-format file.."
+description = "A Python library to save your settings in a TOML file."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
 license = "MIT"
 
 packages = [{ include = "simple_toml_settings" }]
 
-homepage = ""
+# homepage = ""
 repository = "https://github.com/seapagan/simple-toml-settings"
 
 [tool.poetry.urls]
@@ -16,11 +16,6 @@ repository = "https://github.com/seapagan/simple-toml-settings"
 # shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
 "Pull Requests" = "https://github.com/seapagan/simple-toml-settings/pulls"
 "Bug Tracker" = "https://github.com/seapagan/simple-toml-settings/issues"
-
-[tool.poetry.scripts]
-# rename "simple-toml-settings" below to change the executable name. You can also
-# add more scripts if your package offers multiple commands.
-simple-toml-settings = "simple_toml_settings.main:app"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
@@ -124,7 +119,7 @@ exclude = '''
 [tool.flake8]
 max-line-length = 80
 exclude = ["__init__.py", ".git"]
-extend-ignore=["E203", "W503"]
+extend-ignore = ["E203", "W503"]
 extend-select = ["TC", "TC1", "TRY"]
 docstring-convention = "google"
 classmethod-decorators = ["classmethod", "validator"]
