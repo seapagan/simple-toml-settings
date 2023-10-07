@@ -1,9 +1,23 @@
-
 site_name: Simple TOML Settings
 
 # default to using the material theme
 theme:
   name: material
+  palette:
+    primary: light-blue
+    accent: blue
+  features:
+    - navigation.footer
+    - navigation.expand
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/seapagan/simple-toml-settings
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/gnramsay_dev
+
+copyright: © 2023 Grant Ramsay (Seapagan)
 
 # default plugins here are to minify the html, css and js plus enable the search
 # plugin. Adjust to your liking.
@@ -22,8 +36,22 @@ markdown_extensions:
   - admonition
   - pymdownx.snippets
   - pymdownx.superfences
-  - pymdownx.highlight
+  - pymdownx.highlight:
+      linenums: false
+      auto_title: false
   - attr_list
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Future Plans: future-plans.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
+  - License: license.md
+
+extra_css:
+  - css/extra.css
