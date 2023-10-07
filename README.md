@@ -7,6 +7,7 @@
 
 A Python library to save your settings in a TOML file.
 
+- [BETA software](#beta-software)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Setup](#setup)
@@ -17,6 +18,13 @@ A Python library to save your settings in a TOML file.
   - [Pre-commit](#pre-commit)
 - [License](#license)
 - [Credits](#credits)
+
+## BETA software
+
+Note that this library is still in beta and may contain bugs
+and/or change in the future.  Please report any bugs you find on the
+[issue tracker](https://github.com/seapagan/simple-toml-settings/issues) and
+feel free to make suggestions for improvements.
 
 ## Installation
 
