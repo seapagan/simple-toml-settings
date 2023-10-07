@@ -1,17 +1,11 @@
-# Welcome to MkDocs
+# Simple TOML Settings <!-- omit in toc -->
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+[![Tests](https://github.com/seapagan/simple-toml-settings/actions/workflows/tests.yml/badge.svg)](https://github.com/seapagan/simple-toml-settings/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/seapagan/simple-toml-settings/graph/badge.svg?token=6QMS12107L)](https://codecov.io/gh/seapagan/simple-toml-settings)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b8793a3d6eb04167b9e2b13e11f1f12d)](https://app.codacy.com/gh/seapagan/simple-toml-settings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![CodeQL](https://github.com/seapagan/simple-toml-settings/actions/workflows/codeql.yml/badge.svg)](https://github.com/seapagan/simple-toml-settings/actions/workflows/codeql.yml)
 
-## Commands
+A Python library to save your settings in a TOML file.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+This documentation is a work in progress, and is not yet complete (or indeed
+useful in the slightest 😝). Come back in a few days and it should be better.
