@@ -99,6 +99,10 @@ lint.help = "Run all linting checks"
 "docs:serve:all".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
 "docs:serve:all".help = "Serve documentation locally on all interfaces"
 
+changelog.cmd = "github_changelog_generator -u seapagan -p simple-toml-settings"
+changelog.help = "Generate a CHANGELOG.md file"
+
+
 # configure assorted tools and linters
 [tool.isort]
 profile = "black"
