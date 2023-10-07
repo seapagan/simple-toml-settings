@@ -13,7 +13,13 @@ import rtoml
 
 @dataclass
 class Settings:
-    """The main settings class."""
+    """The main settings class.
+
+    The only required argument is the app_name, which is used to create the
+    settings folder. The settings_folder and settings_file_name are optional and
+    will default to the app_name preceeded by a '.' and config.toml
+    respectively.
+    """
 
     app_name: str
     settings_file_name: str = "config.toml"
@@ -31,7 +37,7 @@ class Settings:
 
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
-        self.settings_folder: Path = Path.home() / f"./{self.app_name}"
+        self.settings_folder: Path = Path.home() / f".{self.app_name}"
         if not self.settings_folder.exists():
             self.settings_folder.mkdir(parents=False)
 
