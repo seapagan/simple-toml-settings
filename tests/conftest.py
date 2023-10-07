@@ -17,15 +17,14 @@ class TestSettings(Settings):
 def settings(fs):
     """Return a Settings object for testing.
 
-    This fixture creates a fake home directory and a fake settings file
-    in a virtual filesystem. It then creates a Settings object for the
-    test and returns it.
+    This fixture creates a fake home directory in a virtual filesystem. It then
+    creates a Settings object for the test and returns it. This Settings object
+    creates a settings file in the fake home directory.
     """
     # Create a fake home directory for the test
     fs.create_dir(Path.home())
 
     # Create a Settings object for the test
     settings = TestSettings("test_app")
-    settings.settings_folder = Path.home() / "test_app"
 
     return settings
