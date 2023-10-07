@@ -47,7 +47,7 @@ Note the `schema_version` key.  This is used to track the version of the schema
 used to save the settings.  If you change the settings in your app, you should
 increment the schema version.  This will cause the settings to be re-saved with
 the new schema version. At the moment, this is not used for anything, but it
-wil be used in the fiture to detect outdated settings files and to allow
+wil be used in the future to detect outdated settings files and to allow
 automatic migration of settings.
 
 By default the `schema_version` is set to `none`.  You can change this by
@@ -66,6 +66,8 @@ or by passing it to the `Settings` class:
 settings = MySettings("my_app_name", schema_version="1.0.0")
 ```
 
+The former version is recommended.
+
 By default, the settings will be saved in a file called `config.toml` in the
 user's home directory.  You can change this by passing a different filename to
 the `Settings` class:
@@ -73,8 +75,6 @@ the `Settings` class:
 ```python
 settings = MySettings("my_app_name", "my_settings.toml")
 ```
-
-The former version is recommended.
 
 ## Using the settings
 
