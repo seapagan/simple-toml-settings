@@ -33,7 +33,7 @@ class Settings:
         """Create the settings folder if it doesn't exist."""
         self.settings_folder: Path = Path.home() / f"./{self.app_name}"
         if not self.settings_folder.exists():
-            self.settings_folder.mkdir(parents=True)
+            self.settings_folder.mkdir(parents=False)
 
         self.load()
 
