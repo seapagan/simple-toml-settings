@@ -11,9 +11,9 @@ Usage is simple:
 ## Setup
 
 ```python
-from simple_toml_settings import Settings
+from simple_toml_settings import TOMLSettings
 
-class MySettings(Settings):
+class MySettings(TOMLSettings):
     """My settings class."""
 
     # Define the settings you want to save
@@ -22,26 +22,43 @@ class MySettings(Settings):
     favourite_colour: str = "blue"
     favourite_number: int = 42
     favourite_foods: list = ["pizza", "chocolate", "ice cream"]
-
+    sub_settings: dict = {
+        "sub_setting_1": "sub setting 1 text",
+        "sub_setting_2": "sub setting 2 text",
+    }
 
 settings = MySettings("my_app_name")
 ```
 
-The above will automatically create a TOML file in the user's home directory
-called `config.toml` and save the settings to it. If the file already exists,
-the settings will be loaded from it.
+!!! warning "Use Type-hinting"
+
+    Always use typing hints for your settings as shown above.  This will allow
+    the library to automatically convert the settings to the correct type when
+    loading them.
+
+The above will automatically create a sub folder in the user's home directory
+called `.my_app_name` and will create a TOML file in it called `config.toml`
+containing the default settings. If the file already exists, the settings will
+be loaded from it.
 
 The file contents for the above example would be:
 
 ```toml
-[test_app]
+[my_app_name]
 age = 42
 favourite_colour = "blue"
 favourite_number = 42
 name = "My Name"
 schema_version = "none"
 favourite_foods = ["pizza", "chocolate", "ice cream"]
+
+[my_app_name.sub_settings]
+sub_setting_1 = "sub setting 1 text"
+sub_setting_2 = "sub setting 2 text"
 ```
+
+This shows how lists are saved as TOML arrays and dictionaries are saved as
+TOML tables.
 
 Note the `schema_version` key.  This is used to track the version of the schema
 used to save the settings.  If you change the settings in your app, you should
@@ -54,13 +71,13 @@ By default the `schema_version` is set to `none`.  You can change this by
 setting the `schema_version` class attribute in your settings class:
 
 ```python
-class MySettings(Settings):
+class MySettings(TOMLSettings):
     """My settings class."""
 
     schema_version: str = "1.0.0"
 ```
 
-or by passing it to the `Settings` class:
+or by passing it to the custom class on creation:
 
 ```python
 settings = MySettings("my_app_name", schema_version="1.0.0")
@@ -70,10 +87,19 @@ The former version is recommended.
 
 By default, the settings will be saved in a file called `config.toml` in the
 user's home directory.  You can change this by passing a different filename to
-the `Settings` class:
+the `TOMLSettings` class:
 
 ```python
-settings = MySettings("my_app_name", "my_settings.toml")
+class MySettings(TOMLSettings):
+    """My settings class."""
+
+    settings_file_name: str = "my_settings.toml"
+```
+
+or
+
+```python
+settings = MySettings("my_app_name", settings_file_name="my_settings.toml")
 ```
 
 ## Using the settings
