@@ -84,3 +84,11 @@ def test_custom_file_name(fs):
     assert settings.settings_file_name == custom_file_name
     assert settings.settings_folder.name == ".test_app"
     assert settings.settings_folder / settings.settings_file_name
+
+
+def test_items_on_ignored_attrs(settings):
+    """Test that the ignored attributes are not returned by items()."""
+    list_settings = settings.list_settings()
+
+    for setting in settings._ignored_attrs:
+        assert setting not in list_settings
