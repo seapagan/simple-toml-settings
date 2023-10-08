@@ -1,7 +1,7 @@
 """Test the settings module."""
 from pathlib import Path
 
-from simple_toml_settings.settings import Settings
+from simple_toml_settings.settings import TOMLSettings
 
 
 def test_config_file_auto_created(settings):
@@ -77,7 +77,7 @@ def test_custom_file_name(fs):
     custom_file_name = "custom_config.toml"
 
     fs.create_dir(Path.home())
-    settings = Settings("test_app", settings_file_name=custom_file_name)
+    settings = TOMLSettings("test_app", settings_file_name=custom_file_name)
 
     assert (Path.home() / ".test_app" / custom_file_name).exists()
 

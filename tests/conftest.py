@@ -3,10 +3,10 @@ from pathlib import Path
 
 import pytest
 
-from simple_toml_settings.settings import Settings
+from simple_toml_settings.settings import TOMLSettings
 
 
-class TestSettings(Settings):
+class TestSettings(TOMLSettings):
     """Define a class for testing the Settings class."""
 
     test_string_var: str = "test_value"

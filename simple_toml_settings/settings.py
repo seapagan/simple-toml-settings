@@ -12,7 +12,7 @@ import rtoml
 
 
 @dataclass
-class Settings:
+class TOMLSettings:
     """The main settings class.
 
     The only required argument is the app_name, which is used to create the
