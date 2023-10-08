@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, Set
 
 import rtoml
 
@@ -27,12 +27,12 @@ class TOMLSettings:
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
 
-    _ignore_list: List[str] = field(
-        default_factory=lambda: [
+    _ignored_attrs: Set[str] = field(
+        default_factory=lambda: {
             "app_name",
             "settings_folder",
             "settings_file_name",
-        ]
+        }
     )
 
     def __post_init__(self) -> None:
@@ -49,7 +49,7 @@ class TOMLSettings:
             a: getattr(self, a)
             for a in dir(self)
             if not a.startswith("_")
-            and a not in self._ignore_list
+            and a not in self._ignored_attrs
             and not callable(getattr(self, a))
         }
 
