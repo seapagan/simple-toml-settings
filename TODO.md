@@ -5,4 +5,5 @@
   in a sub-folder of the project is useful for projects that need to store extra
   data, but may be overkill for basic projects.
 - finish docs
-- add Development imformation to the docs
+- option to not include the `schema_version` key. By default this key **will**
+  be included.
