@@ -7,7 +7,7 @@
 
 A Python library to save your settings in a TOML file.
 
-- [BETA software](#beta-software)
+- [Development software](#development-software)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Setup](#setup)
@@ -19,11 +19,11 @@ A Python library to save your settings in a TOML file.
 - [License](#license)
 - [Credits](#credits)
 
-## BETA software
+## Development software
 
-Note that this library is still in beta and may contain bugs
-and/or change in the future.  Please report any bugs you find on the
-[issue tracker](https://github.com/seapagan/simple-toml-settings/issues) and
+Note that this library is still in the early stages of development and may
+contain bugs and/or change in the future.  Please report any bugs you find on
+the [issue tracker](https://github.com/seapagan/simple-toml-settings/issues) and
 feel free to make suggestions for improvements.
 
 ## Installation
@@ -86,39 +86,6 @@ schema_version = "none"
 favourite_foods = ["pizza", "chocolate", "ice cream"]
 ```
 
-Note the `schema_version` key.  This is used to track the version of the schema
-used to save the settings.  If you change the settings in your app, you should
-increment the schema version.  This will cause the settings to be re-saved with
-the new schema version. At the moment, this is not used for anything, but it
-wil be used in the future to detect outdated settings files and to allow
-automatic migration of settings.
-
-By default the `schema_version` is set to `none`.  You can change this by
-setting the `schema_version` class attribute in your settings class:
-
-```python
-class MySettings(Settings):
-    """My settings class."""
-
-    schema_version: str = "1.0.0"
-```
-
-or by passing it to the `Settings` class:
-
-```python
-settings = MySettings("my_app_name", schema_version="1.0.0")
-```
-
-The former version is recommended.
-
-By default, the settings will be saved in a file called `config.toml` in the
-user's home directory.  You can change this by passing a different filename to
-the `Settings` class:
-
-```python
-settings = MySettings("my_app_name", "my_settings.toml")
-```
-
 ### Using the settings
 
 Once you have created your settings class, you can use it like any other class:
@@ -126,6 +93,8 @@ Once you have created your settings class, you can use it like any other class:
 ```python
 settings = MySettings("my_app_name")
 name = settings.name
+settings.favourite_colour = "red"
+settings.save()
 ```
 
 **Note that the current library access methods are not set in stone and may
