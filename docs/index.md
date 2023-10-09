@@ -14,5 +14,51 @@ A Python library to save your settings in a TOML file.
     on the [issue tracker](https://github.com/seapagan/simple-toml-settings/issues){:target="_blank"}
     and feel free to make suggestions for improvements.
 
-This documentation is a work in progress, and is not yet complete (or indeed
-useful in the slightest 😝). Come back in a few days and it should be better.
+---
+
+A quick example:
+
+```python
+from simple_toml_settings import Settings
+
+class MySettings(Settings):
+    """My settings class."""
+
+    # Define the settings you want to save
+    name: str = "My Name"
+    age: int = 42
+    favourite_colour: str = "blue"
+    favourite_number: int = 42
+    favourite_foods: list = ["pizza", "chocolate", "ice cream"]
+
+
+settings = MySettings("my_app_name")
+```
+
+The above will automatically create a TOML file in the user's home directory
+called `config.toml` and save the settings to it. If the file already exists,
+the settings will be loaded from it.
+
+The file contents for the above example would be:
+
+```toml
+[test_app]
+age = 42
+favourite_colour = "blue"
+favourite_number = 42
+name = "My Name"
+schema_version = "none"
+favourite_foods = ["pizza", "chocolate", "ice cream"]
+```
+
+---
+Once you have created your settings class, you can use it like any other class:
+
+```python
+settings = MySettings("my_app_name")
+name = settings.name
+settings.favourite_colour = "red"
+settings.save()
+```
+
+See the rest of the documentation for more details.
