@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.0](https://github.com/seapagan/simple-toml-settings/tree/0.2.0) (2023-10-10)
+
+[Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.1.0...0.2.0)
+
+**Implemented enhancements:**
+
+- Add a hook, called if the config file is missing and freshly created [\#10](https://github.com/seapagan/simple-toml-settings/pull/10) ([seapagan](https://github.com/seapagan))
+
+**Dependency Updates:**
+
+- Bump pylint-pydantic from 0.2.4 to 0.3.0 [\#9](https://github.com/seapagan/simple-toml-settings/pull/9) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/checkout from 3 to 4 [\#7](https://github.com/seapagan/simple-toml-settings/pull/7) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.1.0](https://github.com/seapagan/simple-toml-settings/tree/0.1.0) (2023-10-09)
 
 [Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/a933cab1f2bc83ff8934211fe379dc40caae5290...0.1.0)

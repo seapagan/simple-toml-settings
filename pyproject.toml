@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simple-toml-settings"
-version = "0.1.0"
+version = "0.2.0"
 description = "A Python library to save your settings in a TOML file."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
@@ -8,14 +8,28 @@ license = "MIT"
 
 packages = [{ include = "simple_toml_settings" }]
 
-# homepage = ""
+documentation = "https://seapagan.github.io/simple-toml-settings/"
 repository = "https://github.com/seapagan/simple-toml-settings"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
 
 [tool.poetry.urls]
 # customize the below URLs to point to your own GitHub repo. These will be
 # shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
 "Pull Requests" = "https://github.com/seapagan/simple-toml-settings/pulls"
 "Bug Tracker" = "https://github.com/seapagan/simple-toml-settings/issues"
+"Changelog" = "https://github.com/seapagan/simple-toml-settings/blob/main/CHANGELOG.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
@@ -101,7 +115,6 @@ lint.help = "Run all linting checks"
 
 changelog.cmd = "github_changelog_generator -u seapagan -p simple-toml-settings"
 changelog.help = "Generate a CHANGELOG.md file"
-
 
 # configure assorted tools and linters
 [tool.isort]

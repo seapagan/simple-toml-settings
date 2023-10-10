@@ -1,8 +1,9 @@
 # Simple TOML Settings <!-- omit in toc -->
 
-[![Tests](https://github.com/seapagan/simple-toml-settings/actions/workflows/tests.yml/badge.svg)](https://github.com/seapagan/simple-toml-settings/actions/workflows/tests.yml)
-[![codecov](https://codecov.io/gh/seapagan/simple-toml-settings/graph/badge.svg?token=6QMS12107L)](https://codecov.io/gh/seapagan/simple-toml-settings)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b8793a3d6eb04167b9e2b13e11f1f12d)](https://app.codacy.com/gh/seapagan/simple-toml-settings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![PyPI version](https://badge.fury.io/py/simple-toml-settings.svg)](https://badge.fury.io/py/simple-toml-settings)&nbsp;
+[![Tests](https://github.com/seapagan/simple-toml-settings/actions/workflows/tests.yml/badge.svg)](https://github.com/seapagan/simple-toml-settings/actions/workflows/tests.yml)&nbsp;
+[![codecov](https://codecov.io/gh/seapagan/simple-toml-settings/graph/badge.svg?token=6QMS12107L)](https://codecov.io/gh/seapagan/simple-toml-settings)&nbsp;
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/b8793a3d6eb04167b9e2b13e11f1f12d)](https://app.codacy.com/gh/seapagan/simple-toml-settings/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)&nbsp;
 [![CodeQL](https://github.com/seapagan/simple-toml-settings/actions/workflows/codeql.yml/badge.svg)](https://github.com/seapagan/simple-toml-settings/actions/workflows/codeql.yml)
 
 A Python library to save your settings in a TOML file.
