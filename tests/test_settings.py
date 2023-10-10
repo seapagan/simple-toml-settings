@@ -11,6 +11,16 @@ def test_config_file_auto_created(settings):
     assert settings.settings_file_name == "config.toml"
 
 
+def test_post_create_hook_is_called(fs, mocker):
+    """Test that the post_create_hook is called after settings file created."""
+    fs.create_dir(Path.home())
+
+    mocker.patch.object(TOMLSettings, "__post_create_hook__")
+    settings = TOMLSettings("test_app")
+
+    assert settings.__post_create_hook__.called
+
+
 def test_get_attrs(settings):
     """Test that we can get the attributes of the settings object."""
     attrs = settings.get_attrs()

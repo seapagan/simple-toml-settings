@@ -3,6 +3,12 @@
 This library is designed to be simple to use, to save and load settings from a
 TOML file with a minimal of configuration.
 
+!!! warning "Warning"
+
+    The current library access methods are not set in stone and may change in
+    the future. We will try to keep the changes to a minimum and will provide a
+    migration path (and backwards compatibility) if we do change them.
+
 ## Setup
 
 Create a class that inherits from the `TOMLSettings` class and define the
@@ -129,8 +135,44 @@ settings.save()
     created and when the `set` method is called respectively.  You should not
     need to call `load()` manually.
 
-!!! warning "Warning"
+## Post-create hook
 
-    The current library access methods are not set in stone and may change in
-    the future. We will try to keep the changes to a minimum and will provide a
-    migration path (and backwards compatibility) if we do change them.
+If you need to do some further processing, or set some input from the user after
+the new config file has been created (for example to fill in the default values
+with some real data), you can override the
+`__post_create_hook__()` method in your class:
+
+```python
+from simple_toml_settings import TOMLSettings
+
+class MySettings(TOMLSettings):
+    """My settings class."""
+
+    # Define the settings you want to save
+    name: str = "My Name"
+    age: int = 42
+    favourite_colour: str = "blue"
+    favourite_number: int = 42
+    favourite_foods: list = ["pizza", "chocolate", "ice cream"]
+    sub_settings: dict = {
+        "sub_setting_1": "sub setting 1 text",
+        "sub_setting_2": "sub setting 2 text",
+    }
+
+    def __post_create_hook__(self):
+        """Post create hook."""
+        self.name = input("Enter your name: ")
+        self.age = int(input("Enter your age: "))
+        self.favourite_colour = input("Enter your favourite colour: ")
+        self.favourite_number = int(input("Enter your favourite number: "))
+```
+
+!!! info "Note"
+
+    This is a special method that is called automatically after the config file
+    has been created.  It is not a normal method and **should not be called
+    directly**. It is **NOT** called when an existing config file is loaded.
+
+    The `save()` method will be called automatically after the hook has been
+    executed. There is no need to call the `super()` method in your hook since
+    it is just a placeholder method.

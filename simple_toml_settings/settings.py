@@ -43,6 +43,18 @@ class TOMLSettings:
 
         self.load()
 
+    def __post_create_hook__(self) -> None:
+        """Allow further customization after a new settings file is created.
+
+        It is provided so that you can add any additional settings that you
+        might need, or get information from the user. The subclass should
+        override this method, by default it does nothing.
+
+        The save() method IS called after we run this automatically, it should
+        never be called manually.
+        """
+        pass
+
     def get_attrs(self) -> Dict[str, str]:
         """Return a dictionary of our setting values."""
         return {
@@ -67,6 +79,7 @@ class TOMLSettings:
                 self.settings_folder / self.settings_file_name
             )
         except FileNotFoundError:
+            self.__post_create_hook__()
             self.save()
             return
 
