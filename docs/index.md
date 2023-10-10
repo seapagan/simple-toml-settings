@@ -33,7 +33,7 @@ class MySettings(Settings):
     favourite_foods: list = ["pizza", "chocolate", "ice cream"]
 
 
-settings = MySettings("my_app_name")
+settings = MySettings("test_app")
 ```
 
 The above will automatically create a TOML file in the user's home directory
@@ -56,8 +56,7 @@ favourite_foods = ["pizza", "chocolate", "ice cream"]
 Once you have created your settings class, you can use it like any other class:
 
 ```python
-settings = MySettings("my_app_name")
-name = settings.name
+settings = MySettings("test_app")
 settings.favourite_colour = "red"
 settings.save()
 ```
