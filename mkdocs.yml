@@ -19,6 +19,9 @@ extra:
 
 copyright: © 2023 Grant Ramsay (Seapagan)
 
+repo_name: simple-toml-settings
+repo_url: https://github.com/seapagan/simple-toml-settings
+
 # default plugins here are to minify the html, css and js plus enable the search
 # plugin. Adjust to your liking.
 plugins:
