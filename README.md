@@ -55,9 +55,9 @@ Usage is simple:
 ### Setup
 
 ```python
-from simple_toml_settings import Settings
+from simple_toml_settings import TOMLSettings
 
-class MySettings(Settings):
+class MySettings(TOMLSettings):
     """My settings class."""
 
     # Define the settings you want to save
