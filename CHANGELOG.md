@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.2.1](https://github.com/seapagan/simple-toml-settings/tree/0.2.1) (2023-10-12)
+
+[Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.2.0...0.2.1)
+
+**Fixed bugs:**
+
+- add 'py.typed' file so mypy can typecheck package [\#16](https://github.com/seapagan/simple-toml-settings/pull/16) ([seapagan](https://github.com/seapagan))
+
+**Dependency Updates:**
+
+- Bump faker from 19.8.0 to 19.9.0 [\#15](https://github.com/seapagan/simple-toml-settings/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump mypy from 1.5.1 to 1.6.0 [\#14](https://github.com/seapagan/simple-toml-settings/pull/14) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump pylint from 2.17.7 to 3.0.1 [\#13](https://github.com/seapagan/simple-toml-settings/pull/13) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump faker from 19.6.2 to 19.8.0 [\#12](https://github.com/seapagan/simple-toml-settings/pull/12) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump mkdocs-material from 9.4.4 to 9.4.5 [\#11](https://github.com/seapagan/simple-toml-settings/pull/11) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.2.0](https://github.com/seapagan/simple-toml-settings/tree/0.2.0) (2023-10-10)
 
 [Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.1.0...0.2.0)
