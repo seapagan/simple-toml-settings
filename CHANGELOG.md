@@ -1,5 +1,18 @@
 # Changelog
 
+## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+
+[Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.2.2...HEAD)
+
+**Documentation:**
+
+- add missing repo section to docs [\#21](https://github.com/seapagan/simple-toml-settings/pull/21) ([seapagan](https://github.com/seapagan))
+
+**Dependency Updates:**
+
+- Bump pyfakefs from 5.2.4 to 5.3.0 [\#20](https://github.com/seapagan/simple-toml-settings/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump faker from 19.9.0 to 19.10.0 [\#19](https://github.com/seapagan/simple-toml-settings/pull/19) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [0.2.2](https://github.com/seapagan/simple-toml-settings/tree/0.2.2) (2023-10-12)
 
 [Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.2.1...0.2.2)
