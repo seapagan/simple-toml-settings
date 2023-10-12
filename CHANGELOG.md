@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.2.2](https://github.com/seapagan/simple-toml-settings/tree/0.2.2) (2023-10-12)
+
+[Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.2.1...0.2.2)
+
+**Fixed bugs:**
+
+- docs: fix same example error in README [\#18](https://github.com/seapagan/simple-toml-settings/pull/18) ([seapagan](https://github.com/seapagan))
+- fix error on docs front page example code [\#17](https://github.com/seapagan/simple-toml-settings/pull/17) ([seapagan](https://github.com/seapagan))
+
 ## [0.2.1](https://github.com/seapagan/simple-toml-settings/tree/0.2.1) (2023-10-12)
 
 [Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.2.0...0.2.1)
