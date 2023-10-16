@@ -26,6 +26,7 @@ class TOMLSettings:
     app_name: str
     settings_file_name: str = "config.toml"
     auto_create: bool = True
+    local_file: bool = False
 
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
@@ -36,14 +37,18 @@ class TOMLSettings:
             "settings_folder",
             "settings_file_name",
             "auto_create",
+            "local_file",
         }
     )
 
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
-        self.settings_folder: Path = Path.home() / f".{self.app_name}"
-        if not self.settings_folder.exists():
-            self.settings_folder.mkdir(parents=False)
+        if not self.local_file:
+            self.settings_folder: Path = Path.home() / f".{self.app_name}"
+            if not self.settings_folder.exists():
+                self.settings_folder.mkdir(parents=False)
+        else:
+            self.settings_folder = Path.cwd()
 
         self.load()
 
@@ -87,7 +92,9 @@ class TOMLSettings:
                 self.__post_create_hook__()
                 self.save()
             else:
-                raise SettingsNotFound from exc
+                raise SettingsNotFound(
+                    "Cant find a Config File, please create one."
+                ) from exc
             return
 
         for key, value in settings[self.app_name].items():

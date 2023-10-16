@@ -22,6 +22,17 @@ def test_exception_raised_on_missing_config_if_auto_create_is_false(fs):
         TOMLSettings("test_app", auto_create=False)
 
 
+def test_local_config(fs):
+    """Test that local_config loads settings from the local directory."""
+    fs.create_file(
+        "config.toml",
+        contents="[test_app]\ntest_string_var = 'local_app'",
+    )
+    settings = TOMLSettings("test_app", local_file=True)
+    assert settings.get("app_name") == "test_app"
+    assert settings.get("test_string_var") == "local_app"
+
+
 def test_post_create_hook_is_called(fs, mocker):
     """Test that the post_create_hook is called after settings file created."""
     fs.create_dir(Path.home())

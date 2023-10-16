@@ -155,6 +155,12 @@ not exist. You can catch this exception and handle it as you wish.
 *The folder will be created anyway if it does not exist, as the assumption is
 that you will want to save the settings at some point*.
 
+### `local_file`
+
+This defaults to `False` and will cause the settings file to be saved/read from
+the current directory instead of the user's home directory.  This is good for
+utility apps that need different settings for different projects / filelists.
+
 ## Post-create hook
 
 If you need to do some further processing, or set some input from the user after
