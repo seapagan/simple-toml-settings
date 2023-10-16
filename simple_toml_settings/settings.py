@@ -87,7 +87,9 @@ class TOMLSettings:
                 self.__post_create_hook__()
                 self.save()
             else:
-                raise SettingsNotFound from exc
+                raise SettingsNotFound(
+                    "Cant find a Config File, please create one."
+                ) from exc
             return
 
         for key, value in settings[self.app_name].items():
