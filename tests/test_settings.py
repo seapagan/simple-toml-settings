@@ -1,6 +1,9 @@
 """Test the settings module."""
 from pathlib import Path
 
+import pytest
+
+from simple_toml_settings.exceptions import SettingsNotFound
 from simple_toml_settings.settings import TOMLSettings
 
 
@@ -9,6 +12,14 @@ def test_config_file_auto_created(settings):
     assert settings.settings_folder.is_dir()
     assert settings.settings_folder.name == ".test_app"
     assert settings.settings_file_name == "config.toml"
+
+
+def test_exception_raised_on_missing_config_if_auto_create_is_false(fs):
+    """Test that the settings file is not created if auto_create is False."""
+    fs.create_dir(Path.home())
+
+    with pytest.raises(SettingsNotFound):
+        TOMLSettings("test_app", auto_create=False)
 
 
 def test_post_create_hook_is_called(fs, mocker):
