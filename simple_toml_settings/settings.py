@@ -23,6 +23,7 @@ class TOMLSettings:
 
     app_name: str
     settings_file_name: str = "config.toml"
+    auto_create: bool = True
 
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
@@ -32,6 +33,7 @@ class TOMLSettings:
             "app_name",
             "settings_folder",
             "settings_file_name",
+            "auto_create",
         }
     )
 
@@ -80,7 +82,8 @@ class TOMLSettings:
             )
         except FileNotFoundError:
             self.__post_create_hook__()
-            self.save()
+            if self.auto_create:
+                self.save()
             return
 
         for key, value in settings[self.app_name].items():
