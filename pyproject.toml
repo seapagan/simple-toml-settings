@@ -138,7 +138,7 @@ exclude = '''
 [tool.flake8]
 max-line-length = 80
 exclude = ["__init__.py", ".git"]
-extend-ignore = ["E203", "W503"]
+extend-ignore = ["E203", "W503", "TRY003"]
 extend-select = ["TC", "TC1", "TRY"]
 docstring-convention = "google"
 classmethod-decorators = ["classmethod", "validator"]
@@ -171,3 +171,6 @@ mock_use_standalone_module = true
 [tool.coverage.run]
 # source = []
 omit = ["*/tests/*"]
+
+[tool.tryceratops]
+ignore = ["TRY003"]
