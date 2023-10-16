@@ -10,6 +10,8 @@ from typing import Any, Dict, Set
 
 import rtoml
 
+from simple_toml_settings.exceptions import SettingsNotFound
+
 
 @dataclass
 class TOMLSettings:
@@ -80,10 +82,12 @@ class TOMLSettings:
             settings = rtoml.load(
                 self.settings_folder / self.settings_file_name
             )
-        except FileNotFoundError:
-            self.__post_create_hook__()
+        except FileNotFoundError as exc:
             if self.auto_create:
+                self.__post_create_hook__()
                 self.save()
+            else:
+                raise SettingsNotFound from exc
             return
 
         for key, value in settings[self.app_name].items():
