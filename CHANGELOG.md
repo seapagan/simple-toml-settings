@@ -1,8 +1,13 @@
 # Changelog
 
-## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+## [0.3.0](https://github.com/seapagan/simple-toml-settings/tree/0.3.0) (2023-10-18)
 
-[Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.2.2...HEAD)
+[Full Changelog](https://github.com/seapagan/simple-toml-settings/compare/0.2.2...0.3.0)
+
+**Implemented enhancements:**
+
+- Allow a Local config file [\#25](https://github.com/seapagan/simple-toml-settings/pull/25) ([seapagan](https://github.com/seapagan))
+- add 'auto\_create' option for config file, default True [\#22](https://github.com/seapagan/simple-toml-settings/pull/22) ([seapagan](https://github.com/seapagan))
 
 **Documentation:**
 
@@ -10,6 +15,10 @@
 
 **Dependency Updates:**
 
+- Bump urllib3 from 2.0.6 to 2.0.7 [\#27](https://github.com/seapagan/simple-toml-settings/pull/27) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump flake8-type-checking from 2.4.2 to 2.5.0 [\#26](https://github.com/seapagan/simple-toml-settings/pull/26) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump mkdocs-material from 9.4.5 to 9.4.6 [\#24](https://github.com/seapagan/simple-toml-settings/pull/24) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump pre-commit from 3.4.0 to 3.5.0 [\#23](https://github.com/seapagan/simple-toml-settings/pull/23) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump pyfakefs from 5.2.4 to 5.3.0 [\#20](https://github.com/seapagan/simple-toml-settings/pull/20) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump faker from 19.9.0 to 19.10.0 [\#19](https://github.com/seapagan/simple-toml-settings/pull/19) ([dependabot[bot]](https://github.com/apps/dependabot))
 
