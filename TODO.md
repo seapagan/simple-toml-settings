@@ -9,3 +9,4 @@
   found then look in the users home directory.
 - Add an Option to not include the `schema_version` key. By default this key
   **will** be included.
+- Migrate to Ruff for linting and formatting
