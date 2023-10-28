@@ -6,7 +6,7 @@ import pytest
 from simple_toml_settings.settings import TOMLSettings
 
 
-class TestSettings(TOMLSettings):
+class SettingsExample(TOMLSettings):
     """Define a class for testing the Settings class."""
 
     test_string_var: str = "test_value"
@@ -14,7 +14,7 @@ class TestSettings(TOMLSettings):
 
 
 @pytest.fixture()
-def settings(fs):
+def settings(fs) -> SettingsExample:
     """Return a Settings object for testing.
 
     This fixture creates a fake home directory in a virtual filesystem. It then
@@ -24,7 +24,5 @@ def settings(fs):
     # Create a fake home directory for the test
     fs.create_dir(Path.home())
 
-    # Create a Settings object for the test
-    settings = TestSettings("test_app")
-
-    return settings
+    # Create and return a Settings object for the test
+    return SettingsExample("test_app")
