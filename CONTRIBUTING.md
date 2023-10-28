@@ -102,35 +102,85 @@ ensure that the code is working as expected and will prevent any regressions.
 
 ## Changelog
 
-The changelog is automatically generated, so please do not edit it manually.
+The changelog is automatically generated using
+[github-changelog-md](https://changelog.seapagan.net), so please do not edit it
+manually.
 
-For information, it is generated using a **Ruby** gem called [GitHub Changelog
-Generator](https://github.com/github-changelog-generator/github-changelog-generator).
-There is a POE task that will run this and update the changelog file.
+For maintainers, there is a POE task that will run this and update the changelog
+file.
 
 ```console
 $ poe changelog
 ```
 
-you also need to add a GitHub Personal Access Token to the config file. See the
-section in the
-[Documentation](http://127.0.0.1:8000/configuration/#add-a-github-personal-access-token)
+You would also need to add a GitHub Personal Access Token to a local config file
+as usual. See the section in that tools
+[Documentation](https://changelog.seapagan.net/installation/#setup-a-github-pat)
 for information.
 
-**However, you should NOT include a change to the `CHANGELOG.md` file in your
+**However, you should NOT include a change to the `CHANGELOG.md` file in any
 Pull Requests. This will be handled by the maintainers when a new release is
-made.**
+made**. Your GitHub username will be added to the changelog automatically beside
+your PR.
+
+## Convenience Tasks
+
+There are a few other convenience tasks that can be run using the `poe` command.
+These are defined in the `pyproject.toml` file.
+
+Each of these tasks can have extra options added which will be passed to the
+underlying tool.
+
+Run **`mypy`** on the code base in strict mode:
+
+```console
+$ poe mypy
+```
+
+Format the code using **`ruff format`**:
+
+```console
+$ poe format
+```
+
+Lint the code using **`ruff`**:
+
+```console
+$ poe ruff
+```
+
+Check the **Markdown**:
+
+```console
+$ poe markdown
+```
+
+Run `ruff`, `mypy` and `format` at the same time:
+
+```console
+$ poe lint
+```
+
+## Documentation Tasks
+
+These are to help with developing and updating the documentation.
+
+- `poe docs:serve` - Serve the MkDocs locally for testing and development
+- `poe docs:serve:all` - Same as above, but opens to all interfaces so you can
+  view it on other devices on your network
+- `poe docs:build` - Build the MkDocs site into the `dist` folder
+- `poe docs:publish` - Publish the docs to your GitHub pages. **Note that only
+  those with write-access to this repo can do this**.
 
 ## Guidelines
 
 Here are some guidelines to follow when contributing to Py-Maker:
 
 - Follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide. The
-  pre-commit hooks will check for this. [Black](https://black.readthedocs.io/)
-  is installed and this is the format we are using.
+  pre-commit hooks will check for this. We are using
+  [Ruff](https://docs.astral.sh/ruff/) as both a linter and code formatter.
 - Try to have no linting errors or warnings. The pre-commit hooks will check for
-  this also. [Flake8](https://flake8.pycqa.org/en/latest/) is installed and
-  there are a few other linters that are run as well.
+  this also.
 - [MyPy](https://mypy.readthedocs.io/en/stable/) is installed and we are using
   type hints. Please try to add type hints to your code. If you see any areas of
   the code that are missing type hints, please feel free to open a PR and add

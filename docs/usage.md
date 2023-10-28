@@ -150,10 +150,17 @@ This is the name of the settings file to use.  By default this is set to
 This defaults to `True` and will automatically create the settings file if it
 does not exist and fill it with the default values.  If set to `False`, the
 class will raise an exception
-(**`simple_toml_settings.exceptions.SettingsNotFound`**) if the settings file does
-not exist. You can catch this exception and handle it as you wish.
+(**`simple_toml_settings.exceptions.SettingsNotFoundError`**) if the settings
+file does not exist. You can catch this exception and handle it as you wish.
 *The folder will be created anyway if it does not exist, as the assumption is
 that you will want to save the settings at some point*.
+
+!!! danger "Deprecation warning"
+
+    The exception was originally called **`SettingsNotFound`** but has been
+    renamed to **`SettingsNotFoundError`** to be more consistent with Python
+    naming conventions.  The old name still works, but will be removed in a
+    future release.
 
 ### `local_file`
 
