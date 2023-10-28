@@ -65,6 +65,7 @@ faker = "^19.2.0"
 pyfakefs = "^5.2.4"
 
 # documentation
+github-changelog-md = "^0.3.0"
 mkdocs = "^1.4.3"
 mkdocs-autorefs = "^0.5.0"
 mkdocs-material = "^9.1.19"
@@ -101,13 +102,10 @@ lint.help = "Run all linting checks"
 "docs:serve:all".cmd = "mkdocs serve -w TODO.md -w CHANGELOG.md -w CONTRIBUTING.md -a 0.0.0.0:9000"
 "docs:serve:all".help = "Serve documentation locally on all interfaces"
 
-changelog.cmd = "github_changelog_generator -u seapagan -p simple-toml-settings"
-changelog.help = "Generate a CHANGELOG.md file"
+changelog.cmd = "github-changelog-md"
+changelog.help = "Generate the CHANGELOG.md file"
 
 # configure assorted tools and linters
-[tool.isort]
-profile = "black"
-
 [tool.pymarkdown]
 plugins.md014.enabled = false
 plugins.md046.enabled = false
