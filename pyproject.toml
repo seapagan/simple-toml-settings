@@ -76,19 +76,20 @@ pygments = "^2.15.1"
 [tool.poe.tasks]
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"
-pylint.cmd = "pylint **/*.py"
-pylint.help = "Run pylint checks"
-mypy.cmd = "mypy **/*.py"
+mypy.cmd = "mypy simple_toml_settings/**/*.py tests/**/*.py --strict"
 mypy.help = "Run mypy checks"
-flake8.cmd = "flake8 **/*.py"
-flake8.help = "Run flake8 checks"
-black.cmd = "black **/*.py"
-black.help = "Check and format code with black"
-try.cmd = "tryceratops **/*.py"
-try.help = "Run tryceratops checks"
-markdown.cmd = "pymarkdown scan **/*.md"
+format.help = "Format code with Ruff"
+format.cmd = "ruff format ."
+ruff.help = "Run Ruff checks"
+ruff.cmd = "ruff check ."
+test.help = "Run tests using Pytest"
+test.cmd = "pytest"
+markdown.cmd = "pymarkdown scan  -r simple_toml_settings/**/*.md docs/**/*.md"
 markdown.help = "Run markdown checks"
-lint.sequence = ["black", "flake8", "mypy", "try", "pylint"]
+
+# run all linting checks in sequence. we want to run them all, even if one fails
+lint.ignore_fail = "return_non_zero"
+lint.sequence = ["format", "ruff", "mypy", "markdown"]
 lint.help = "Run all linting checks"
 
 "docs:publish".cmd = "mkdocs gh-deploy"
