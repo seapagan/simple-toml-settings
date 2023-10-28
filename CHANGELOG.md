@@ -2,7 +2,7 @@
 
 ## [0.3.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.1) (2023-10-28)
 
-**Merged Pull Requests**
+**Refactoring**
 
 - Change to new CHANGELOG generator. Mine :) ([#38](https://github.com/seapagan/simple-toml-settings/pull/38)) by [seapagan](https://github.com/seapagan)
 - Migrate to ruff linter and formatter ([#37](https://github.com/seapagan/simple-toml-settings/pull/37)) by [seapagan](https://github.com/seapagan)
@@ -85,8 +85,11 @@
 
 **Merged Pull Requests**
 
-- Rename main settings class ([#5](https://github.com/seapagan/simple-toml-settings/pull/5)) by [seapagan](https://github.com/seapagan)
 - Add test workflow to Github Actions ([#2](https://github.com/seapagan/simple-toml-settings/pull/2)) by [seapagan](https://github.com/seapagan)
+
+**Refactoring**
+
+- Rename main settings class ([#5](https://github.com/seapagan/simple-toml-settings/pull/5)) by [seapagan](https://github.com/seapagan)
 
 **Documentation**
 
