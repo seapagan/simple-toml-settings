@@ -1,9 +1,10 @@
 # Changelog
 
-## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+## [0.3.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.1) (2023-10-28)
 
 **Merged Pull Requests**
 
+- Change to new CHANGELOG generator. Mine :) ([#38](https://github.com/seapagan/simple-toml-settings/pull/38)) by [seapagan](https://github.com/seapagan)
 - Migrate to ruff linter and formatter ([#37](https://github.com/seapagan/simple-toml-settings/pull/37)) by [seapagan](https://github.com/seapagan)
 
 **Dependency Updates**
@@ -18,7 +19,7 @@
 - Bump flake8-type-checking from 2.5.0 to 2.5.1 ([#29](https://github.com/seapagan/simple-toml-settings/pull/29)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mypy from 1.6.0 to 1.6.1 ([#28](https://github.com/seapagan/simple-toml-settings/pull/28)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.0...HEAD)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.0...0.3.1)
 
 ## [0.3.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.0) (2023-10-18)
 
