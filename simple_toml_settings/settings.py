@@ -6,11 +6,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Dict, Set
+from typing import Any
 
 import rtoml
 
-from simple_toml_settings.exceptions import SettingsNotFound
+from simple_toml_settings.exceptions import SettingsNotFoundError
 
 
 @dataclass
@@ -31,7 +31,7 @@ class TOMLSettings:
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
 
-    _ignored_attrs: Set[str] = field(
+    _ignored_attrs: set[str] = field(
         default_factory=lambda: {
             "app_name",
             "settings_folder",
@@ -62,9 +62,8 @@ class TOMLSettings:
         The save() method IS called after we run this automatically, it should
         never be called manually.
         """
-        pass
 
-    def get_attrs(self) -> Dict[str, str]:
+    def get_attrs(self) -> dict[str, str]:
         """Return a dictionary of our setting values."""
         return {
             a: getattr(self, a)
@@ -92,22 +91,30 @@ class TOMLSettings:
                 self.__post_create_hook__()
                 self.save()
             else:
-                raise SettingsNotFound(
-                    "Cant find a Config File, please create one."
-                ) from exc
+                message = "Cant find a Config File, please create one."
+                raise SettingsNotFoundError(message) from exc
             return
 
         for key, value in settings[self.app_name].items():
             setattr(self, key, value)
 
-    def get(self, key: str) -> Any:
+    def get(
+        self,
+        key: str,
+    ) -> Any:  # noqa: ANN401
         """Get a setting by key."""
         try:
             return getattr(self, key)
         except AttributeError:
             return None
 
-    def set(self, key: str, value: str, autosave: bool = True) -> None:
+    def set(  # noqa: A003
+        self,
+        key: str,
+        value: str,
+        *,
+        autosave: bool = True,
+    ) -> None:
         """Set a setting by key and value.
 
         If autosave is True (the default), the settings will be saved to the
@@ -117,6 +124,6 @@ class TOMLSettings:
         if autosave:
             self.save()
 
-    def list_settings(self) -> Dict[str, str]:
+    def list_settings(self) -> dict[str, str]:
         """Return a dictionary of settings."""
         return self.get_attrs()
