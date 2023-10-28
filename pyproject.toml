@@ -146,11 +146,10 @@ classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
 [tool.ruff.pydocstyle]
 convention = "google"
 
-
 [tool.ruff.extend-per-file-ignores]
 "tests/**/*.py" = [
   "S101",   # we can (and MUST!) use 'assert' in test files.
-  "ANN001", # annotations for fixtures are sometimes a pain for test files.
+  "ANN001", # annotations for fixtures are sometimes a pain for test files
 ]
 "simple_toml_settings/main.py" = [
   "UP007",
@@ -158,11 +157,11 @@ convention = "google"
 ] # These cause issues in Typer Apps
 
 [tool.ruff.isort]
-known-local-folder = ["simple_toml_settings"]
+known-first-party = ["simple_toml_settings"]
 
 [tool.ruff.pyupgrade]
 keep-runtime-typing = true
 
 [[tool.mypy.overrides]]
-disable_error_code = ["method-assign"]
+disable_error_code = ["method-assign", "no-untyped-def", "attr-defined"]
 module = "tests.*"
