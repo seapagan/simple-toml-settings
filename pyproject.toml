@@ -108,48 +108,9 @@ changelog.help = "Generate a CHANGELOG.md file"
 [tool.isort]
 profile = "black"
 
-[tool.black]
-line-length = 80
-exclude = '''
-/(
-    \.git
-  | \.mypy_cache
-  | \.tox
-  | venv
-  | \.venv
-  | _build
-  | build
-  | dist
-)/
-'''
-
-[tool.flake8]
-max-line-length = 80
-exclude = ["__init__.py", ".git"]
-extend-ignore = ["E203", "W503", "TRY003"]
-extend-select = ["TC", "TC1", "TRY"]
-docstring-convention = "google"
-classmethod-decorators = ["classmethod", "validator"]
-
-[tool.bandit]
-exclude_dirs = []
-
-[tool.bandit.assert_used]
-skips = ['*_test.py', '*/test_*.py']
-
-[tool.pylint.MAIN]
-load-plugins = ["pylint_pytest", "pylint_pydantic"]
-extension-pkg-whitelist = "pydantic"
-
-[tool.pylint.DESIGN]
-exclude-too-few-public-methods = "pydantic"
-max-attributes = 10
-
-[tool.pydocstyle]
-add-ignore = ["D104"]
-
 [tool.pymarkdown]
 plugins.md014.enabled = false
+plugins.md046.enabled = false
 
 [tool.pytest.ini_options]
 addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
@@ -160,5 +121,48 @@ mock_use_standalone_module = true
 # source = []
 omit = ["*/tests/*"]
 
-[tool.tryceratops]
-ignore = ["TRY003"]
+[tool.ruff]
+line-length = 80
+select = ["ALL"] # we are being very strict!
+ignore = [
+  "ANN101",
+  "PGH003",
+  "FBT002",
+  "FBT003",
+  "B006",
+] # These rules are too strict even for us 😝
+extend-ignore = ["COM812", "ISC001"] # these are ignored for ruff formatting
+
+src = ["simple_toml_settings"]
+target-version = "py39"        # minimum python version supported
+
+[tool.ruff.format]
+indent-style = "space"
+quote-style = "double"
+
+[tool.ruff.pep8-naming]
+classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+
+[tool.ruff.extend-per-file-ignores]
+"tests/**/*.py" = [
+  "S101",   # we can (and MUST!) use 'assert' in test files.
+  "ANN001", # annotations for fixtures are sometimes a pain for test files.
+]
+"simple_toml_settings/main.py" = [
+  "UP007",
+  "PLR0913",
+] # These cause issues in Typer Apps
+
+[tool.ruff.isort]
+known-local-folder = ["simple_toml_settings"]
+
+[tool.ruff.pyupgrade]
+keep-runtime-typing = true
+
+[[tool.mypy.overrides]]
+disable_error_code = ["method-assign"]
+module = "tests.*"
