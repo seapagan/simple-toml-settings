@@ -90,6 +90,19 @@ settings = MySettings("my_app_name", settings_file_name="my_settings.toml")
 
 ## Using the settings
 
+!!! danger "`None` values"
+
+    The library does not support saving `None` values.  If you need to save a
+    `None` value, you should use a different value (such as an empty string or
+    `0`) and convert it to `None` in your app.
+
+    This is because TOML does not support `None` values and the library will
+    convert `None` values to `null` when saving the settings.
+
+    We may add support for this in the future, but for now you should avoid
+    using `None` values unless they are a default and will never need to be
+    saved - **any `None` value will not be saved to the config file**.
+
 Once you have created your settings class, you can use it like any other class:
 
 ```python
