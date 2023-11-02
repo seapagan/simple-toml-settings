@@ -9,4 +9,6 @@
   found then look in the users home directory.
 - Add an Option to not include the `schema_version` key. By default this key
   **will** be included.
-- Migrate to Ruff for linting and formatting
+- Allow a global config file to be used, which will be overridden by a local
+  config file if it exists.
+- option to not save config options that have the same value as the default.
