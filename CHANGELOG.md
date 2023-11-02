@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.3.2](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.2) (2023-11-02)
+
+**Bug Fixes**
+
+- Don't save `None` values to the TOML file. ([#49](https://github.com/seapagan/simple-toml-settings/pull/49)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Bump pymarkdownlnt from 0.9.13.4 to 0.9.14 ([#48](https://github.com/seapagan/simple-toml-settings/pull/48)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump faker from 19.12.1 to 19.13.0 ([#47](https://github.com/seapagan/simple-toml-settings/pull/47)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump github-changelog-md from 0.3.0 to 0.5.0 ([#46](https://github.com/seapagan/simple-toml-settings/pull/46)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump faker from 19.11.0 to 19.12.1 ([#45](https://github.com/seapagan/simple-toml-settings/pull/45)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pytest-asyncio from 0.21.1 to 0.22.0 ([#44](https://github.com/seapagan/simple-toml-settings/pull/44)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pytest from 7.4.2 to 7.4.3 ([#42](https://github.com/seapagan/simple-toml-settings/pull/42)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump mkdocs-material from 9.4.6 to 9.4.7 ([#41](https://github.com/seapagan/simple-toml-settings/pull/41)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.1...0.3.2)
+
 ## [0.3.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.1) (2023-10-28)
 
 **Refactoring**
