@@ -56,11 +56,38 @@ def test_get_attrs(settings) -> None:
     assert attrs["test_int_var"] == SettingsExample.test_int_var
 
 
+def test_get_attrs_ignores_none_by_default(settings) -> None:
+    """Test that None attributes are not returned."""
+    settings.set("new_key", None)
+    attrs = settings.get_attrs()
+    assert "new_key" not in attrs
+
+
+def test_save_ignores_none_values(settings) -> None:
+    """Test that None attributes are not saved."""
+    settings.set("new_key", None)
+    settings.save()
+    attrs = settings.get_attrs()
+    assert "new_key" not in attrs
+
+
+def test_get_attrs_returns_none_if_include_none_true(settings) -> None:
+    """Test that None attributes are returned if required is True."""
+    settings.set("new_key", None)
+    attrs = settings.get_attrs(include_none=True)
+    assert attrs["new_key"] is None
+
+
 def test_get(settings) -> None:
     """Test we can get settings."""
     assert settings.get("app_name") == TEST_APP_NAME
     assert settings.get("test_string_var") == SettingsExample.test_string_var
     assert settings.get("test_int_var") == SettingsExample.test_int_var
+
+
+def test_get_missing_setting(settings) -> None:
+    """Test that 'None' is returned when a setting is missing."""
+    assert settings.get("missing_setting") is None
 
 
 def test_set(settings) -> None:
@@ -74,6 +101,12 @@ def test_add_and_list_setting(settings) -> None:
     settings.set("new_key", "new_value")
     settings_dict = settings.list_settings()
     assert settings_dict["new_key"] == "new_value"
+
+
+def test_add_none_value(settings) -> None:
+    """Test that a setting can be set to None."""
+    settings.set("new_key", None)
+    assert settings.get("new_key") is None
 
 
 def test_load_settings(settings) -> None:

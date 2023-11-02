@@ -63,14 +63,19 @@ class TOMLSettings:
         never be called manually.
         """
 
-    def get_attrs(self) -> dict[str, str]:
-        """Return a dictionary of our setting values."""
+    def get_attrs(self, *, include_none: bool = False) -> dict[str, str]:
+        """Return a dictionary of our setting values.
+
+        Values that are None are EXCLUDED by default, but can be included by
+        setting 'include_none' to True.
+        """
         return {
             a: getattr(self, a)
             for a in dir(self)
             if not a.startswith("_")
             and a not in self._ignored_attrs
             and not callable(getattr(self, a))
+            and (include_none or getattr(self, a) is not None)
         }
 
     def save(self) -> None:
