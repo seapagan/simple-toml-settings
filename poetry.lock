@@ -493,13 +493,13 @@ dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
 name = "github-changelog-md"
-version = "0.5.0"
+version = "0.5.1"
 description = "Generate a Markdown Changelog from your Github repository."
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "github_changelog_md-0.5.0-py3-none-any.whl", hash = "sha256:ea67f0ac201b8c3873fc2f1608d0e2556fc735f2879b6381304dddf3cf5de822"},
-    {file = "github_changelog_md-0.5.0.tar.gz", hash = "sha256:38275aa9e7af35c121fc6a361a5d2cd558ac1c15c212eaa6e986014b350e48e6"},
+    {file = "github_changelog_md-0.5.1-py3-none-any.whl", hash = "sha256:c53bccd240e026dbc8c08e833cf5a439627e9dc5246067d70102a59989c75cf6"},
+    {file = "github_changelog_md-0.5.1.tar.gz", hash = "sha256:da5e190988e9cb5207153a64d06bd4a5c796b9b789f55aa9df319d6df06ca852"},
 ]
 
 [package.dependencies]
@@ -507,7 +507,7 @@ pydantic = ">=2.3.0,<3.0.0"
 pygithub = ">=1.59.1,<3.0.0"
 rich = ">=13.6.0,<14.0.0"
 rtoml = ">=0.9.0,<0.10.0"
-simple-toml-settings = ">=0.3.1,<0.4.0"
+simple-toml-settings = ">=0.3.2,<0.4.0"
 typer = ">=0.9.0,<0.10.0"
 
 [[package]]
