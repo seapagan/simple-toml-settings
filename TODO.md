@@ -12,3 +12,5 @@
 - Allow a global config file to be used, which will be overridden by a local
   config file if it exists.
 - option to not save config options that have the same value as the default.
+- by default save should not save config options that are not already in the
+  config file, though leave the current behavior as an option.
