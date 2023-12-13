@@ -1,5 +1,23 @@
 # Changelog
 
+## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+
+**Dependency Updates**
+
+- Bump mkdocs-material from 9.4.8 to 9.5.2 ([#79](https://github.com/seapagan/simple-toml-settings/pull/79)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pytest-xdist from 3.4.0 to 3.5.0 ([#78](https://github.com/seapagan/simple-toml-settings/pull/78)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump actions/setup-python from 4 to 5 ([#75](https://github.com/seapagan/simple-toml-settings/pull/75)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump ruff from 0.1.5 to 0.1.7 ([#74](https://github.com/seapagan/simple-toml-settings/pull/74)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump cryptography from 41.0.5 to 41.0.6 ([#73](https://github.com/seapagan/simple-toml-settings/pull/73)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pygments from 2.16.1 to 2.17.2 ([#69](https://github.com/seapagan/simple-toml-settings/pull/69)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump poethepoet from 0.24.3 to 0.24.4 ([#66](https://github.com/seapagan/simple-toml-settings/pull/66)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump github-changelog-md from 0.7.0 to 0.8.0 ([#64](https://github.com/seapagan/simple-toml-settings/pull/64)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump faker from 19.13.0 to 20.0.3 ([#63](https://github.com/seapagan/simple-toml-settings/pull/63)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump poethepoet from 0.24.2 to 0.24.3 ([#62](https://github.com/seapagan/simple-toml-settings/pull/62)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- *and 9 more dependency updates*
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...HEAD) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...HEAD.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...HEAD.patch)
+
 ## [0.3.2](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.2) (2023-11-02)
 
 **Bug Fixes**
@@ -16,7 +34,7 @@
 - Bump pytest from 7.4.2 to 7.4.3 ([#42](https://github.com/seapagan/simple-toml-settings/pull/42)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mkdocs-material from 9.4.6 to 9.4.7 ([#41](https://github.com/seapagan/simple-toml-settings/pull/41)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.1...0.3.2)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.1...0.3.2) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.3.1...0.3.2.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.3.1...0.3.2.patch)
 
 ## [0.3.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.1) (2023-10-28)
 
@@ -37,7 +55,7 @@
 - Bump flake8-type-checking from 2.5.0 to 2.5.1 ([#29](https://github.com/seapagan/simple-toml-settings/pull/29)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mypy from 1.6.0 to 1.6.1 ([#28](https://github.com/seapagan/simple-toml-settings/pull/28)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.0...0.3.1)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.0...0.3.1) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.3.0...0.3.1.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.3.0...0.3.1.patch)
 
 ## [0.3.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.0) (2023-10-18)
 
@@ -59,7 +77,7 @@
 - Bump pyfakefs from 5.2.4 to 5.3.0 ([#20](https://github.com/seapagan/simple-toml-settings/pull/20)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump faker from 19.9.0 to 19.10.0 ([#19](https://github.com/seapagan/simple-toml-settings/pull/19)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.2.2...0.3.0)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.2.2...0.3.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.2.2...0.3.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.2.2...0.3.0.patch)
 
 ## [0.2.2](https://github.com/seapagan/simple-toml-settings/releases/tag/0.2.2) (2023-10-12)
 
@@ -68,7 +86,7 @@
 - Docs: fix same example error in README ([#18](https://github.com/seapagan/simple-toml-settings/pull/18)) by [seapagan](https://github.com/seapagan)
 - Fix error on docs front page example code ([#17](https://github.com/seapagan/simple-toml-settings/pull/17)) by [seapagan](https://github.com/seapagan)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.2.1...0.2.2)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.2.1...0.2.2) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.2.1...0.2.2.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.2.1...0.2.2.patch)
 
 ## [0.2.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.2.1) (2023-10-12)
 
@@ -84,7 +102,7 @@
 - Bump faker from 19.6.2 to 19.8.0 ([#12](https://github.com/seapagan/simple-toml-settings/pull/12)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mkdocs-material from 9.4.4 to 9.4.5 ([#11](https://github.com/seapagan/simple-toml-settings/pull/11)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.2.0...0.2.1)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.2.0...0.2.1) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.2.0...0.2.1.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.2.0...0.2.1.patch)
 
 ## [0.2.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.2.0) (2023-10-10)
 
@@ -97,7 +115,7 @@
 - Bump pylint-pydantic from 0.2.4 to 0.3.0 ([#9](https://github.com/seapagan/simple-toml-settings/pull/9)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump actions/checkout from 3 to 4 ([#7](https://github.com/seapagan/simple-toml-settings/pull/7)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.1.0...0.2.0)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.1.0...0.2.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.1.0...0.2.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.1.0...0.2.0.patch)
 
 ## [0.1.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.1.0) (2023-10-09)
 
