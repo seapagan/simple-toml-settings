@@ -1194,13 +1194,13 @@ typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
 name = "pyfakefs"
-version = "5.3.0"
+version = "5.3.5"
 description = "pyfakefs implements a fake file system that mocks the Python file system modules."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyfakefs-5.3.0-py3-none-any.whl", hash = "sha256:33c1f891078c727beec465e75cb314120635e2298456493cc2cc0539e2130cbb"},
-    {file = "pyfakefs-5.3.0.tar.gz", hash = "sha256:e3e35f65ce55ee8ecc5e243d55cfdbb5d0aa24938f6e04e19f0fab062f255020"},
+    {file = "pyfakefs-5.3.5-py3-none-any.whl", hash = "sha256:751015c1de94e1390128c82b48cdedc3f088bbdbe4bc713c79d02a27f0f61e69"},
+    {file = "pyfakefs-5.3.5.tar.gz", hash = "sha256:7cdc500b35a214cb7a614e1940543acc6650e69a94ac76e30f33c9373bd9cf90"},
 ]
 
 [[package]]
