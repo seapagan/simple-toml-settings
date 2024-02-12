@@ -151,13 +151,7 @@ convention = "google"
   "S101",   # we can (and MUST!) use 'assert' in test files.
   "ANN001", # annotations for fixtures are sometimes a pain for test files
 ]
-"simple_toml_settings/main.py" = [
-  "UP007",
-  "PLR0913",
-] # These cause issues in Typer Apps
-"simple_toml_settings/settings.py" = [
-  "RUF100", # this seems to fail on a valid noqa
-]
+
 
 [tool.ruff.lint.isort]
 known-first-party = ["simple_toml_settings"]
