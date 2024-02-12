@@ -120,15 +120,18 @@ omit = ["*/tests/*"]
 
 [tool.ruff]
 line-length = 80
-select = ["ALL"] # we are being very strict!
-ignore = [
+lint.select = ["ALL"] # we are being very strict!
+lint.ignore = [
   "ANN101",
   "PGH003",
   "FBT002",
   "FBT003",
   "B006",
 ] # These rules are too strict even for us 😝
-extend-ignore = ["COM812", "ISC001"] # these are ignored for ruff formatting
+lint.extend-ignore = [
+  "COM812",
+  "ISC001",
+] # these are ignored for ruff formatting
 
 src = ["simple_toml_settings"]
 target-version = "py39"        # minimum python version supported
@@ -137,13 +140,13 @@ target-version = "py39"        # minimum python version supported
 indent-style = "space"
 quote-style = "double"
 
-[tool.ruff.pep8-naming]
+[tool.ruff.lint.pep8-naming]
 classmethod-decorators = ["pydantic.validator", "pydantic.root_validator"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
-[tool.ruff.extend-per-file-ignores]
+[tool.ruff.lint.extend-per-file-ignores]
 "tests/**/*.py" = [
   "S101",   # we can (and MUST!) use 'assert' in test files.
   "ANN001", # annotations for fixtures are sometimes a pain for test files
@@ -153,10 +156,10 @@ convention = "google"
   "PLR0913",
 ] # These cause issues in Typer Apps
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["simple_toml_settings"]
 
-[tool.ruff.pyupgrade]
+[tool.ruff.lint.pyupgrade]
 keep-runtime-typing = true
 
 [[tool.mypy.overrides]]
