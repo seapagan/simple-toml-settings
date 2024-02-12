@@ -113,7 +113,7 @@ class TOMLSettings:
         except AttributeError:
             return None
 
-    def set(  # noqa: A003
+    def set(
         self,
         key: str,
         value: str,
