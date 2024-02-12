@@ -26,6 +26,10 @@
   },
   "files.eol": "\n",
   "files.exclude": {
+    "**/.cache": true,
+    "**/.mypy_cache": true,
+    "**/.pytest_cache": true,
+    "**/.ruff_cache": true,
     "**/__pycache__": true
   },
   "git.alwaysSignOff": true,
