@@ -13,5 +13,9 @@ class SettingsNotFoundError(SettingsError):
     """
 
 
+class SettingsSchemaError(SettingsError):
+    """The settings file schema does not match the required level."""
+
+
 # temporary alias for backwards compatibility
 SettingsNotFound = SettingsNotFoundError
