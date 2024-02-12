@@ -155,6 +155,9 @@ convention = "google"
   "UP007",
   "PLR0913",
 ] # These cause issues in Typer Apps
+"simple_toml_settings/settings.py" = [
+  "RUF100", # this seems to fail on a valid noqa
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["simple_toml_settings"]
