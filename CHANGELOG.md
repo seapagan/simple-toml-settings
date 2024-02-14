@@ -2,7 +2,7 @@
 
 ## [0.4.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.4.0) (2024-02-14)
 
-**Enhancements**
+**New Features**
 
 - Raise schema error if the file schema does not match the required schema ([#111](https://github.com/seapagan/simple-toml-settings/pull/111)) by [seapagan](https://github.com/seapagan)
 
@@ -67,7 +67,7 @@
 
 ## [0.3.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.0) (2023-10-18)
 
-**Enhancements**
+**New Features**
 
 - Allow a Local config file ([#25](https://github.com/seapagan/simple-toml-settings/pull/25)) by [seapagan](https://github.com/seapagan)
 - Add 'auto_create' option for config file, default True ([#22](https://github.com/seapagan/simple-toml-settings/pull/22)) by [seapagan](https://github.com/seapagan)
@@ -114,7 +114,7 @@
 
 ## [0.2.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.2.0) (2023-10-10)
 
-**Enhancements**
+**New Features**
 
 - Add a hook, called if the config file is missing and freshly created ([#10](https://github.com/seapagan/simple-toml-settings/pull/10)) by [seapagan](https://github.com/seapagan)
 
