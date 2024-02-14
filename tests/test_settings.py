@@ -3,7 +3,10 @@ from pathlib import Path
 
 import pytest
 
-from simple_toml_settings.exceptions import SettingsNotFoundError
+from simple_toml_settings.exceptions import (
+    SettingsNotFoundError,
+    SettingsSchemaError,
+)
 from simple_toml_settings.settings import TOMLSettings
 
 from .conftest import SettingsExample
@@ -31,9 +34,9 @@ def test_local_config(fs) -> None:
     """Test that local_config loads settings from the local directory."""
     fs.create_file(
         "config.toml",
-        contents="[test_app]\ntest_string_var = 'local_app'",
+        contents="[test_app]\ntest_string_var = 'local_app'\nschema_version=1",
     )
-    settings = TOMLSettings("test_app", local_file=True)
+    settings = TOMLSettings("test_app", local_file=True, schema_version="1")
     assert settings.get("app_name") == "test_app"
     assert settings.get("test_string_var") == "local_app"
 
@@ -163,3 +166,36 @@ def test_items_on_ignored_attrs(settings) -> None:
 
     for setting in settings._ignored_attrs:  # noqa: SLF001
         assert setting not in list_settings
+
+
+def test_schema_version_mismatch_raises_error(fs) -> None:
+    """Test that a schema version mismatch raises SettingsSchemaError."""
+    fs.create_file(
+        "config.toml",
+        contents="[test_app]\ntest_string_var = 'local_app'\nschema_version=1",
+    )
+    with pytest.raises(SettingsSchemaError):
+        TOMLSettings("test_app", local_file=True, schema_version="2")
+
+
+@pytest.mark.parametrize("value", ["none", "NONE", "None"])
+def test_none_schema_does_not_raise_error(fs, value) -> None:
+    """Test that a 'none' schema does NOT raise SettingsSchemaError."""
+    fs.create_file(
+        "config.toml",
+        contents="[test_app]\ntest_var = 'schema test'\n"
+        f"schema_version='{value}'",
+    )
+
+    # this should NOT raise an exception
+    TOMLSettings("test_app", local_file=True, schema_version="2")
+
+
+def test_missing_schema_does_not_raise_error(fs) -> None:
+    """Test that a 'none' schema does NOT raise SettingsSchemaError."""
+    fs.create_file(
+        "config.toml", contents="[test_app]\ntest_var = 'schema test'\n"
+    )
+
+    # this should NOT raise an exception
+    TOMLSettings("test_app", local_file=True, schema_version="2")

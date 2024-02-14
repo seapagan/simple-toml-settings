@@ -107,7 +107,7 @@ class TOMLSettings:
         file_schema_version = str(
             settings[self.app_name].get("schema_version", None)
         )
-        if file_schema_version != self.schema_version:
+        if file_schema_version.lower() not in {self.schema_version, "none"}:
             raise SettingsSchemaError(
                 expected=self.schema_version, found=file_schema_version
             )
