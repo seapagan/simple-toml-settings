@@ -8,7 +8,7 @@ license = "MIT"
 
 packages = [{ include = "simple_toml_settings" }]
 
-documentation = "https://seapagan.github.io/simple-toml-settings/"
+documentation = "http://toml-settings.grantramsay.dev/"
 repository = "https://github.com/seapagan/simple-toml-settings"
 
 classifiers = [
