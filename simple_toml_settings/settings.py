@@ -10,7 +10,10 @@ from typing import Any
 
 import rtoml
 
-from simple_toml_settings.exceptions import SettingsNotFoundError
+from simple_toml_settings.exceptions import (
+    SettingsNotFoundError,
+    SettingsSchemaError,
+)
 
 
 @dataclass
@@ -100,6 +103,14 @@ class TOMLSettings:
                 raise SettingsNotFoundError(message) from exc
             return
 
+        # Check if 'schema_version' is present and matches the required one
+        file_schema_version = str(
+            settings[self.app_name].get("schema_version", None)
+        )
+        if file_schema_version != self.schema_version:
+            raise SettingsSchemaError(
+                expected=self.schema_version, found=file_schema_version
+            )
         for key, value in settings[self.app_name].items():
             setattr(self, key, value)
 
