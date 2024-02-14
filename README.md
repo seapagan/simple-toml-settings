@@ -104,7 +104,7 @@ provide a migration path (and backwards compatibility) if we do change them.
 ## Development setup
 
 See the [Contributing Guidelines](CONTRIBUTING.md) for details of how to
-contribute to this project and set in up for development.
+contribute to this project and set it up for development.
 
 ## License
 
