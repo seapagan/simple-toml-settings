@@ -1,10 +1,14 @@
 # Changelog
 
-## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+## [0.4.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.4.0) (2024-02-14)
 
 **Enhancements**
 
 - Raise schema error if the file schema does not match the required schema ([#111](https://github.com/seapagan/simple-toml-settings/pull/111)) by [seapagan](https://github.com/seapagan)
+
+**Documentation**
+
+- Add a SECURITY file ([#120](https://github.com/seapagan/simple-toml-settings/pull/120)) by [seapagan](https://github.com/seapagan)
 
 **Dependency Updates**
 
@@ -20,7 +24,7 @@
 - Bump cryptography from 41.0.6 to 42.0.0 ([#107](https://github.com/seapagan/simple-toml-settings/pull/107)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - *and 33 more dependency updates*
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...HEAD) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...HEAD.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...HEAD.patch)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...0.4.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...0.4.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.3.2...0.4.0.patch)
 
 ## [0.3.2](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.2) (2023-11-02)
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simple-toml-settings"
-version = "0.3.2"
+version = "0.4.0"
 description = "A Python library to save your settings in a TOML file."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
