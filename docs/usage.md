@@ -64,14 +64,20 @@ sub_setting_2 = "sub setting 2 text"
 The above shows how lists are saved as TOML arrays and dictionaries are saved as
 TOML tables.
 
-!!! note "`schema_version` key"
+!!! note "`schema_version` key [optional]"
 
     This is used to track the version of the schema
     used to save the settings.  If you change the settings in your app in such
     a way to make older versions incompatible, you should increment the schema
-    version.  At the moment, this is not used for anything, but it will be used
-    in the future to detect outdated settings files and to allow automatic
-    migration of settings.
+    version.  If the schema version is not set, it will default to `none`.
+
+    The schema is checked when the settings are loaded and if the schema version
+    in the file is different to the schema version in the class, an exception
+    will be raised (**`simple_toml_settings.exceptions.SettingsSchemaError`**).
+    You can catch this exception and handle it as you wish.
+
+    **If the schema version is set to `none` (or missing) in the file, no schema
+    checking will be performed and no exception raised.**
 
 By default the `schema_version` is set to `none`.  You can change this by
 passing it to the custom class on creation:
