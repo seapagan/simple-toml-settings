@@ -502,13 +502,13 @@ dev = ["flake8", "markdown", "twine", "wheel"]
 
 [[package]]
 name = "github-changelog-md"
-version = "0.8.1"
+version = "0.9.1"
 description = "Generate a Markdown Changelog from your Github repository."
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "github_changelog_md-0.8.1-py3-none-any.whl", hash = "sha256:93dd3ff2d9f971401558d08195c08aeb9f801eb5c729365f85fb0b8dac7be0fc"},
-    {file = "github_changelog_md-0.8.1.tar.gz", hash = "sha256:a196c0553801bc51f9ed6c49adbbac7f43239a5e4848d0d05ce49212a8c49402"},
+    {file = "github_changelog_md-0.9.1-py3-none-any.whl", hash = "sha256:f0bcd5320d7f85136922f2a45d512dd62ccb0150b195f6ce335a063c96453e5c"},
+    {file = "github_changelog_md-0.9.1.tar.gz", hash = "sha256:2b40f653c8ee62b7622002d564dd663c628f19c2e26ae3b0ff4bd51817eacf59"},
 ]
 
 [package.dependencies]
@@ -516,7 +516,7 @@ pydantic = ">=2.3.0,<3.0.0"
 pygithub = ">=1.59.1,<3.0.0"
 rich = ">=13.6.0,<14.0.0"
 rtoml = ">=0.9.0,<0.10.0"
-simple-toml-settings = ">=0.3.2,<0.4.0"
+simple-toml-settings = ">=0.4.0,<0.5.0"
 typer = ">=0.9.0,<0.10.0"
 
 [[package]]
@@ -2037,4 +2037,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4.0"
-content-hash = "1886ac7a0228e1bb00a2f66f0dabda6a031f798cf9e544c792b7fbe16d9725ab"
+content-hash = "1dfd31f35d1c9885e11237d3166e1668031ce9c5c8d49b3d0979709628fe9067"
