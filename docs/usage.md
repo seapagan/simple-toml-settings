@@ -22,7 +22,7 @@ class MySettings(TOMLSettings):
 
     # Define the settings you want to save
     name: str = "My Name"
-    age: int = 42
+    age: int = 53
     favourite_colour: str = "blue"
     favourite_number: int = 42
     favourite_foods: list = ["pizza", "chocolate", "ice cream"]
@@ -49,7 +49,7 @@ The file contents for the above example would be:
 
 ```toml
 [my_app_name]
-age = 42
+age = 53
 favourite_colour = "blue"
 favourite_number = 42
 name = "My Name"
@@ -86,13 +86,22 @@ passing it to the custom class on creation:
 settings = MySettings("my_app_name", schema_version="1.0.0")
 ```
 
-By default, the settings will be saved in a file called `config.toml` in the
-user's home directory.  You can change this by passing a different filename on
-creation:
+By default, the settings will be saved in a file called `config.toml` in a
+subfolder of the user's home directory.  You can change this by passing a
+different filename on creation:
 
 ```python
 settings = MySettings("my_app_name", settings_file_name="my_settings.toml")
 ```
+
+The subfolder will be created if it does not exist, and is the same as the app
+name but with a `.` prepended to it.  So, for the above example, the settings
+will be saved as `~/.my_app_name/my_settings.toml`.
+
+!!! note
+    In future versions the folder name will be configurable, and the folder itself
+    will be optional, so the file can be stored in the user's home folder
+    directly.
 
 ## Using the settings
 
@@ -202,7 +211,7 @@ class MySettings(TOMLSettings):
 
     # Define the settings you want to save
     name: str = "My Name"
-    age: int = 42
+    age: int = 53
     favourite_colour: str = "blue"
     favourite_number: int = 42
     favourite_foods: list = ["pizza", "chocolate", "ice cream"]
