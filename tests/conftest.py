@@ -1,4 +1,5 @@
 """Configure pytest for the tests in this directory."""
+
 from pathlib import Path
 
 import pytest
