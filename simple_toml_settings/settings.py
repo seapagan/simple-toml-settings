@@ -2,6 +2,7 @@
 
 Allows reading from a settings file and writing to it.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
