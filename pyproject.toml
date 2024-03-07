@@ -72,6 +72,7 @@ pymdown-extensions = "^10.1"
 pygments = "^2.15.1"
 
 # setup PoeThePoet tasks
+pytest-watcher = "^0.4.1"
 [tool.poe.tasks]
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"
@@ -83,6 +84,8 @@ ruff.help = "Run Ruff checks"
 ruff.cmd = "ruff check ."
 test.help = "Run tests using Pytest"
 test.cmd = "pytest"
+"test:watch".cmd = "ptw . --now --clear"
+"test:watch".help = "Run tests using Pytest in watch mode"
 markdown.cmd = "pymarkdown scan  -r simple_toml_settings/**/*.md docs/**/*.md"
 markdown.help = "Run markdown checks"
 
@@ -114,7 +117,7 @@ filterwarnings = []
 mock_use_standalone_module = true
 
 [tool.coverage.run]
-# source = []
+source = ["simple_toml_settings"]
 omit = ["*/tests/*"]
 
 [tool.ruff]
@@ -122,6 +125,7 @@ line-length = 80
 lint.select = ["ALL"] # we are being very strict!
 lint.ignore = [
   "ANN101",
+  "ANN102",
   "PGH003",
   "FBT002",
   "FBT003",

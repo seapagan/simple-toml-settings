@@ -7,7 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, ClassVar, TypeVar, cast
 
 import rtoml
 
@@ -15,6 +15,8 @@ from simple_toml_settings.exceptions import (
     SettingsNotFoundError,
     SettingsSchemaError,
 )
+
+T = TypeVar("T", bound="TOMLSettings")
 
 
 @dataclass
@@ -35,8 +37,11 @@ class TOMLSettings:
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
 
+    _instances: ClassVar[dict[type[TOMLSettings], TOMLSettings]] = {}
+
     _ignored_attrs: set[str] = field(
         default_factory=lambda: {
+            "_instances",
             "app_name",
             "settings_folder",
             "settings_file_name",
@@ -66,6 +71,23 @@ class TOMLSettings:
         The save() method IS called after we run this automatically, it should
         never be called manually.
         """
+
+    @classmethod
+    def get_instance(
+        cls: type[T],
+        app_name: str,
+        *args: Any,  # noqa: ANN401
+        **kwargs: Any,  # noqa: ANN401
+    ) -> T:
+        """Class method to get or create the Settings instance.
+
+        This is optional (and experimental), and is provided to allow for a
+        singleton pattern in derived classes. It is not required to use this
+        class.
+        """
+        if cls not in cls._instances:
+            cls._instances[cls] = cls(app_name, *args, **kwargs)
+        return cast(T, cls._instances[cls])
 
     def get_attrs(self, *, include_none: bool = False) -> dict[str, str]:
         """Return a dictionary of our setting values.
