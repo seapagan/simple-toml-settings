@@ -219,3 +219,38 @@ def test_missing_schema_does_not_raise_error(fs) -> None:
 
     # this should NOT raise an exception
     TOMLSettings("test_app", local_file=True, schema_version="2")
+
+
+def test_get_instance(fs) -> None:
+    """Test that we can get the instance of the settings object."""
+    fs.create_dir(Path.home())
+    assert isinstance(TOMLSettings.get_instance("test_app"), TOMLSettings)
+
+
+def test_get_instance_is_singleton(fs) -> None:
+    """Test that the instance is a singleton."""
+    fs.create_dir(Path.home())
+    instance1 = TOMLSettings.get_instance("test_app")
+    instance2 = TOMLSettings.get_instance("test_app")
+    assert instance1 is instance2
+
+
+def test_get_instance_with_custom_class(fs) -> None:
+    """Test that we can get the instance of a custom settings class."""
+    fs.create_dir(Path.home())
+    assert isinstance(CustomSettings.get_instance("test_app"), CustomSettings)
+
+
+def test_get_instance_with_custom_class_is_singleton(fs) -> None:
+    """Test that the instance is a singleton."""
+    fs.create_dir(Path.home())
+    instance1 = CustomSettings.get_instance("test_app")
+    instance2 = CustomSettings.get_instance("test_app")
+    assert instance1 is instance2
+
+
+def test_get_instance_attribute(fs) -> None:
+    """Test that we can get the instance of the settings object."""
+    fs.create_dir(Path.home())
+    settings = CustomSettings.get_instance("test_app")
+    assert settings.my_var is False
