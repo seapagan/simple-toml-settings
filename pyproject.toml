@@ -122,6 +122,7 @@ line-length = 80
 lint.select = ["ALL"] # we are being very strict!
 lint.ignore = [
   "ANN101",
+  "ANN102",
   "PGH003",
   "FBT002",
   "FBT003",
