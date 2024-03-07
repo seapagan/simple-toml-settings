@@ -10,14 +10,36 @@ A Python library to save your settings in a TOML file.
 
 !!! danger "Development software"
 
-    Note that this library is still in the development and may contain bugs
+    Note that this library is still under development and may contain bugs
     and/or change in the future. Please report any bugs you find on the
     [issue tracker](https://github.com/seapagan/simple-toml-settings/issues){:target="_blank"}
     and feel free to make suggestions for improvements.
 
+    Saying that, it's been used in a number of projects and is considered
+    stable.
+
 ---
 
-A quick example:
+## Features
+
+- Transparently save and load settings to and from a TOML file, using a simple
+  class definition.
+- Automatically create a folder in the user's home directory to store the
+  settings or use the application's local directory.
+- By default the setting file is automatically created when the class is
+  instantiated and the settings are saved to it. If the file already exists, the
+  settings are loaded from it instead. This can be disabled if required.
+- The settings filename is configurable or defaults to `config.toml`.
+- Provides a hook to run code when the setting file is first created, so you can
+  perform any initialisation required.
+- Provides a `get_instance` method to get a single instance of the settings
+  class, so you can use the same settings throughout your application. You can
+  still create an instance directly if desired.
+- Full test suite with 100% coverage.
+- Supports Python 3.9 and above.
+- Maintained and updated regularly with new features and bug fixes.
+
+## A Quick Example
 
 ```python
 from simple_toml_settings import TOMLSettings
@@ -36,9 +58,9 @@ class MySettings(TOMLSettings):
 settings = MySettings("test_app")
 ```
 
-The above will automatically create a `Folder` in the user home directory called
-`.test_app`, a configuration file in this called 'config.toml` and then save the
-default settings to it.
+The above will automatically create a `Folder` in the users home directory
+called `.test_app`, a configuration file in this called `config.toml` and then
+save the default settings to it.
 
 However, if the file already exists, the settings will be loaded from it.
 
