@@ -73,17 +73,17 @@ class TOMLSettings:
     @classmethod
     def get_instance(
         cls,
-        settings_file: str,
+        app_name: str,
         *args: Any,  # noqa: ANN401
         **kwargs: Any,  # noqa: ANN401
     ) -> TOMLSettings:
         """Class method to get or create the Settings instance.
 
-        This is optional and is provided to allow for a singleton pattern in
-        derived classes. It is not required to use this class.
+        This is optional (and beta), and is provided to allow for a singleton
+        pattern in derived classes. It is not required to use this class.
         """
         if cls._instance is None:
-            cls._instance = cls(settings_file, *args, **kwargs)
+            cls._instance = cls(app_name, *args, **kwargs)
         return cls._instance
 
     def get_attrs(self, *, include_none: bool = False) -> dict[str, str]:
