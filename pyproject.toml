@@ -60,7 +60,7 @@ pytest-randomly = "^3.13.0"
 pytest-reverse = "^1.7.0"
 pytest-mock = "^3.11.1"
 mock = "^5.1.0"
-faker = ">=19.2,<24.0"
+faker = ">=19.2,<25.0"
 pyfakefs = "^5.2.4"
 
 # documentation
