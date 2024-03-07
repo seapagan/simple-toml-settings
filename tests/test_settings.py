@@ -15,6 +15,17 @@ from .conftest import SettingsExample
 TEST_APP_NAME = "test_app"
 
 
+@pytest.fixture(autouse=True)
+def _reset_settings_singleton() -> None:
+    """Directly reset the singleton instances to None before each test.
+
+    This uses the private attribute _instance to reset the singleton instances
+    which is not recommended in production code. This is only used for testing.
+    """
+    TOMLSettings._instance = None  # noqa: SLF001
+    CustomSettings._instance = None  # noqa: SLF001
+
+
 class CustomSettings(TOMLSettings):
     """Skeleton Class for testing."""
 
@@ -235,18 +246,19 @@ def test_get_instance_is_singleton(fs) -> None:
     assert instance1 is instance2
 
 
-def test_get_instance_with_custom_class(fs) -> None:
-    """Test that we can get the instance of a custom settings class."""
-    fs.create_dir(Path.home())
-    assert isinstance(CustomSettings.get_instance("test_app"), CustomSettings)
-
-
 def test_get_instance_with_custom_class_is_singleton(fs) -> None:
     """Test that the instance is a singleton."""
     fs.create_dir(Path.home())
     instance1 = CustomSettings.get_instance("test_app")
     instance2 = CustomSettings.get_instance("test_app")
     assert instance1 is instance2
+
+
+# ------------------------------- problem tests ------------------------------ #
+def test_get_instance_with_custom_class(fs) -> None:
+    """Test that we can get the instance of a custom settings class."""
+    fs.create_dir(Path.home())
+    assert isinstance(CustomSettings.get_instance("test_app"), CustomSettings)
 
 
 def test_get_instance_attribute(fs) -> None:
