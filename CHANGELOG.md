@@ -1,5 +1,32 @@
 # Changelog
 
+This is an auto-generated log of all the changes that have been made to the
+project since the first release.
+
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.5.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.5.0) (2024-03-07)
+
+**New Features**
+
+- Add an optional singleton method ([#136](https://github.com/seapagan/simple-toml-settings/pull/136)) by [seapagan](https://github.com/seapagan)
+
+**Refactoring**
+
+- Fix formatting to Ruff 3.0 standard ([#131](https://github.com/seapagan/simple-toml-settings/pull/131)) by [seapagan](https://github.com/seapagan)
+
+**Documentation**
+
+- Fix some errors and typos in the docs ([#124](https://github.com/seapagan/simple-toml-settings/pull/124)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Bump ruff from 0.2.1 to 0.3.0 ([#130](https://github.com/seapagan/simple-toml-settings/pull/130)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump cryptography from 42.0.0 to 42.0.4 ([#123](https://github.com/seapagan/simple-toml-settings/pull/123)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump github-changelog-md from 0.8.1 to 0.9.1 ([#122](https://github.com/seapagan/simple-toml-settings/pull/122)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.4.0...0.5.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.4.0...0.5.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.4.0...0.5.0.patch)
+
 ## [0.4.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.4.0) (2024-02-14)
 
 **New Features**
