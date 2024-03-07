@@ -30,8 +30,6 @@ class MySettings(TOMLSettings):
         "sub_setting_1": "sub setting 1 text",
         "sub_setting_2": "sub setting 2 text",
     }
-
-settings = MySettings("my_app_name")
 ```
 
 !!! warning "Use Type-hinting"
@@ -39,6 +37,28 @@ settings = MySettings("my_app_name")
     Always use typing hints for your settings as shown above.  This will allow
     the library to automatically convert the settings to the correct type when
     loading them.
+
+You can now create an instance of your settings class and use it to save and
+load settings:
+
+```python
+settings = MySettings("my_app_name")
+```
+
+!!! tip "`get_instance()` method"
+
+    You can also use the `get_instance()` method to create an instance of your
+    settings class.  This is useful if you need to use the settings in multiple
+    places in your app, as it will return an already existing instance of the
+    settings instead of creating a new one. If one does not already exist, it
+    will be created and returned.
+
+    ```python
+    settings = MySettings.get_instance("my_app_name")
+    ```
+
+    This is the preferred method and ensures that the settings class is a
+    **Singleton** so you only have one instance of the settings in your app.
 
 The above will automatically create a sub folder in the user's home directory
 called `.my_app_name` and will create a TOML file in it called `config.toml`
