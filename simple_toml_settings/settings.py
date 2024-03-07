@@ -41,7 +41,7 @@ class TOMLSettings:
 
     _ignored_attrs: set[str] = field(
         default_factory=lambda: {
-            "_instance",
+            "_instances",
             "app_name",
             "settings_folder",
             "settings_file_name",
