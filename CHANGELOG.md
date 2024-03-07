@@ -21,7 +21,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 **Dependency Updates**
 
+- Bump mkdocs-material from 9.5.9 to 9.5.13 ([#135](https://github.com/seapagan/simple-toml-settings/pull/135)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump faker from 23.1.0 to 24.0.0 ([#134](https://github.com/seapagan/simple-toml-settings/pull/134)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump mkdocs-autorefs from 0.5.0 to 1.0.1 ([#133](https://github.com/seapagan/simple-toml-settings/pull/133)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump ruff from 0.2.1 to 0.3.0 ([#130](https://github.com/seapagan/simple-toml-settings/pull/130)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump poethepoet from 0.24.4 to 0.25.0 ([#126](https://github.com/seapagan/simple-toml-settings/pull/126)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump cryptography from 42.0.0 to 42.0.4 ([#123](https://github.com/seapagan/simple-toml-settings/pull/123)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump github-changelog-md from 0.8.1 to 0.9.1 ([#122](https://github.com/seapagan/simple-toml-settings/pull/122)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
