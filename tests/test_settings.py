@@ -61,6 +61,14 @@ schema_version= '1'
         assert settings.get("app_name") == "test_app"
         assert settings.get("test_string_var") == "local_app"
 
+    def test_flat_config(self, flat_settings: SettingsExample) -> None:
+        """Test that flat_config loads settings from home folder directly."""
+        assert flat_settings.get("app_name") == "test_app"
+        assert flat_settings.get("test_string_var") == "test_value"
+
+        assert flat_settings.settings_folder == Path.home()
+        assert Path(Path.home() / self.SETTINGS_FILE_NAME).exists()
+
     def test_post_create_hook_is_called(
         self, fs: FakeFilesystem, mocker: MockerFixture
     ) -> None:
