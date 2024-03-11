@@ -8,7 +8,7 @@
 
 A Python library to save your settings in a TOML file.
 
-- [Development software](#development-software)
+- [Development Status](#development-status)
 - [Installation](#installation)
 - [Usage](#usage)
   - [Setup](#setup)
@@ -17,12 +17,19 @@ A Python library to save your settings in a TOML file.
 - [License](#license)
 - [Credits](#credits)
 
-## Development software
+## Development Status
 
-Note that this library is still in development and may contain bugs and/or
-change in the future.  Please report any bugs you find on the [issue
-tracker](https://github.com/seapagan/simple-toml-settings/issues) and feel free
-to make suggestions for improvements.
+Note that there is still additional functionality planned to be added to this
+package, but the methodology is to keep the package simple to use and
+understand. Any additional functionality will be added in a way that is backward
+compatible and optional.
+
+The package is considered stable and is being used in production in several
+non-trivial applications.
+
+Please report any bugs you find on the
+[issue tracker](https://github.com/seapagan/simple-toml-settings/issues) and
+feel free to make suggestions for improvements.
 
 ## Installation
 
@@ -96,10 +103,6 @@ settings = MySettings("test_app")
 settings.favourite_colour = "red"
 settings.save()
 ```
-
-**Note that the current library access methods are not set in stone and may
-change in the future.** We will try to keep the changes to a minimum and will
-provide a migration path (and backwards compatibility) if we do change them.
 
 ## Development setup
 

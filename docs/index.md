@@ -8,15 +8,20 @@
 
 A Python library to save your settings in a TOML file.
 
-!!! danger "Development software"
+!!! info "Package Status"
 
-    Note that this library is still under development and may contain bugs
-    and/or change in the future. Please report any bugs you find on the
-    [issue tracker](https://github.com/seapagan/simple-toml-settings/issues){:target="_blank"}
-    and feel free to make suggestions for improvements.
+    Note that there is still additional functionality planned to be added to
+    this package, but the methodology is to keep the package simple to use and
+    understand. Any additional functionality will be added in a way that is
+    backward compatible and optional.
 
-    Saying that, it's been used in a number of projects and is considered
-    stable.
+    The package is considered stable and is being used in production in several
+    non-trivial applications. Any security issues or bugs will be fixed as soon
+    as reported.
+
+    Please report any bugs you find on the
+    [issue tracker](https://github.com/seapagan/simple-toml-settings/issues) and
+    feel free to make suggestions for improvements.
 
 ---
 
@@ -25,7 +30,8 @@ A Python library to save your settings in a TOML file.
 - Transparently save and load settings to and from a TOML file, using a simple
   class definition.
 - Automatically create a folder in the user's home directory to store the
-  settings or use the application's local directory.
+  settings, write directly to the home folder, or use the application's local
+  directory.
 - By default the setting file is automatically created when the class is
   instantiated and the settings are saved to it. If the file already exists, the
   settings are loaded from it instead. This can be disabled if required.
