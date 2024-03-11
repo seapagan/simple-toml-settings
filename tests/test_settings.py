@@ -3,6 +3,8 @@
 from pathlib import Path
 
 import pytest
+from pyfakefs.fake_filesystem import FakeFilesystem
+from pytest_mock import MockerFixture
 
 from simple_toml_settings.exceptions import (
     SettingsNotFoundError,
@@ -30,10 +32,10 @@ class TestSettings:
     SETTINGS_FILE_CONTENT = """
 [test_app]
 test_string_var = 'local_app'
-schema_version=1
+schema_version= '1'
 """
 
-    def test_config_file_auto_created(self, settings) -> None:
+    def test_config_file_auto_created(self, settings: SettingsExample) -> None:
         """Test that the settings file is created if it doesn't exist."""
         assert settings.settings_folder.exists()
         assert settings.settings_folder.is_dir()
@@ -41,7 +43,7 @@ schema_version=1
         assert settings.settings_file_name == self.SETTINGS_FILE_NAME
 
     def test_exception_raised_on_missing_config_if_auto_create_is_false(
-        self, fs
+        self, fs: FakeFilesystem
     ) -> None:
         """Test that the settings file is not created if auto_create False."""
         fs.create_dir(Path.home())
@@ -49,7 +51,7 @@ schema_version=1
         with pytest.raises(SettingsNotFoundError):
             TOMLSettings("test_app", auto_create=False)
 
-    def test_local_config(self, fs) -> None:
+    def test_local_config(self, fs: FakeFilesystem) -> None:
         """Test that local_config loads settings from the local directory."""
         fs.create_file(
             self.SETTINGS_FILE_NAME,
@@ -59,7 +61,9 @@ schema_version=1
         assert settings.get("app_name") == "test_app"
         assert settings.get("test_string_var") == "local_app"
 
-    def test_post_create_hook_is_called(self, fs, mocker) -> None:
+    def test_post_create_hook_is_called(
+        self, fs: FakeFilesystem, mocker: MockerFixture
+    ) -> None:
         """Test that the post_create_hook is called after file created."""
         fs.create_dir(Path.home())
 
@@ -69,7 +73,7 @@ schema_version=1
         assert settings.__post_create_hook__.called
 
     def test_post_create_hook_is_called_for_custom_class(
-        self, fs, mocker
+        self, fs: FakeFilesystem, mocker
     ) -> None:
         """Test that the post_create_hook is called after file created."""
         fs.create_dir(Path.home())
@@ -115,27 +119,27 @@ schema_version=1
         )
         assert settings.get("test_int_var") == SettingsExample.test_int_var
 
-    def test_get_missing_setting(self, settings) -> None:
+    def test_get_missing_setting(self, settings: SettingsExample) -> None:
         """Test that 'None' is returned when a setting is missing."""
         assert settings.get("missing_setting") is None
 
-    def test_set(self, settings) -> None:
+    def test_set(self, settings: SettingsExample) -> None:
         """Test that a setting can be set."""
         settings.set("app_name", "new_test_app")
         assert settings.get("app_name") == "new_test_app"
 
-    def test_add_and_list_setting(self, settings) -> None:
+    def test_add_and_list_setting(self, settings: SettingsExample) -> None:
         """Add a new setting and list all settings."""
         settings.set("new_key", "new_value")
         settings_dict = settings.list_settings()
         assert settings_dict["new_key"] == "new_value"
 
-    def test_add_none_value(self, settings) -> None:
+    def test_add_none_value(self, settings: SettingsExample) -> None:
         """Test that a setting can be set to None."""
         settings.set("new_key", None)
         assert settings.get("new_key") is None
 
-    def test_load_settings(self, settings) -> None:
+    def test_load_settings(self, settings: SettingsExample) -> None:
         """Test that settings are loaded from the settings file."""
         settings.load()
         # length is 3 because of the 'schema' setting
@@ -148,25 +152,25 @@ schema_version=1
             == SettingsExample.test_int_var
         )
 
-    def test_set_schema_version(self, settings) -> None:
+    def test_set_schema_version(self, settings: SettingsExample) -> None:
         """Test that the schema_version can be set using the 'set' method."""
         settings.set("schema_version", "1.0.0")
         settings.load()
         assert settings.get("schema_version") == "1.0.0"
 
-    def test_autosave(self, settings) -> None:
+    def test_autosave(self, settings: SettingsExample) -> None:
         """Test that settings are auto saved when autosave is True."""
         settings.set("test_string_var", "new_value")
         settings.load()
         assert settings.get("test_string_var") == "new_value"
 
-    def test_no_autosave(self, settings) -> None:
+    def test_no_autosave(self, settings: SettingsExample) -> None:
         """Test that settings are not auto saved when autosave is False."""
         settings.set("test_string_var", "new_value", autosave=False)
         settings.load()
         assert settings.get("test_string_var") == "test_value"
 
-    def test_custom_file_name(self, fs) -> None:
+    def test_custom_file_name(self, fs: FakeFilesystem) -> None:
         """Test that the settings file name can be customized."""
         custom_file_name = "custom_config.toml"
 
@@ -179,14 +183,16 @@ schema_version=1
         assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
         assert settings.settings_folder / settings.settings_file_name
 
-    def test_items_on_ignored_attrs(self, settings) -> None:
+    def test_items_on_ignored_attrs(self, settings: SettingsExample) -> None:
         """Test that the ignored attributes are not returned by items()."""
         list_settings = settings.list_settings()
 
         for setting in settings._ignored_attrs:  # noqa: SLF001
             assert setting not in list_settings
 
-    def test_schema_version_mismatch_raises_error(self, fs) -> None:
+    def test_schema_version_mismatch_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
         """Test that a schema version mismatch raises SettingsSchemaError."""
         fs.create_file(
             self.SETTINGS_FILE_NAME,
@@ -196,7 +202,9 @@ schema_version=1
             TOMLSettings("test_app", local_file=True, schema_version="2")
 
     @pytest.mark.parametrize("value", ["none", "NONE", "None"])
-    def test_none_schema_does_not_raise_error(self, fs, value) -> None:
+    def test_none_schema_does_not_raise_error(
+        self, fs: FakeFilesystem, value: str
+    ) -> None:
         """Test that a 'none' schema does NOT raise SettingsSchemaError."""
         fs.create_file(
             self.SETTINGS_FILE_NAME,
@@ -207,7 +215,9 @@ schema_version=1
         # this should NOT raise an exception
         TOMLSettings("test_app", local_file=True, schema_version="2")
 
-    def test_missing_schema_does_not_raise_error(self, fs) -> None:
+    def test_missing_schema_does_not_raise_error(
+        self, fs: FakeFilesystem
+    ) -> None:
         """Test that a 'none' schema does NOT raise SettingsSchemaError."""
         fs.create_file(
             self.SETTINGS_FILE_NAME,
@@ -217,26 +227,30 @@ schema_version=1
         # this should NOT raise an exception
         TOMLSettings("test_app", local_file=True, schema_version="2")
 
-    def test_get_instance(self, fs) -> None:
+    def test_get_instance(self, fs: FakeFilesystem) -> None:
         """Test that we can get the instance of the settings object."""
         fs.create_dir(Path.home())
         assert isinstance(TOMLSettings.get_instance("test_app"), TOMLSettings)
 
-    def test_get_instance_is_singleton(self, fs) -> None:
+    def test_get_instance_is_singleton(self, fs: FakeFilesystem) -> None:
         """Test that the instance is a singleton."""
         fs.create_dir(Path.home())
         instance1 = TOMLSettings.get_instance("test_app")
         instance2 = TOMLSettings.get_instance("test_app")
         assert instance1 is instance2
 
-    def test_get_instance_with_custom_class_is_singleton(self, fs) -> None:
+    def test_get_instance_with_custom_class_is_singleton(
+        self, fs: FakeFilesystem
+    ) -> None:
         """Test that the instance is a singleton."""
         fs.create_dir(Path.home())
         instance1 = CustomSettings.get_instance("test_app")
         instance2 = CustomSettings.get_instance("test_app")
         assert instance1 is instance2
 
-    def test_get_instance_with_multiple_subclasses_not_equal(self, fs) -> None:
+    def test_get_instance_with_multiple_subclasses_not_equal(
+        self, fs: FakeFilesystem
+    ) -> None:
         """Test that two subclasses are different instances."""
         fs.create_dir(Path.home())
         instance1 = CustomSettings.get_instance("test_app")
@@ -244,14 +258,14 @@ schema_version=1
 
         assert instance1 is not instance2  # type: ignore[comparison-overlap]
 
-    def test_get_instance_with_custom_class(self, fs) -> None:
+    def test_get_instance_with_custom_class(self, fs: FakeFilesystem) -> None:
         """Test that we can get the instance of a custom settings class."""
         fs.create_dir(Path.home())
         assert isinstance(
             CustomSettings.get_instance("test_app"), CustomSettings
         )
 
-    def test_get_instance_attribute(self, fs) -> None:
+    def test_get_instance_attribute(self, fs: FakeFilesystem) -> None:
         """Test that we can get the instance of the settings object."""
         fs.create_dir(Path.home())
         settings = CustomSettings.get_instance("test_app")
