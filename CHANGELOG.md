@@ -6,7 +6,7 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+## [0.6.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.6.0) (2024-03-11)
 
 **New Features**
 
@@ -19,7 +19,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Bump faker from 24.0.0 to 24.1.0 ([#139](https://github.com/seapagan/simple-toml-settings/pull/139)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump pytest from 8.0.2 to 8.1.1 ([#138](https://github.com/seapagan/simple-toml-settings/pull/138)) by [dependabot[bot]](https://github.com/apps/dependabot)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...HEAD) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...HEAD.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...HEAD.patch)
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...0.6.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...0.6.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...0.6.0.patch)
 
 ## [0.5.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.5.0) (2024-03-07)
 
