@@ -1,10 +1,6 @@
 # Future Plans
 
 - Allow a custom folder root (not just users $HOME) folder.
-- Add an option to just store the config file in the users home directory. The
-  default option of putting it in a sub-folder of the project is useful for
-  projects that need to store extra data, but may be overkill for basic
-  projects.
 - Add an Option to look for the config file in the current directory, and if not
   found then look in the users home directory.
 - Add an Option to not include the `schema_version` key. By default this key
