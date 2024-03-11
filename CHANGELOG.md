@@ -5,7 +5,26 @@ project since the first release.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+
+**New Features**
+
+- Implement a `flat_config` option. ([#142](https://github.com/seapagan/simple-toml-settings/pull/142)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Bump ruff from 0.3.1 to 0.3.2 ([#141](https://github.com/seapagan/simple-toml-settings/pull/141)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump mypy from 1.8.0 to 1.9.0 ([#140](https://github.com/seapagan/simple-toml-settings/pull/140)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump faker from 24.0.0 to 24.1.0 ([#139](https://github.com/seapagan/simple-toml-settings/pull/139)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pytest from 8.0.2 to 8.1.1 ([#138](https://github.com/seapagan/simple-toml-settings/pull/138)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...HEAD) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...HEAD.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.5.0...HEAD.patch)
+
 ## [0.5.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.5.0) (2024-03-07)
+
+**Closed Issues**
+
 
 **New Features**
 
