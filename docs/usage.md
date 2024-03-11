@@ -231,6 +231,12 @@ This defaults to `False` and will cause the settings file to be saved/read from
 the current directory instead of the user's home directory.  This is good for
 utility apps that need different settings for different projects / filelists.
 
+### `flat_config`
+
+This defaults to `False` and will cause the settings file to be created and read
+from the users home directory, but without the subfolder.  Use this when
+creating an extra folder in the user's home directory is overkill.
+
 ## Post-create hook
 
 If you need to do some further processing, or set some input from the user after
