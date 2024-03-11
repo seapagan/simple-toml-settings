@@ -62,15 +62,15 @@ class TOMLSettings:
         """Return the settings folder. If it doesn't exist, create it.
 
         Take into account the `local_file` and `flat_config` settings.
+        Note that `local_file` takes precedence over `flat_config`.
         """
         if self.local_file:
             return Path.cwd()
 
-        settings_folder: Path = (
-            Path.home() / f".{self.app_name}"
-            if not self.flat_config
-            else Path.home()
-        )
+        if self.flat_config:
+            return Path.home()
+
+        settings_folder: Path = Path.home() / f".{self.app_name}"
         if not settings_folder.exists():
             settings_folder.mkdir(parents=False)
 
@@ -104,7 +104,7 @@ class TOMLSettings:
             cls._instances[cls] = cls(app_name, *args, **kwargs)
         return cast(T, cls._instances[cls])
 
-    def get_attrs(self, *, include_none: bool = False) -> dict[str, str]:
+    def get_attrs(self, *, include_none: bool = False) -> dict[str, Any]:
         """Return a dictionary of our setting values.
 
         Values that are None are EXCLUDED by default, but can be included by
@@ -165,7 +165,7 @@ class TOMLSettings:
     def set(
         self,
         key: str,
-        value: str,
+        value: Any,  # noqa: ANN401
         *,
         autosave: bool = True,
     ) -> None:
@@ -178,6 +178,6 @@ class TOMLSettings:
         if autosave:
             self.save()
 
-    def list_settings(self) -> dict[str, str]:
+    def list_settings(self) -> dict[str, Any]:
         """Return a dictionary of settings."""
         return self.get_attrs()
