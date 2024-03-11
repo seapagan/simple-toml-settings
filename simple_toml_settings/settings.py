@@ -33,6 +33,7 @@ class TOMLSettings:
     settings_file_name: str = "config.toml"
     auto_create: bool = True
     local_file: bool = False
+    flat_config: bool = False
 
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
@@ -47,19 +48,33 @@ class TOMLSettings:
             "settings_file_name",
             "auto_create",
             "local_file",
+            "flat_config",
         }
     )
 
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
-        if not self.local_file:
-            self.settings_folder: Path = Path.home() / f".{self.app_name}"
-            if not self.settings_folder.exists():
-                self.settings_folder.mkdir(parents=False)
-        else:
-            self.settings_folder = Path.cwd()
+        self.settings_folder = self.get_settings_folder()
 
         self.load()
+
+    def get_settings_folder(self) -> Path:
+        """Return the settings folder. If it doesn't exist, create it.
+
+        Take into account the `local_file` and `flat_config` settings.
+        """
+        if self.local_file:
+            return Path.cwd()
+
+        settings_folder: Path = (
+            Path.home() / f".{self.app_name}"
+            if not self.flat_config
+            else Path.home()
+        )
+        if not settings_folder.exists():
+            settings_folder.mkdir(parents=False)
+
+        return settings_folder
 
     def __post_create_hook__(self) -> None:
         """Allow further customization after a new settings file is created.
