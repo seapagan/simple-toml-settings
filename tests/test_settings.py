@@ -69,6 +69,16 @@ schema_version= '1'
         assert flat_settings.settings_folder == Path.home()
         assert Path(Path.home() / self.SETTINGS_FILE_NAME).exists()
 
+    def test_xdg_config(self, xdg_settings:SettingsExample) -> None:
+        """Test that xdg_config loads settings from the xdg_config_home folder"""
+        assert xdg_settings.settings_folder.exists()
+        assert xdg_settings.settings_folder.is_dir()
+        assert xdg_settings.settings_folder.name == f"{self.TEST_APP_NAME}"
+        assert xdg_settings.settings_file_name == self.SETTINGS_FILE_NAME
+
+        assert xdg_settings.get("app_name") == "test_app"
+        assert xdg_settings.get("test_string_var") == "test_value"
+
     def test_post_create_hook_is_called(
         self, fs: FakeFilesystem, mocker: MockerFixture
     ) -> None:
@@ -190,17 +200,6 @@ schema_version= '1'
         assert settings.settings_file_name == custom_file_name
         assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
         assert settings.settings_folder / settings.settings_file_name
-
-    def test_xdg_option(self, fs: FakeFilesystem) -> None:
-        """Test that the xdg option can be set and paths generated."""
-        fs.create_dir(Path.home())
-        settings = TOMLSettings("test_app", xdg_config=True)
-        assert (Path.home() / ".config" / self.TEST_APP_NAME).exists()
-        assert (
-            settings.settings_folder
-            / self.TEST_APP_NAME
-            / settings.settings_file_name
-        )
 
     def test_items_on_ignored_attrs(self, settings: SettingsExample) -> None:
         """Test that the ignored attributes are not returned by items()."""

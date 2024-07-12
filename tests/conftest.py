@@ -43,3 +43,17 @@ def flat_settings(fs: FakeFilesystem) -> SettingsExample:
 
     # Create and return a Settings object for the test
     return SettingsExample("test_app", flat_config=True)
+
+@pytest.fixture()
+def xdg_settings(fs: FakeFilesystem) -> SettingsExample:
+    """Return a Settings object for testing.
+
+    This fixture creates a fake home directory in a virtual filesystem. It then
+    creates a Settings object for the test and returns it. This Settings object
+    creates a settings file in the fake home directory.
+    """
+    # Create a fake home directory for the test
+    fs.create_dir(Path.home())
+
+    # Create and return a Settings object for the test
+    return SettingsExample("test_app", xdg_config=True)
