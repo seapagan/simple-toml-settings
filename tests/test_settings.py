@@ -69,7 +69,7 @@ schema_version= '1'
         assert flat_settings.settings_folder == Path.home()
         assert Path(Path.home() / self.SETTINGS_FILE_NAME).exists()
 
-    def test_xdg_config(self, xdg_settings:SettingsExample) -> None:
+    def test_xdg_config(self, xdg_settings: SettingsExample) -> None:
         """Test that xdg_config loads settings from the xdg_config_home folder"""
         assert xdg_settings.settings_folder.exists()
         assert xdg_settings.settings_folder.is_dir()
