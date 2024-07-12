@@ -44,6 +44,7 @@ def flat_settings(fs: FakeFilesystem) -> SettingsExample:
     # Create and return a Settings object for the test
     return SettingsExample("test_app", flat_config=True)
 
+
 @pytest.fixture()
 def xdg_settings(fs: FakeFilesystem) -> SettingsExample:
     """Return a Settings object for testing.
