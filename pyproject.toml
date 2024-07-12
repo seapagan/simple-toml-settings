@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simple-toml-settings"
-version = "0.6.0"
+version = "0.7.0"
 description = "A Python library to save your settings in a TOML file."
 authors = ["Grant Ramsay <seapagan@gmail.com>"]
 readme = "README.md"
@@ -35,6 +35,7 @@ classifiers = [
 python = ">=3.9,<4.0"
 rtoml = ">=0.9.0,<1.0.0"
 github-changelog-md = ">=0.9.0"
+platformdirs = "^4.2.2"
 
 [build-system]
 requires = ["poetry-core"]

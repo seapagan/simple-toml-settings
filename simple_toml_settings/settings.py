@@ -9,6 +9,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, ClassVar, TypeVar, cast
 
+import platformdirs
 import rtoml
 
 from simple_toml_settings.exceptions import (
@@ -50,6 +51,7 @@ class TOMLSettings:
             "auto_create",
             "local_file",
             "flat_config",
+            "xdg_config",
         }
     )
 
@@ -74,7 +76,9 @@ class TOMLSettings:
         settings_folder: Path = Path.home() / f".{self.app_name}"
 
         if self.xdg_config:
-            settings_folder = Path.home() / f".config/{self.app_name}"
+            settings_folder = Path.home() / platformdirs.user_config_dir(
+                self.app_name
+            )
         if not settings_folder.exists():
             settings_folder.mkdir(parents=True)
 

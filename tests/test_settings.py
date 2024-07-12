@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+import platformdirs
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
 from pytest_mock import MockerFixture
@@ -70,12 +71,14 @@ schema_version= '1'
         assert Path(Path.home() / self.SETTINGS_FILE_NAME).exists()
 
     def test_xdg_config(self, xdg_settings: SettingsExample) -> None:
-        """Test that settings file is created in the xdg_config_home folder"""
+        """Test that settings file is created in the xdg_config_home folder."""
         assert xdg_settings.settings_folder.exists()
         assert xdg_settings.settings_folder.is_dir()
         assert xdg_settings.settings_folder.name == f"{self.TEST_APP_NAME}"
         assert xdg_settings.settings_file_name == self.SETTINGS_FILE_NAME
-        assert xdg_settings.settings_folder.parent.name == ".config"
+        assert str(
+            xdg_settings.settings_folder
+        ) == platformdirs.user_config_dir(self.TEST_APP_NAME)
 
         assert xdg_settings.get("app_name") == "test_app"
         assert xdg_settings.get("test_string_var") == "test_value"
@@ -161,8 +164,8 @@ schema_version= '1'
     def test_load_settings(self, settings: SettingsExample) -> None:
         """Test that settings are loaded from the settings file."""
         settings.load()
-        # length is 4 because of the 'xdg_config' setting
-        assert len(settings.list_settings()) == 4  # noqa: PLR2004
+        # length is 3 because of the 'schema' setting
+        assert len(settings.list_settings()) == 3  # noqa: PLR2004
 
         assert settings.get("schema_version") == "none"
         assert settings.list_settings()["test_string_var"] == "test_value"
