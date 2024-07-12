@@ -150,8 +150,8 @@ schema_version= '1'
     def test_load_settings(self, settings: SettingsExample) -> None:
         """Test that settings are loaded from the settings file."""
         settings.load()
-        # length is 3 because of the 'schema' setting
-        assert len(settings.list_settings()) == 3  # noqa: PLR2004
+        # length is 4 because of the 'xdg_config' setting
+        assert len(settings.list_settings()) == 4  # noqa: PLR2004
 
         assert settings.get("schema_version") == "none"
         assert settings.list_settings()["test_string_var"] == "test_value"
@@ -190,6 +190,19 @@ schema_version= '1'
         assert settings.settings_file_name == custom_file_name
         assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
         assert settings.settings_folder / settings.settings_file_name
+
+    def test_xdg_option(self, fs: FakeFilesystem) -> None:
+        """Test that the xdg option can be set and paths generated."""
+        fs.create_dir(Path.home())
+        settings = TOMLSettings("test_app", xdg_config=True)
+        assert (
+            Path.home() / ".config" / self.TEST_APP_NAME / "settings"
+        ).exists()
+        assert (
+            settings.settings_folder
+            / self.TEST_APP_NAME
+            / settings.settings_file_name
+        )
 
     def test_items_on_ignored_attrs(self, settings: SettingsExample) -> None:
         """Test that the ignored attributes are not returned by items()."""

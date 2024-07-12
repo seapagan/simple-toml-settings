@@ -213,3 +213,7 @@ pyrightconfig.json
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 .github_changelog_generator
 .changelog_generator.toml
+
+# Poe the Poet is the cannonical build system
+Taskfile.yaml
+Taskfile.yml
