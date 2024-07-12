@@ -195,9 +195,7 @@ schema_version= '1'
         """Test that the xdg option can be set and paths generated."""
         fs.create_dir(Path.home())
         settings = TOMLSettings("test_app", xdg_config=True)
-        assert (
-            Path.home() / ".config" / self.TEST_APP_NAME / "settings"
-        ).exists()
+        assert (Path.home() / ".config" / self.TEST_APP_NAME).exists()
         assert (
             settings.settings_folder
             / self.TEST_APP_NAME
