@@ -2,10 +2,10 @@
 
 from pathlib import Path
 
-import platformdirs
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
 from pytest_mock import MockerFixture
+from xdg_base_dirs import xdg_config_home
 
 from simple_toml_settings.exceptions import (
     SettingsNotFoundError,
@@ -76,9 +76,10 @@ schema_version= '1'
         assert xdg_settings.settings_folder.is_dir()
         assert xdg_settings.settings_folder.name == f"{self.TEST_APP_NAME}"
         assert xdg_settings.settings_file_name == self.SETTINGS_FILE_NAME
-        assert str(
+        assert (
             xdg_settings.settings_folder
-        ) == platformdirs.user_config_dir(self.TEST_APP_NAME)
+            == xdg_config_home() / f"{self.TEST_APP_NAME}"
+        )
 
         assert xdg_settings.get("app_name") == "test_app"
         assert xdg_settings.get("test_string_var") == "test_value"
