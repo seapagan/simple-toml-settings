@@ -10,12 +10,12 @@ from pathlib import Path
 from typing import Any, ClassVar, TypeVar, cast
 
 import rtoml
-from xdg_base_dirs import xdg_config_home
 
 from simple_toml_settings.exceptions import (
     SettingsNotFoundError,
     SettingsSchemaError,
 )
+from simple_toml_settings.xdg_config import xdg_config_home
 
 T = TypeVar("T", bound="TOMLSettings")
 

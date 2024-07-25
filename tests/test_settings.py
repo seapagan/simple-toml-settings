@@ -5,13 +5,13 @@ from pathlib import Path
 import pytest
 from pyfakefs.fake_filesystem import FakeFilesystem
 from pytest_mock import MockerFixture
-from xdg_base_dirs import xdg_config_home
 
 from simple_toml_settings.exceptions import (
     SettingsNotFoundError,
     SettingsSchemaError,
 )
 from simple_toml_settings.settings import TOMLSettings
+from simple_toml_settings.xdg_config import xdg_config_home
 
 from .conftest import SettingsExample
 
