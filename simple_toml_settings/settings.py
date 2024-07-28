@@ -76,9 +76,7 @@ class TOMLSettings:
         settings_folder: Path = Path.home() / f".{self.app_name}"
 
         if self.xdg_config:
-            settings_folder = (
-                xdg_config_home() / f"{self.app_name}"
-            )
+            settings_folder = xdg_config_home() / f"{self.app_name}"
         if not settings_folder.exists():
             settings_folder.mkdir(parents=True)
 
