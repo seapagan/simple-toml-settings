@@ -58,3 +58,15 @@ def xdg_settings(fs: FakeFilesystem) -> SettingsExample:
 
     # Create and return a Settings object for the test
     return SettingsExample("test_app", xdg_config=True)
+
+
+@pytest.fixture(params=[
+    None,
+    '/custom/config',
+    '.relative/path',
+    ''
+])
+def xdg_config_home_env(request):
+    """Fixture for setting the XDG_CONFIG_HOME environment variable."""
+    with pytest.MonkeyPatch.setenv(name='XDG_CONFIG_HOME', value=request.param):
+        yield
