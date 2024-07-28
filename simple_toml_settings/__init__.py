@@ -2,4 +2,4 @@
 
 from .settings import TOMLSettings
 
-__all__ = ["TOMLSettings", "xdg_config"]
+__all__ = ["TOMLSettings"]
