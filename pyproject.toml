@@ -75,7 +75,6 @@ pymdown-extensions = "^10.1"
 pygments = "^2.15.1"
 
 # setup PoeThePoet tasks
-pytest-watcher = "^0.4.1"
 [tool.poe.tasks]
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"
