@@ -1,4 +1,5 @@
 """Test the settings module."""
+
 import os
 from pathlib import Path
 
@@ -85,18 +86,20 @@ schema_version= '1'
         assert xdg_settings.get("test_string_var") == "test_value"
 
     def test_settings_from_environment(self) -> None:
-        """Test that the settings file is loaded from the environment variable."""
+        """Test that the settings file is loaded from the xdg variable."""
         xdg_orig_value = os.environ.get("XDG_CONFIG_HOME", None)
         home_path = Path.home()
         expected_path = home_path / ".config"
         default_path = xdg_config_home()
         assert default_path == expected_path
 
-        expected_path = "/path/validity/matters/not"
-        assert os.environ.get("XDG_CONFIG_HOME_ALT") == expected_path
+        expected_path = home_path / "/path/validity/matters/not"
+        assert os.environ.get("XDG_CONFIG_HOME_ALT") == str(expected_path)
 
         # alternate path does not exist
-        os.environ.setdefault("XDG_CONFIG_HOME", os.environ["XDG_CONFIG_HOME_ALT"])
+        os.environ.setdefault(
+            "XDG_CONFIG_HOME", os.environ["XDG_CONFIG_HOME_ALT"]
+        )
         modified_xdg_path = xdg_config_home()
         assert modified_xdg_path != expected_path
         assert modified_xdg_path == default_path
@@ -106,7 +109,8 @@ schema_version= '1'
         assert modified_xdg_path == xdg_config_home()
 
         # reset to pre-test env value
-        os.environ.setdefault("XDG_CONFIG_HOME", xdg_orig_value)
+        if xdg_orig_value:
+            os.environ.setdefault("XDG_CONFIG_HOME", xdg_orig_value)
 
     def test_post_create_hook_is_called(
         self, fs: FakeFilesystem, mocker: MockerFixture
