@@ -55,7 +55,9 @@ minimal of configuration.
 
 The below is a minimal example, for full documentation and information on
 available options, see the [documentation
-site](https://seapagan.github.io/simple-toml-settings/).
+site](https://seapagan.github.io/simple-toml-settings/). There are several flags
+you can set to change the location of the settings file, the name of the file,
+and more.
 
 Usage is simple:
 
