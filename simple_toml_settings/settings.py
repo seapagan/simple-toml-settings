@@ -15,6 +15,7 @@ from simple_toml_settings.exceptions import (
     SettingsNotFoundError,
     SettingsSchemaError,
 )
+from simple_toml_settings.xdg_config import xdg_config_home
 
 T = TypeVar("T", bound="TOMLSettings")
 
@@ -25,7 +26,7 @@ class TOMLSettings:
 
     The only required argument is the app_name, which is used to create the
     settings folder. The settings_folder and settings_file_name are optional and
-    will default to the app_name preceeded by a '.' and config.toml
+    will default to the app_name preceded by a '.' and config.toml
     respectively.
     """
 
@@ -34,6 +35,7 @@ class TOMLSettings:
     auto_create: bool = True
     local_file: bool = False
     flat_config: bool = False
+    xdg_config: bool = False
 
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
@@ -49,6 +51,7 @@ class TOMLSettings:
             "auto_create",
             "local_file",
             "flat_config",
+            "xdg_config",
         }
     )
 
@@ -71,8 +74,11 @@ class TOMLSettings:
             return Path.home()
 
         settings_folder: Path = Path.home() / f".{self.app_name}"
+
+        if self.xdg_config:
+            settings_folder = xdg_config_home() / f"{self.app_name}"
         if not settings_folder.exists():
-            settings_folder.mkdir(parents=False)
+            settings_folder.mkdir(parents=True)
 
         return settings_folder
 
