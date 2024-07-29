@@ -237,6 +237,22 @@ This defaults to `False` and will cause the settings file to be created and read
 from the users home directory, but without the subfolder.  Use this when
 creating an extra folder in the user's home directory is overkill.
 
+### `xdg_config`
+
+This defaults to `False` and will cause the settings file to be created and read
+as a sub-folder of the XDG config directory.  This is useful for applications
+that want to follow the XDG specification. It will use the `XDG_CONFIG_HOME`
+environment variable if it is set, otherwise it will use `~/.config`.
+
+So, if our settings class is instantiated like this:
+
+```python
+settings = MySettings("my_app_name", xdg_config=True)
+```
+
+Assuming the `XDG_CONFIG_HOME` variable is not set, the settings file will be
+saved as `~/.config/my_app_name/config.toml`.
+
 ## Post-create hook
 
 If you need to do some further processing, or set some input from the user after
