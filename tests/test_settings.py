@@ -94,6 +94,7 @@ schema_version= '1'
             settings.settings_folder
             == Path("/path/validity/matters/not") / "test_app"
         )
+
     def test_post_create_hook_is_called(
         self, fs: FakeFilesystem, mocker: MockerFixture
     ) -> None:
