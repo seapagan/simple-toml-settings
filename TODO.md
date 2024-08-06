@@ -1,6 +1,5 @@
 # Future Plans
 
-- Allow a custom folder root (not just users $HOME) folder.
 - Add an Option to look for the config file in the current directory, and if not
   found then look in the users home directory.
 - Add an Option to not include the `schema_version` key. By default this key
@@ -13,5 +12,11 @@
 - By default `save()` should not save config options that are not already in the
   config file, though leave the current behavior as an option.
 - Raise a specific custom exception for malformed TOML files
-- Have a list of options that are mutually exclusive, and raise an exception if
-  more than one of these options are set.
+- Optin to NOT create a config file if it does not exist, but also NOT raise an
+  exception. This allows just using the default values set in the class.
+
+## Possible ideas
+
+These are ideas that I am not totally sure about, but I am considering.
+
+- Allow a custom folder root (not just users $HOME) folder.
