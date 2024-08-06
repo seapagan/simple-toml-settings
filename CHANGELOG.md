@@ -6,6 +6,25 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+
+**New Features**
+
+- Mark some options as mutually exclusive and raise exception if more than one used ([#245](https://github.com/seapagan/simple-toml-settings/pull/245)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Bump mypy from 1.11.0 to 1.11.1 ([#243](https://github.com/seapagan/simple-toml-settings/pull/243)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump mkdocs-material from 9.5.30 to 9.5.31 ([#242](https://github.com/seapagan/simple-toml-settings/pull/242)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump faker from 26.0.0 to 26.1.0 ([#241](https://github.com/seapagan/simple-toml-settings/pull/241)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump ruff from 0.5.5 to 0.5.6 ([#240](https://github.com/seapagan/simple-toml-settings/pull/240)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pytest from 8.2.2 to 8.3.2 ([#239](https://github.com/seapagan/simple-toml-settings/pull/239)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump mkdocs-material from 9.5.29 to 9.5.30 ([#238](https://github.com/seapagan/simple-toml-settings/pull/238)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pre-commit from 3.7.1 to 3.8.0 ([#237](https://github.com/seapagan/simple-toml-settings/pull/237)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump pymdown-extensions from 10.8.1 to 10.9 ([#236](https://github.com/seapagan/simple-toml-settings/pull/236)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.7.0...HEAD) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.7.0...HEAD.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.7.0...HEAD.patch)
+
 ## [0.7.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.7.0) (2024-07-29)
 
 **New Features**
