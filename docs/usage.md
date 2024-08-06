@@ -73,6 +73,17 @@ This is the preferred method and ensures that the settings class is a
     always the same but needs to be specified anyway. You still need to pass the
     parameters to the first instance to create it.
 
+    Best practice is to use a single function to get the instance and pass the
+    parameters to that function, so you only need to change the parameters in
+    one place if they change.
+
+    ```python
+    def get_settings():
+        return MySettings.get_instance("my_app_name")
+    ```
+
+    Then import `get_settings()` whenever it is needed.
+
 ## Settings file
 
 The above will automatically create a sub folder in the user's home directory
@@ -252,6 +263,12 @@ settings = MySettings("my_app_name", xdg_config=True)
 
 Assuming the `XDG_CONFIG_HOME` variable is not set, the settings file will be
 saved as `~/.config/my_app_name/config.toml`.
+
+!!! Danger "Mutually exclusive options"
+
+    The `local_file`, `flat_config` and `xdg_config` options are **mutually
+    exclusive**.  If more than one is `True`, a `SettingsMutuallyExclusiveError`
+    exception will be raised.
 
 ## Post-create hook
 

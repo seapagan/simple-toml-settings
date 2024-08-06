@@ -7,6 +7,7 @@ from pyfakefs.fake_filesystem import FakeFilesystem
 from pytest_mock import MockerFixture
 
 from simple_toml_settings.exceptions import (
+    SettingsMutuallyExclusiveError,
     SettingsNotFoundError,
     SettingsSchemaError,
 )
@@ -303,3 +304,15 @@ schema_version= '1'
         fs.create_dir(Path.home())
         settings = CustomSettings.get_instance("test_app")
         assert settings.my_var is False
+
+    def test_mutually_exclusive_attributes(self, fs: FakeFilesystem) -> None:
+        """Test that mutually exclusive attributes are handled."""
+        fs.create_dir(Path.home())
+
+        error_pattern = (
+            r"Only one of (flat_config|local_file), "
+            r"(flat_config|local_file) can be True\."
+        )
+
+        with pytest.raises(SettingsMutuallyExclusiveError, match=error_pattern):
+            CustomSettings("test_app", local_file=True, flat_config=True)

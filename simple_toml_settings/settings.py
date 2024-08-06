@@ -12,6 +12,7 @@ from typing import Any, ClassVar, TypeVar, cast
 import rtoml
 
 from simple_toml_settings.exceptions import (
+    SettingsMutuallyExclusiveError,
     SettingsNotFoundError,
     SettingsSchemaError,
 )
@@ -55,10 +56,22 @@ class TOMLSettings:
         }
     )
 
+    _mutually_exclusive: set[str] = field(
+        default_factory=lambda: {"local_file", "flat_config", "xdg_config"}
+    )
+
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
         self.settings_folder = self.get_settings_folder()
 
+        # ensure only one of the mutually exclusive options is set
+        check_exclusive = {
+            attr for attr in self._mutually_exclusive if getattr(self, attr)
+        }
+        if len(check_exclusive) > 1:
+            raise SettingsMutuallyExclusiveError(attrs=check_exclusive)
+
+        # load (or create) the settings file
         self.load()
 
     def get_settings_folder(self) -> Path:
