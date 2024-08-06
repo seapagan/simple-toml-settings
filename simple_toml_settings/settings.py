@@ -12,13 +12,14 @@ from typing import Any, ClassVar, TypeVar, cast
 import rtoml
 
 from simple_toml_settings.exceptions import (
+    SettingsMutuallyExclusiveError,
     SettingsNotFoundError,
     SettingsSchemaError,
 )
 from simple_toml_settings.xdg_config import xdg_config_home
 
-T = TypeVar("T", bound="TOMLSettings")
-
+SettingsT = TypeVar("SettingsT", bound="TOMLSettings")
+ExclusiveT = TypeVar("ExclusiveT", bound=str)
 
 @dataclass
 class TOMLSettings:
@@ -55,10 +56,22 @@ class TOMLSettings:
         }
     )
 
+    _mutually_exclusive: set[ExclusiveT] = field(
+        default_factory=lambda: {"local_file", "flat_config", "xdg_config"}
+    )
+
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
         self.settings_folder = self.get_settings_folder()
 
+        # ensure only one of the mutually exclusive options is set
+        check_exclusive = {
+            attr for attr in self._mutually_exclusive if getattr(self, attr)
+        }
+        if len(check_exclusive) > 1:
+            raise SettingsMutuallyExclusiveError(attrs=check_exclusive)
+
+        # load (or create) the settings file
         self.load()
 
     def get_settings_folder(self) -> Path:
@@ -95,11 +108,11 @@ class TOMLSettings:
 
     @classmethod
     def get_instance(
-        cls: type[T],
+        cls: type[SettingsT],
         app_name: str,
         *args: Any,  # noqa: ANN401
         **kwargs: Any,  # noqa: ANN401
-    ) -> T:
+    ) -> SettingsT:
         """Class method to get or create the Settings instance.
 
         This is optional (and experimental), and is provided to allow for a
@@ -108,7 +121,7 @@ class TOMLSettings:
         """
         if cls not in cls._instances:
             cls._instances[cls] = cls(app_name, *args, **kwargs)
-        return cast(T, cls._instances[cls])
+        return cast(SettingsT, cls._instances[cls])
 
     def get_attrs(self, *, include_none: bool = False) -> dict[str, Any]:
         """Return a dictionary of our setting values.

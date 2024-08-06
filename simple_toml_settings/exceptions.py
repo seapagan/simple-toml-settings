@@ -26,5 +26,14 @@ class SettingsSchemaError(SettingsError):
         )
 
 
+class SettingsMutuallyExclusiveError(SettingsError):
+    """Two or more mutually exclusive settings are set to True."""
+
+    def __init__(self, attrs: set[str]) -> None:
+        """Define a custom response for this Exception."""
+        self.attrs = attrs
+        super().__init__(f"Only one of {', '.join(self.attrs)} can be True.")
+
+
 # temporary alias for backwards compatibility
 SettingsNotFound = SettingsNotFoundError
