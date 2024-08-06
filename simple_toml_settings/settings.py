@@ -18,8 +18,8 @@ from simple_toml_settings.exceptions import (
 )
 from simple_toml_settings.xdg_config import xdg_config_home
 
-SettingsT = TypeVar("SettingsT", bound="TOMLSettings")
-ExclusiveT = TypeVar("ExclusiveT", bound=str)
+T = TypeVar("T", bound="TOMLSettings")
+
 
 @dataclass
 class TOMLSettings:
@@ -56,7 +56,7 @@ class TOMLSettings:
         }
     )
 
-    _mutually_exclusive: set[ExclusiveT] = field(
+    _mutually_exclusive: set[str] = field(
         default_factory=lambda: {"local_file", "flat_config", "xdg_config"}
     )
 
@@ -108,11 +108,11 @@ class TOMLSettings:
 
     @classmethod
     def get_instance(
-        cls: type[SettingsT],
+        cls: type[T],
         app_name: str,
         *args: Any,  # noqa: ANN401
         **kwargs: Any,  # noqa: ANN401
-    ) -> SettingsT:
+    ) -> T:
         """Class method to get or create the Settings instance.
 
         This is optional (and experimental), and is provided to allow for a
@@ -121,7 +121,7 @@ class TOMLSettings:
         """
         if cls not in cls._instances:
             cls._instances[cls] = cls(app_name, *args, **kwargs)
-        return cast(SettingsT, cls._instances[cls])
+        return cast(T, cls._instances[cls])
 
     def get_attrs(self, *, include_none: bool = False) -> dict[str, Any]:
         """Return a dictionary of our setting values.

@@ -309,8 +309,10 @@ schema_version= '1'
         """Test that mutually exclusive attributes are handled."""
         fs.create_dir(Path.home())
 
-        with pytest.raises(
-            SettingsMutuallyExclusiveError,
-            match="Only one of flat_config, local_file can be True.",
-        ):
+        error_pattern = (
+            r"Only one of (flat_config|local_file), "
+            r"(flat_config|local_file) can be True\."
+        )
+
+        with pytest.raises(SettingsMutuallyExclusiveError, match=error_pattern):
             CustomSettings("test_app", local_file=True, flat_config=True)
