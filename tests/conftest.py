@@ -20,7 +20,7 @@ class SettingsExample(TOMLSettings):
     test_int_var: int = 42
 
 
-@pytest.fixture()
+@pytest.fixture
 def settings(fs: FakeFilesystem) -> SettingsExample:
     """Return a Settings object for testing.
 
@@ -35,7 +35,7 @@ def settings(fs: FakeFilesystem) -> SettingsExample:
     return SettingsExample("test_app")
 
 
-@pytest.fixture()
+@pytest.fixture
 def flat_settings(fs: FakeFilesystem) -> SettingsExample:
     """Return a Settings object for testing with a flat config."""
     # Create a fake home directory for the test
@@ -45,7 +45,7 @@ def flat_settings(fs: FakeFilesystem) -> SettingsExample:
     return SettingsExample("test_app", flat_config=True)
 
 
-@pytest.fixture()
+@pytest.fixture
 def xdg_settings(fs: FakeFilesystem) -> SettingsExample:
     """Return a Settings object for testing.
 
