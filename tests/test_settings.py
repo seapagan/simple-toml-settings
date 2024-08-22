@@ -53,6 +53,22 @@ schema_version= '1'
         with pytest.raises(SettingsNotFoundError):
             TOMLSettings("test_app", auto_create=False)
 
+    def test_allow_missing_file_disables_auto_create(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that allow_missing_file disables auto_create."""
+        fs.create_dir(Path.home())
+        settings = CustomSettings(
+            "test_app", auto_create=True, allow_missing_file=True
+        )
+        assert settings.settings_folder.exists()
+        assert settings.settings_folder.is_dir()
+        assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
+        # assert that the config file is not created
+        assert not (settings.settings_folder / self.SETTINGS_FILE_NAME).exists()
+        # assert that 'auto_create' is False
+        assert not settings.auto_create
+
     def test_no_exception_raised_on_missing_config_if_allow_no_file_is_true(
         self, fs: FakeFilesystem
     ) -> None:

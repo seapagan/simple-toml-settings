@@ -66,6 +66,10 @@ class TOMLSettings:
         """Create the settings folder if it doesn't exist."""
         self.settings_folder = self.get_settings_folder()
 
+        # if we allow a missing file, we don't want to auto-create it
+        if self.allow_missing_file:
+            self.auto_create = False
+
         # ensure only one of the mutually exclusive options is set
         check_exclusive = {
             attr for attr in self._mutually_exclusive if getattr(self, attr)
