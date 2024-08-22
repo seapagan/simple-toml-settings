@@ -53,6 +53,45 @@ schema_version= '1'
         with pytest.raises(SettingsNotFoundError):
             TOMLSettings("test_app", auto_create=False)
 
+    def test_allow_missing_file_disables_auto_create(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that allow_missing_file disables auto_create."""
+        fs.create_dir(Path.home())
+        settings = CustomSettings(
+            "test_app", auto_create=True, allow_missing_file=True
+        )
+        assert settings.settings_folder.exists()
+        assert settings.settings_folder.is_dir()
+        assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
+        # assert that the config file is not created
+        assert not (settings.settings_folder / self.SETTINGS_FILE_NAME).exists()
+        # assert that 'auto_create' is False
+        assert not settings.auto_create
+
+    def test_no_exception_raised_on_missing_config_if_allow_no_file_is_true(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test the 'allow_missing_file' option.
+
+        If 'allow_missing_file' is True, and 'auto_create' is False, then the
+        settings file is not created, and no exception is raised.
+        """
+        fs.create_dir(Path.home())
+
+        settings = CustomSettings(
+            "test_app", auto_create=False, allow_missing_file=True
+        )
+        assert settings.settings_folder.exists()
+        assert settings.settings_folder.is_dir()
+        assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
+        # assert that the config file is not created
+        assert not (settings.settings_folder / self.SETTINGS_FILE_NAME).exists()
+
+        # make sure we can still get values from the settings object
+        assert settings.get("app_name") == "test_app"
+        assert settings.get("my_var") is False
+
     def test_local_config(self, fs: FakeFilesystem) -> None:
         """Test that local_config loads settings from the local directory."""
         fs.create_file(
