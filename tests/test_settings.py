@@ -53,6 +53,21 @@ schema_version= '1'
         with pytest.raises(SettingsNotFoundError):
             TOMLSettings("test_app", auto_create=False)
 
+    def test_no_exception_raised_on_missing_config_if_allow_no_file_is_true(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that the settings file is not created if auto_create False."""
+        fs.create_dir(Path.home())
+
+        settings = TOMLSettings(
+            "test_app", auto_create=False, allow_missing_file=True
+        )
+        assert settings.settings_folder.exists()
+        assert settings.settings_folder.is_dir()
+        assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
+        # assert that the config file is not created
+        assert not (settings.settings_folder / self.SETTINGS_FILE_NAME).exists()
+
     def test_local_config(self, fs: FakeFilesystem) -> None:
         """Test that local_config loads settings from the local directory."""
         fs.create_file(

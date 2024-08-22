@@ -37,6 +37,7 @@ class TOMLSettings:
     local_file: bool = False
     flat_config: bool = False
     xdg_config: bool = False
+    allow_missing_file: bool = False
 
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
@@ -53,6 +54,7 @@ class TOMLSettings:
             "local_file",
             "flat_config",
             "xdg_config",
+            "allow_missing_file",
         }
     )
 
@@ -155,6 +157,8 @@ class TOMLSettings:
             if self.auto_create:
                 self.__post_create_hook__()
                 self.save()
+            elif self.allow_missing_file:
+                return
             else:
                 message = "Cant find a Config File, please create one."
                 raise SettingsNotFoundError(message) from exc
