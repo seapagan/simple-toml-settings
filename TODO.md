@@ -12,9 +12,6 @@
 - By default `save()` should not save config options that are not already in the
   config file, though leave the current behavior as an option.
 - Raise a specific custom exception for malformed TOML files
-- Option to NOT create a config file if it does not exist, but also NOT raise an
-  exception. This allows just using the default values set in the class, but
-  still take from the config file if it exists.
 
 ## Possible ideas
 

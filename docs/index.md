@@ -38,6 +38,10 @@ A Python library to save your settings in a TOML file.
 - By default the setting file is automatically created when the class is
   instantiated and the settings are saved to it. If the file already exists, the
   settings are loaded from it instead. This can be disabled if required.
+- Allows to run WITHOUT a settings file, so you can use the settings class
+  without needing to save the settings. This way all the defaults are used, and
+  then the user can manually create the settings file if they want to change the
+  defaults.
 - The settings filename is configurable or defaults to `config.toml`.
 - Provides a hook to run code when the setting file is first created, so you can
   perform any initialisation required.

@@ -229,12 +229,30 @@ file does not exist. You can catch this exception and handle it as you wish.
 *The folder will be created anyway if it does not exist, as the assumption is
 that you will want to save the settings at some point*.
 
+**This setting will be set to `False` if the `allow_missing_file` option is set
+to `True`.**
+
 !!! danger "Deprecation warning"
 
     The exception was originally called **`SettingsNotFound`** but has been
     renamed to **`SettingsNotFoundError`** to be more consistent with Python
     naming conventions.  The old name still works, but will be removed in a
     future release.
+
+### `allow_missing_file`
+
+This defaults to `False` and will allow the class to run without a settings
+file. This means that no error will be raised for a missing settings file, and
+the settings will always be the default values until a settings file is created.
+The user can then manually create the settings file if they want to change the
+defaults.
+
+This should really be the default setting, but for backwards compatibility it
+is set to `False` by default.  In future versions this may be changed.
+
+!!! note
+    Setting this to `True` will disable the `auto_create` option, as there is no
+    need to create the file if it is allowed to be missing.
 
 ### `local_file`
 
