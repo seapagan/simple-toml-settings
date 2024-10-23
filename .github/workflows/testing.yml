@@ -1,0 +1,44 @@
+name: Test Suite
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  testing:
+    name: python
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Run tests
+        # For example, using `pytest`
+        run:
+          uv run --all-extras -p ${{ matrix.python-version }} pytest tests
+          --cov-report=xml
+
+      - name: Run codacy-coverage-reporter
+        env:
+          CODACY_CONFIGURED: ${{ secrets.CODACY_PROJECT_TOKEN }}
+        if: ${{ env.CODACY_CONFIGURED != ''}}
+        uses: codacy/codacy-coverage-reporter-action@v1
+        continue-on-error: true
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ./coverage.xml
