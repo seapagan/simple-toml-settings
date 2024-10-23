@@ -34,7 +34,14 @@ feel free to make suggestions for improvements.
 ## Installation
 
 You should install this package into a virtual environment.  You can use
+[uv](https://docs.astral.sh/uv/) (recommended), or
 [Poetry](https://python-poetry.org/) to do this:
+
+```console
+$ uv add simple-toml-settings
+```
+
+or
 
 ```console
 $ poetry add simple-toml-settings
