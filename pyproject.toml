@@ -21,7 +21,7 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-dependencies = ["github-changelog-md == 0.9.5", "rtoml == 0.11.0"]
+dependencies = ["rtoml>=0.11.0"]
 
 [project.urls]
 # customize the below URLs to point to your own GitHub repo. These will be
@@ -34,29 +34,29 @@ dependencies = ["github-changelog-md == 0.9.5", "rtoml == 0.11.0"]
 
 [tool.uv]
 dev-dependencies = [
-  "mypy == 1.11.1",
-  "pre-commit == 3.8.0",
-  "pymarkdownlnt == 0.9.22",
-  "ruff == 0.6.1",
-  "poethepoet == 0.27.0",
-  "pytest == 8.3.2",
-  "pytest-cov == 5.0.0",
-  "pytest-xdist == 3.6.1",
-  "pytest-sugar == 1.0.0",
-  "pytest-randomly == 3.15.0",
-  "pytest-reverse == 1.7.0",
-  "pytest-mock == 3.14.0",
-  "mock == 5.1.0",
-  "faker == 27.0.0",
-  "pyfakefs == 5.6.0",
-  "github-changelog-md == 0.9.5",
-  "mkdocs == 1.6.0",
-  "mkdocs-autorefs == 1.0.1",
-  "mkdocs-material == 9.5.32",
-  "mkdocs-minify-plugin == 0.8.0",
-  "pymdown-extensions == 10.9",
-  "pygments == 2.18.0",
-  "pytest-watcher == 0.4.2",
+  "mypy>=1.11.1",
+  "pre-commit>=3.8.0",
+  "pymarkdownlnt>=0.9.22",
+  "ruff>=0.6.1",
+  "poethepoet>=0.27.0",
+  "pytest>=8.3.2",
+  "pytest-cov>=5.0.0",
+  "pytest-xdist>=3.6.1",
+  "pytest-sugar>=1.0.0",
+  "pytest-randomly>=3.15.0",
+  "pytest-reverse>=1.7.0",
+  "pytest-mock>=3.14.0",
+  "mock>=5.1.0",
+  "faker>=27.0.0",
+  "pyfakefs>=5.6.0",
+  "github-changelog-md>=0.9.5",
+  "mkdocs>=1.6.0",
+  "mkdocs-autorefs>=1.0.1",
+  "mkdocs-material>=9.5.32",
+  "mkdocs-minify-plugin>=0.8.0",
+  "pymdown-extensions>=10.9",
+  "pygments>=2.18.0",
+  "pytest-watcher>=0.4.2",
 ]
 
 
