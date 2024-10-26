@@ -52,18 +52,20 @@ To get started, follow these steps:
 Run the following command to install the required dependencies:
 
 ```console
-$ uv synv
+$ uv sync
 ```
 
 You then need to activate the virtual environment:
 
-```bash
-# On Linux or Mac OS
+On Linux or Mac OS
+
+```terminal
 $ source .venv/bin/activate
 ```
 
-```bash
-# On Windows
+On Windows
+
+```terminal
 $ .venv\Scripts\activate
 ```
 
