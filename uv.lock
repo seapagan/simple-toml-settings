@@ -665,7 +665,7 @@ wheels = [
 
 [[package]]
 name = "mkdocs-material"
-version = "9.5.32"
+version = "9.5.42"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "babel" },
@@ -680,9 +680,9 @@ dependencies = [
     { name = "regex" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/51/e0/d97ca794228ed795eb0e440e99a9aa941d1888e212b1ac9c6c24d5dc9ad3/mkdocs_material-9.5.32.tar.gz", hash = "sha256:38ed66e6d6768dde4edde022554553e48b2db0d26d1320b19e2e2b9da0be1120", size = 4107472 }
+sdist = { url = "https://files.pythonhosted.org/packages/f9/33/b3343ed975fbbd6798b8d8a7c4f1bf8489cc321fc8fd426eba3d87b0242e/mkdocs_material-9.5.42.tar.gz", hash = "sha256:92779b5e9b5934540c574c11647131d217dc540dce72b05feeda088c8eb1b8f2", size = 3963891 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/1e/74/3136b7ae7ee8bfd2f2f4162aa9f1c51e90c89ecc1c5a2f111e386f22a087/mkdocs_material-9.5.32-py3-none-any.whl", hash = "sha256:f3704f46b63d31b3cd35c0055a72280bed825786eccaf19c655b44e0cd2c6b3f", size = 8823114 },
+    { url = "https://files.pythonhosted.org/packages/55/55/ad3e6a60ac1e8e76025543c49c1f24ecd80fb38e8a57000403bf2f0a4293/mkdocs_material-9.5.42-py3-none-any.whl", hash = "sha256:452a7c5d21284b373f36b981a2cbebfff59263feebeede1bc28652e9c5bbe316", size = 8672619 },
 ]
 
 [[package]]
@@ -1357,7 +1357,7 @@ dependencies = [
     { name = "rtoml" },
 ]
 
-[package.dev-dependencies]
+[package.dependency-groups]
 dev = [
     { name = "faker" },
     { name = "github-changelog-md" },
@@ -1390,13 +1390,13 @@ requires-dist = [
     { name = "rtoml", specifier = "==0.11.0" },
 ]
 
-[package.metadata.requires-dev]
+[package.metadata.dependency-groups]
 dev = [
     { name = "faker", specifier = "==27.0.0" },
     { name = "github-changelog-md", specifier = "==0.9.5" },
     { name = "mkdocs", specifier = "==1.6.0" },
     { name = "mkdocs-autorefs", specifier = "==1.0.1" },
-    { name = "mkdocs-material", specifier = "==9.5.32" },
+    { name = "mkdocs-material", specifier = "==9.5.42" },
     { name = "mkdocs-minify-plugin", specifier = "==0.8.0" },
     { name = "mock", specifier = "==5.1.0" },
     { name = "mypy", specifier = "==1.11.1" },

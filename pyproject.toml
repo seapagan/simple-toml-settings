@@ -52,7 +52,7 @@ dev-dependencies = [
   "github-changelog-md == 0.9.5",
   "mkdocs == 1.6.0",
   "mkdocs-autorefs == 1.0.1",
-  "mkdocs-material == 9.5.32",
+  "mkdocs-material ==9.5.42",
   "mkdocs-minify-plugin == 0.8.0",
   "pymdown-extensions == 10.9",
   "pygments == 2.18.0",
