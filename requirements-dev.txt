@@ -73,7 +73,7 @@ regex==2024.9.11
 requests==2.32.3
 rich==13.9.3
 rtoml==0.11.0
-ruff==0.6.1
+ruff==0.7.1
 shellingham==1.5.4
 six==1.16.0
 termcolor==2.5.0
