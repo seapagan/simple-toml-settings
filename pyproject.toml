@@ -1,15 +1,12 @@
-[tool.poetry]
+[project]
 name = "simple-toml-settings"
 version = "0.8.0"
 description = "A Python library to save your settings in a TOML file."
-authors = ["Grant Ramsay <seapagan@gmail.com>"]
+authors = [{ name = "Grant Ramsay", email = "grant@gnramsay.com" }]
 readme = "README.md"
 license = "MIT"
 
-packages = [{ include = "simple_toml_settings" }]
-
-documentation = "http://toml-settings.grantramsay.dev/"
-repository = "https://github.com/seapagan/simple-toml-settings"
+requires-python = ">=3.9"
 
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -24,56 +21,49 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-[tool.poetry.urls]
+dependencies = ["github-changelog-md == 0.9.5", "rtoml == 0.11.0"]
+
+[project.urls]
 # customize the below URLs to point to your own GitHub repo. These will be
 # shown on [Pypi.org](https://pypi.org/) if you are creating a public package.
+"Homepage" = "http://toml-settings.grantramsay.dev/"
 "Pull Requests" = "https://github.com/seapagan/simple-toml-settings/pulls"
 "Bug Tracker" = "https://github.com/seapagan/simple-toml-settings/issues"
 "Changelog" = "https://github.com/seapagan/simple-toml-settings/blob/main/CHANGELOG.md"
+"Repository" = "https://github.com/seapagan/simple-toml-settings"
 
-[tool.poetry.dependencies]
-python = ">=3.9,<4.0"
-rtoml = ">=0.9.0,<1.0.0"
-github-changelog-md = ">=0.9.0"
+[tool.uv]
+dev-dependencies = [
+  "mypy == 1.11.1",
+  "pre-commit == 3.8.0",
+  "pymarkdownlnt == 0.9.22",
+  "ruff == 0.6.1",
+  "poethepoet == 0.27.0",
+  "pytest == 8.3.2",
+  "pytest-cov == 5.0.0",
+  "pytest-xdist == 3.6.1",
+  "pytest-sugar == 1.0.0",
+  "pytest-randomly == 3.15.0",
+  "pytest-reverse == 1.7.0",
+  "pytest-mock == 3.14.0",
+  "mock == 5.1.0",
+  "faker == 27.0.0",
+  "pyfakefs == 5.6.0",
+  "github-changelog-md == 0.9.5",
+  "mkdocs == 1.6.0",
+  "mkdocs-autorefs == 1.0.1",
+  "mkdocs-material == 9.5.32",
+  "mkdocs-minify-plugin == 0.8.0",
+  "pymdown-extensions == 10.9",
+  "pygments == 2.18.0",
+  "pytest-watcher == 0.4.2",
+]
+
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-# Configure dev dependencies you can add or remove as needed
-[tool.poetry.group.dev.dependencies]
-# linting, type-checking and security checks
-mypy = "^1.4.1"
-pre-commit = "^3.3.3"
-pymarkdownlnt = "^0.9.12"
-ruff = ">=0.5.1,<0.7.0"
-
-# task runner
-poethepoet = ">=0.24.1,<0.28.0"
-
-# testing
-pytest = ">=7.4,<9.0"
-pytest-cov = ">=4,<6"
-pytest-xdist = "^3.2.1"
-pytest-sugar = ">=0.9.7,<1.1.0"
-pytest-randomly = "^3.13.0"
-pytest-reverse = "^1.7.0"
-pytest-mock = "^3.11.1"
-mock = "^5.1.0"
-faker = ">=19.2,<28.0"
-pyfakefs = "^5.2.4"
-
-# documentation
-github-changelog-md = ">=0.3,<1.0.0"
-mkdocs = "^1.4.3"
-mkdocs-autorefs = ">=0.5,<1.1"
-mkdocs-material = "^9.1.19"
-mkdocs-minify-plugin = ">=0.7,<0.9"
-pymdown-extensions = "^10.1"
-pygments = "^2.15.1"
-
-# setup PoeThePoet tasks
-pytest-watcher = "^0.4.1"
 [tool.poe.tasks]
 pre.cmd = "pre-commit run --all-files"
 pre.help = "Run pre-commit checks"

@@ -17,8 +17,12 @@ Python installed on your machine. You can download the latest version of Python
 from the [official website](https://www.python.org/downloads/) or using your
 Operating system's package manager.
 
-- I'd recommend using [pyenv](https://github.com/pyenv/pyenv) to manage your
-Python installations, the
+- We use [uv](https://docs.astral.sh/uv/) to manage our dependencies. You
+should have this installed as well. You can install this by folllowing the
+instructions on their website.
+
+- If not using `uv` to manange your Python versions,  I'd recommend using
+[pyenv](https://github.com/pyenv/pyenv) to manage your Python installations, the
 [pyenv-installer](https://github.com/pyenv/pyenv-installer) works for Linux and
 Mac OS X. For Windows, you can use the
 [pyenv-win](https://github.com/pyenv-win/pyenv-win) port. See
@@ -26,11 +30,6 @@ Mac OS X. For Windows, you can use the
 instructions.
 
 - This project requires **Python 3.9** or higher.
-
-- We also use [Poetry](https://python-poetry.org/) to manage our dependencies. You
-should have this installed as well. You can install Poetry by following the
-instructions on the [Poetry
-website](https://python-poetry.org/docs/#installation).
 
 ## Getting Started
 
@@ -53,13 +52,21 @@ To get started, follow these steps:
 Run the following command to install the required dependencies:
 
 ```console
-$ poetry install
+$ uv sync
 ```
 
 You then need to activate the virtual environment:
 
-```console
-$ poetry shell
+On Linux or Mac OS
+
+```terminal
+$ source .venv/bin/activate
+```
+
+On Windows
+
+```terminal
+$ .venv\Scripts\activate
 ```
 
 From here you can start working on the project. If you are using an IDE such as
