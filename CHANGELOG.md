@@ -6,6 +6,20 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.9.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.9.0) (2025-01-16)
+
+**New Features**
+
+- Fix compatibility with python 3.13 ([#296](https://github.com/seapagan/simple-toml-settings/pull/296)) by [seapagan](https://github.com/seapagan)
+- Migrate from poetry to uv ([#285](https://github.com/seapagan/simple-toml-settings/pull/285)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Bump jinja2 from 3.1.4 to 3.1.5 ([#295](https://github.com/seapagan/simple-toml-settings/pull/295)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Update astral-sh/setup-uv action to v5 ([#294](https://github.com/seapagan/simple-toml-settings/pull/294)) by [renovate[bot]](https://github.com/apps/renovate)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.8.0...0.9.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.8.0...0.9.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.8.0...0.9.0.patch)
+
 ## [0.8.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.8.0) (2024-08-22)
 
 **New Features**
