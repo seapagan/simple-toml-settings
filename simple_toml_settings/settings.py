@@ -7,9 +7,10 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, ClassVar, TypeVar, cast
+from typing import Any, ClassVar, cast
 
 import rtoml
+from typing_extensions import Self
 
 from simple_toml_settings.exceptions import (
     SettingsMutuallyExclusiveError,
@@ -17,8 +18,6 @@ from simple_toml_settings.exceptions import (
     SettingsSchemaError,
 )
 from simple_toml_settings.xdg_config import xdg_config_home
-
-T = TypeVar("T", bound="TOMLSettings")
 
 
 @dataclass
@@ -114,11 +113,11 @@ class TOMLSettings:
 
     @classmethod
     def get_instance(
-        cls: type[T],
+        cls,
         app_name: str,
         *args: Any,  # noqa: ANN401
         **kwargs: Any,  # noqa: ANN401
-    ) -> T:
+    ) -> Self:
         """Class method to get or create the Settings instance.
 
         This is optional (and experimental), and is provided to allow for a
@@ -127,7 +126,7 @@ class TOMLSettings:
         """
         if cls not in cls._instances:
             cls._instances[cls] = cls(app_name, *args, **kwargs)
-        return cast(T, cls._instances[cls])
+        return cast("Self", cls._instances[cls])
 
     def get_attrs(self, *, include_none: bool = False) -> dict[str, Any]:
         """Return a dictionary of our setting values.
