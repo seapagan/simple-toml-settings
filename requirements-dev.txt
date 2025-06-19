@@ -210,7 +210,7 @@ typing-extensions==4.12.2
     #   pymarkdownlnt
     #   rich
     #   typer
-urllib3==2.2.3
+urllib3==2.5.0
     # via
     #   pygithub
     #   requests
