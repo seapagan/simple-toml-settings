@@ -1,6 +1,6 @@
 [project]
 name = "simple-toml-settings"
-version = "0.9.0"
+version = "0.9.1"
 description = "A Python library to save your settings in a TOML file."
 authors = [{ name = "Grant Ramsay", email = "grant@gnramsay.com" }]
 readme = "README.md"

@@ -6,6 +6,17 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.9.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.9.1) (2025-08-10)
+
+**Dependency Updates**
+
+- Update some deps to clear security issues and update pre-commit tool versions ([#307](https://github.com/seapagan/simple-toml-settings/pull/307)) by [seapagan](https://github.com/seapagan)
+- Update astral-sh/setup-uv action to v6 ([#302](https://github.com/seapagan/simple-toml-settings/pull/302)) by [renovate[bot]](https://github.com/apps/renovate)
+- Bump cryptography from 43.0.3 to 44.0.1 ([#300](https://github.com/seapagan/simple-toml-settings/pull/300)) by [dependabot[bot]](https://github.com/apps/dependabot)
+- Bump jinja2 from 3.1.4 to 3.1.6 ([#299](https://github.com/seapagan/simple-toml-settings/pull/299)) by [dependabot[bot]](https://github.com/apps/dependabot)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.9.0...0.9.1) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.9.0...0.9.1.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.9.0...0.9.1.patch)
+
 ## [0.9.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.9.0) (2025-01-16)
 
 **New Features**
