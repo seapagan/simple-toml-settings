@@ -72,6 +72,8 @@ jinja2==3.1.6
     #   mkdocs-material
 jsmin==3.0.1
     # via mkdocs-minify-plugin
+librt==0.7.3
+    # via mypy
 markdown==3.9
     # via
     #   mkdocs
@@ -106,7 +108,7 @@ mkdocs-material-extensions==1.3.1
     # via mkdocs-material
 mkdocs-minify-plugin==0.8.0
 mock==5.2.0
-mypy==1.17.1
+mypy==1.19.0
 mypy-extensions==1.1.0
     # via mypy
 nodeenv==1.9.1
@@ -131,7 +133,8 @@ pluggy==1.6.0
     # via
     #   pytest
     #   pytest-cov
-poethepoet==0.37.0
+poethepoet==0.37.0 ; python_full_version < '3.10'
+poethepoet==0.38.0 ; python_full_version >= '3.10'
 pre-commit==4.3.0
 pycparser==2.22 ; implementation_name != 'PyPy'
     # via cffi
@@ -169,7 +172,7 @@ pytest-watcher==0.4.3
 pytest-xdist==3.8.0
 python-dateutil==2.9.0.post0
     # via ghp-import
-pyyaml==6.0.2
+pyyaml==6.0.3
     # via
     #   application-properties
     #   mkdocs
@@ -188,11 +191,15 @@ rich==14.1.0
     # via
     #   github-changelog-md
     #   typer
-rtoml==0.12.0
+rtoml==0.12.0 ; python_full_version < '3.10'
     # via
     #   github-changelog-md
     #   simple-toml-settings
-ruff==0.12.12
+rtoml==0.13.0 ; python_full_version >= '3.10'
+    # via
+    #   github-changelog-md
+    #   simple-toml-settings
+ruff==0.14.8
 shellingham==1.5.4
     # via typer
 six==1.17.0
