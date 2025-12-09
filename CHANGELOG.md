@@ -6,6 +6,21 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [v0.9.2](https://github.com/seapagan/simple-toml-settings/releases/tag/v0.9.2) (2025-12-09)
+
+**New Features**
+
+- Add Python 3.14 compatibility; update some dependencies. ([#316](https://github.com/seapagan/simple-toml-settings/pull/316)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Update actions/checkout action to v6 ([#314](https://github.com/seapagan/simple-toml-settings/pull/314)) by [renovate[bot]](https://github.com/apps/renovate)
+- Update astral-sh/setup-uv action to v7 ([#313](https://github.com/seapagan/simple-toml-settings/pull/313)) by [renovate[bot]](https://github.com/apps/renovate)
+- Update github/codeql-action action to v4 - autoclosed ([#312](https://github.com/seapagan/simple-toml-settings/pull/312)) by [renovate[bot]](https://github.com/apps/renovate)
+- Update actions/checkout action to v5 ([#309](https://github.com/seapagan/simple-toml-settings/pull/309)) by [renovate[bot]](https://github.com/apps/renovate)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.9.1...v0.9.2) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.9.1...v0.9.2.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.9.1...v0.9.2.patch)
+
 ## [0.9.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.9.1) (2025-08-10)
 
 **Dependency Updates**
