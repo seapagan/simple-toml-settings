@@ -71,7 +71,7 @@ module-root = ""
 [tool.poe.tasks]
 pre.cmd = "prek run --all-files"
 pre.help = "Run pre-commit checks with prek"
-mypy.cmd = "mypy simple_toml_settings/**/*.py tests/**/*.py --strict"
+mypy.cmd = "mypy . --strict"
 mypy.help = "Run mypy checks"
 format.help = "Format code with Ruff"
 format.cmd = "ruff format ."
