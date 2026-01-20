@@ -79,14 +79,15 @@ Please do this if you are intending to submit a PR. It will check commits
 locally before they are pushed up to the Repo.
 
 ```console
-$ pre-commit install
-pre-commit installed at .git/hooks/pre-commit
+$ prek install -f
+prek installed at .git/hooks/pre-commit
 ```
 
 This will ensure that all code meets the required linting standard before being
-committed.
+committed. The `-f` forces to overwrite any existing hooks, i.e. from
+`pre-commit` that we used previously.
 
-## Run pre-commit manually
+## Run prek checks manually
 
 You can run these checks manually on all staged files using the below command :
 
