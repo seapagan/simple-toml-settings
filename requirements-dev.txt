@@ -8,7 +8,7 @@ backrefs==5.9
     # via mkdocs-material
 certifi==2025.8.3
     # via requests
-cffi==2.0.0
+cffi==2.0.0 ; platform_python_implementation != 'PyPy'
     # via
     #   cryptography
     #   pynacl
@@ -124,7 +124,7 @@ pluggy==1.6.0
 poethepoet==0.37.0 ; python_full_version < '3.10'
 poethepoet==0.38.0 ; python_full_version >= '3.10'
 prek==0.2.30
-pycparser==2.22 ; implementation_name != 'PyPy'
+pycparser==2.22 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
 pyfakefs==5.9.3
 pygithub==2.8.1
@@ -141,7 +141,7 @@ pyjwt==2.10.1
 pymarkdownlnt==0.9.32
 pymdown-extensions==10.16.1
     # via mkdocs-material
-pynacl==1.5.0
+pynacl==1.6.2
     # via pygithub
 pytest==8.4.2
     # via
@@ -215,7 +215,7 @@ typing-extensions==4.15.0
     #   typer
 tzdata==2025.2
     # via faker
-urllib3==2.6.1
+urllib3==2.6.3
     # via
     #   pygithub
     #   requests
