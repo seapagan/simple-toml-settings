@@ -246,10 +246,115 @@ schema_version= '1'
         """Test that 'None' is returned when a setting is missing."""
         assert settings.get("missing_setting") is None
 
+    def test_get_with_custom_default(self, settings: SettingsExample) -> None:
+        """Test that custom default value is returned for missing keys."""
+        result = settings.get("missing_setting", default="default_value")
+        assert result == "default_value"
+
+    def test_get_distinguishes_missing_from_none(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that get() can distinguish missing keys from None values."""
+        # Set a value to None
+        settings.set("explicit_none", None, autosave=False)
+
+        # Missing key returns custom default
+        assert settings.get("missing", default="DEFAULT") == "DEFAULT"
+
+        # Key set to None returns None, not the default
+        assert settings.get("explicit_none", default="DEFAULT") is None
+
+    def test_strict_get_raises_keyerror_for_missing(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that strict_get=True raises KeyError for missing keys."""
+        fs.create_dir(Path.home())
+        settings = TOMLSettings("test_app", strict_get=True)
+
+        with pytest.raises(KeyError, match="Setting 'missing' not found"):
+            settings.get("missing")
+
+    def test_strict_get_with_custom_default(self, fs: FakeFilesystem) -> None:
+        """Test that strict_get=True still works with custom defaults."""
+        fs.create_dir(Path.home())
+        settings = TOMLSettings("test_app", strict_get=True)
+
+        # Custom default takes precedence over strict behavior
+        assert settings.get("missing", default="my_default") == "my_default"
+
+    def test_strict_get_returns_none_value(self, fs: FakeFilesystem) -> None:
+        """Test that strict_get=True can return None as an actual value."""
+        fs.create_dir(Path.home())
+        settings = TOMLSettings("test_app", strict_get=True)
+        settings.set("explicit_none", None, autosave=False)
+
+        # Returns None (the value), not KeyError
+        assert settings.get("explicit_none") is None
+
     def test_set(self, settings: SettingsExample) -> None:
         """Test that a setting can be set."""
-        settings.set("app_name", "new_test_app")
-        assert settings.get("app_name") == "new_test_app"
+        settings.set("new_setting", "test_value")
+        assert settings.get("new_setting") == "test_value"
+
+    def test_set_protected_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that setting protected attributes raises ValueError."""
+        with pytest.raises(ValueError, match="Cannot set protected attribute"):
+            settings.set("app_name", "new_app_name")
+
+    def test_set_ignored_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that setting ignored attributes raises ValueError."""
+        with pytest.raises(ValueError, match="Cannot set protected attribute"):
+            settings.set("settings_folder", "/some/path")
+
+    def test_set_private_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test setting private attributes (starting with _) raises error."""
+        with pytest.raises(ValueError, match="Cannot set protected attribute"):
+            settings.set("_private_var", "value")
+
+    def test_delete_setting(self, settings: SettingsExample) -> None:
+        """Test that a setting can be deleted."""
+        # First set a value
+        settings.set("temp_setting", "temp_value", autosave=False)
+        assert settings.get("temp_setting") == "temp_value"
+
+        # Delete it
+        settings.delete("temp_setting", autosave=False)
+        assert settings.get("temp_setting") is None
+
+    def test_delete_nonexistent_setting_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that deleting a nonexistent setting raises KeyError."""
+        with pytest.raises(KeyError, match="Setting 'nonexistent' not found"):
+            settings.delete("nonexistent")
+
+    def test_delete_protected_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that deleting protected attributes raises ValueError."""
+        with pytest.raises(
+            ValueError, match="Cannot delete protected attribute"
+        ):
+            settings.delete("app_name")
+
+    def test_delete_with_autosave(self, settings: SettingsExample) -> None:
+        """Test that delete() with autosave=True persists the change."""
+        # Set a value with autosave=False
+        settings.set("temp_value", "test", autosave=False)
+        assert settings.get("temp_value") == "test"
+
+        # Delete with autosave=True (default)
+        settings.delete("temp_value")
+
+        # Create a new instance to verify it was persisted
+        settings2 = TOMLSettings("test_app")
+        assert settings2.get("temp_value") is None
 
     def test_add_and_list_setting(self, settings: SettingsExample) -> None:
         """Add a new setting and list all settings."""
@@ -313,6 +418,24 @@ schema_version= '1'
         for setting in settings._ignored_attrs:  # noqa: SLF001
             assert setting not in list_settings
 
+    def test_class_attrs_shared_across_instances(
+        self, settings: SettingsExample, fs: FakeFilesystem
+    ) -> None:
+        """Test that _ignored_attrs and _mutually_exclusive are ClassVars.
+
+        This verifies they are shared across all instances rather than
+        being created separately for each instance (efficiency).
+        """
+        instance2 = TOMLSettings("another_app")
+
+        # Both instances should reference the same frozenset object
+        assert settings._ignored_attrs is instance2._ignored_attrs  # noqa: SLF001
+        assert settings._mutually_exclusive is instance2._mutually_exclusive  # noqa: SLF001
+
+        # Verify they are frozensets (immutable)
+        assert isinstance(settings._ignored_attrs, frozenset)  # noqa: SLF001
+        assert isinstance(settings._mutually_exclusive, frozenset)  # noqa: SLF001
+
     def test_schema_version_mismatch_raises_error(
         self, fs: FakeFilesystem
     ) -> None:
@@ -349,6 +472,17 @@ schema_version= '1'
 
         # this should NOT raise an exception
         TOMLSettings("test_app", local_file=True, schema_version="2")
+
+    def test_schema_version_case_insensitive(self, fs: FakeFilesystem) -> None:
+        """Test that schema version comparison is case-insensitive."""
+        # Create config with lowercase schema version
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents="[test_app]\ntest_var = 'value'\nschema_version='abc'\n",
+        )
+
+        # Should NOT raise even though code has uppercase ABC
+        TOMLSettings("test_app", local_file=True, schema_version="ABC")
 
     def test_missing_app_section_raises_error(self, fs: FakeFilesystem) -> None:
         """Test that missing [app_name] section raises SettingsNotFoundError."""

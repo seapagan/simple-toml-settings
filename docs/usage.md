@@ -179,9 +179,38 @@ this is the preferred method though both methods are supported:
 settings = MySettings("my_app_name")
 name = settings.get("name")
 settings.set("name", "My New Name")
+settings.delete("old_setting")  # Remove a setting you no longer need
 ```
 
-The `get` method will return `None` if the setting does not exist.
+The `get` method has two parameters:
+
+- `key` (required): The name of the setting to retrieve
+- `default` (optional): Value to return if the key doesn't exist (defaults to `None`)
+
+```python
+# Returns None if "missing_key" doesn't exist
+value = settings.get("missing_key")
+
+# Returns "my_default" if "missing_key" doesn't exist
+value = settings.get("missing_key", default="my_default")
+```
+
+The `delete` method will raise `KeyError` if you try to delete a setting that
+doesn't exist.
+
+!!! info "Distinguishing Missing from None"
+
+    By default, `get()` returns `None` for both missing keys and keys set to
+    `None`. To distinguish between these cases, you can either:
+
+    - Use a custom default: `settings.get("key", default=_MY_SENTINEL)`
+    - Enable strict mode: `TOMLSettings("app", strict_get=True)`
+
+    With `strict_get=True`, calling `get()` on a missing key will raise
+    `KeyError` instead of returning `None`. This makes it impossible to
+    confuse a missing key with a key explicitly set to `None`.
+
+    **Note:** In a future version, `strict_get=True` may become the default.
 
 The advantage of using the `set` method is that it will automatically save the
 changed variable to the config file.  If you use the class attributes directly,
@@ -208,6 +237,13 @@ settings.save()
     The `load()` and `save()` methods are automatically called when the class is
     created and when the `set` method is called respectively.  You should not
     need to call `load()` manually.
+
+!!! warning "Protected Attributes"
+
+    The `set()` and `delete()` methods will raise a `ValueError` if you try to
+    modify or delete protected attributes such as `app_name`, `settings_folder`,
+    or any attribute starting with `_`. This prevents accidental corruption of
+    the settings object's internal state.
 
 ## Options
 

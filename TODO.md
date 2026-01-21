@@ -18,3 +18,13 @@
 These are ideas that I am not totally sure about, but I am considering.
 
 - Allow a custom folder root (not just users $HOME) folder.
+
+## Future Breaking Changes
+
+The following changes are planned for future releases:
+
+- **`strict_get=True` as default**: The `strict_get` parameter currently defaults
+  to `False` for backward compatibility. In a future version, this will change to
+  `True`, meaning `get()` will raise `KeyError` for missing keys instead of
+  returning `None`. Users are encouraged to opt-in to `strict_get=True` now to
+  prepare for this change.

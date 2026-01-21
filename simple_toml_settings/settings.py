@@ -5,7 +5,7 @@ Allows reading from a settings file and writing to it.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, ClassVar, cast
 
@@ -37,6 +37,7 @@ class TOMLSettings:
     flat_config: bool = False
     xdg_config: bool = False
     allow_missing_file: bool = False
+    strict_get: bool = False
 
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
@@ -45,8 +46,8 @@ class TOMLSettings:
         dict[tuple[type[TOMLSettings], str], TOMLSettings]
     ] = {}
 
-    _ignored_attrs: set[str] = field(
-        default_factory=lambda: {
+    _ignored_attrs: ClassVar[frozenset[str]] = frozenset(
+        {
             "_instances",
             "app_name",
             "settings_folder",
@@ -56,11 +57,16 @@ class TOMLSettings:
             "flat_config",
             "xdg_config",
             "allow_missing_file",
+            "strict_get",
         }
     )
 
-    _mutually_exclusive: set[str] = field(
-        default_factory=lambda: {"local_file", "flat_config", "xdg_config"}
+    _mutually_exclusive: ClassVar[frozenset[str]] = frozenset(
+        {
+            "local_file",
+            "flat_config",
+            "xdg_config",
+        }
     )
 
     def _validate_app_name(self) -> None:
@@ -199,7 +205,10 @@ class TOMLSettings:
         file_schema_version = str(
             settings[self.app_name].get("schema_version", None)
         )
-        if file_schema_version.lower() not in {self.schema_version, "none"}:
+        if file_schema_version.lower() not in {
+            self.schema_version.lower(),
+            "none",
+        }:
             raise SettingsSchemaError(
                 expected=self.schema_version, found=file_schema_version
             )
@@ -209,12 +218,26 @@ class TOMLSettings:
     def get(
         self,
         key: str,
+        default: Any = None,  # noqa: ANN401
     ) -> Any:  # noqa: ANN401
-        """Get a setting by key."""
-        try:
+        """Get a setting by key.
+
+        Args:
+            key: The name of the setting to get.
+            default: Value to return if key doesn't exist. Defaults to None.
+
+        Returns:
+            The setting value, or default if the key doesn't exist.
+
+        Raises:
+            KeyError: If strict_get=True, key missing, and default=None.
+        """
+        if hasattr(self, key):
             return getattr(self, key)
-        except AttributeError:
-            return None
+        if self.strict_get and default is None:
+            msg = f"Setting '{key}' not found"
+            raise KeyError(msg)
+        return default
 
     def set(
         self,
@@ -227,8 +250,40 @@ class TOMLSettings:
 
         If autosave is True (the default), the settings will be saved to the
         settings file each time it is called.
+
+        Raises:
+            ValueError: If trying to set a protected or ignored attribute.
         """
+        if key in self._ignored_attrs or key.startswith("_"):
+            msg = f"Cannot set protected attribute: {key}"
+            raise ValueError(msg)
         setattr(self, key, value)
+        if autosave:
+            self.save()
+
+    def delete(
+        self,
+        key: str,
+        *,
+        autosave: bool = True,
+    ) -> None:
+        """Delete a setting by key.
+
+        Args:
+            key: The name of the setting to delete.
+            autosave: If True (the default), save after deleting.
+
+        Raises:
+            ValueError: If trying to delete a protected or ignored attribute.
+            KeyError: If the setting doesn't exist.
+        """
+        if key in self._ignored_attrs or key.startswith("_"):
+            msg = f"Cannot delete protected attribute: {key}"
+            raise ValueError(msg)
+        if not hasattr(self, key):
+            msg = f"Setting '{key}' not found"
+            raise KeyError(msg)
+        delattr(self, key)
         if autosave:
             self.save()
 
