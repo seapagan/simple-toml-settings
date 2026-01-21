@@ -41,7 +41,9 @@ class TOMLSettings:
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
 
-    _instances: ClassVar[dict[type[TOMLSettings], TOMLSettings]] = {}
+    _instances: ClassVar[
+        dict[tuple[type[TOMLSettings], str], TOMLSettings]
+    ] = {}
 
     _ignored_attrs: set[str] = field(
         default_factory=lambda: {
@@ -124,9 +126,10 @@ class TOMLSettings:
         singleton pattern in derived classes. It is not required to use this
         class.
         """
-        if cls not in cls._instances:
-            cls._instances[cls] = cls(app_name, *args, **kwargs)
-        return cast("Self", cls._instances[cls])
+        key = (cls, app_name)
+        if key not in cls._instances:
+            cls._instances[key] = cls(app_name, *args, **kwargs)
+        return cast("Self", cls._instances[key])
 
     def get_attrs(self, *, include_none: bool = False) -> dict[str, Any]:
         """Return a dictionary of our setting values.

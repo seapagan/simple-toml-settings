@@ -312,6 +312,25 @@ schema_version= '1'
         instance2 = TOMLSettings.get_instance("test_app")
         assert instance1 is instance2
 
+    def test_get_instance_with_different_app_names(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that different app_names return different instances.
+
+        This is a regression test for a bug where get_instance() only keyed
+        by class, not by app_name, causing different app names to return
+        the same instance.
+        """
+        fs.create_dir(Path.home())
+        instance1 = TOMLSettings.get_instance("app1")
+        instance2 = TOMLSettings.get_instance("app2")
+
+        # Different app names should return different instances
+        assert instance1 is not instance2
+        # Each instance should have the correct app_name
+        assert instance1.app_name == "app1"
+        assert instance2.app_name == "app2"
+
     def test_get_instance_with_custom_class_is_singleton(
         self, fs: FakeFilesystem
     ) -> None:
