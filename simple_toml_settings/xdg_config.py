@@ -29,16 +29,11 @@ def _path_from_env(variable: str, default: Path) -> Path:
     set to the empty string, or is set to a relative rather than
     absolute path, the default value is returned.
 
-    Parameters
-    ----------
-    variable : str
-        Name of the environment variable.
-    default : Path
-        Default value.
+    Args:
+        variable: Name of the environment variable.
+        default: Default value.
 
     Returns:
-    -------
-    Path
         Value from environment or default.
 
     """
