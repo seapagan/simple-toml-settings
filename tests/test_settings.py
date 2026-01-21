@@ -44,6 +44,25 @@ schema_version= '1'
         assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
         assert settings.settings_file_name == self.SETTINGS_FILE_NAME
 
+    def test_settings_folder_created_when_already_exists(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that creating settings when folder exists doesn't fail.
+
+        This tests the fix for a TOCTOU race condition where the directory
+        could be created by another process between exists() and mkdir().
+        """
+        fs.create_dir(Path.home())
+
+        # Create the settings folder manually first
+        test_folder = Path.home() / ".test_app_race"
+        test_folder.mkdir(parents=True, exist_ok=False)
+
+        # Creating a settings instance should not fail even though dir exists
+        settings = TOMLSettings("test_app_race")
+        assert settings.settings_folder.exists()
+        assert settings.settings_folder == test_folder
+
     def test_exception_raised_on_missing_config_if_auto_create_is_false(
         self, fs: FakeFilesystem
     ) -> None:
