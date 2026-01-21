@@ -5,7 +5,7 @@ Allows reading from a settings file and writing to it.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, ClassVar, cast
 
@@ -45,8 +45,8 @@ class TOMLSettings:
         dict[tuple[type[TOMLSettings], str], TOMLSettings]
     ] = {}
 
-    _ignored_attrs: set[str] = field(
-        default_factory=lambda: {
+    _ignored_attrs: ClassVar[frozenset[str]] = frozenset(
+        {
             "_instances",
             "app_name",
             "settings_folder",
@@ -59,8 +59,12 @@ class TOMLSettings:
         }
     )
 
-    _mutually_exclusive: set[str] = field(
-        default_factory=lambda: {"local_file", "flat_config", "xdg_config"}
+    _mutually_exclusive: ClassVar[frozenset[str]] = frozenset(
+        {
+            "local_file",
+            "flat_config",
+            "xdg_config",
+        }
     )
 
     def _validate_app_name(self) -> None:

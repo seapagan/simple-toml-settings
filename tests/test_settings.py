@@ -313,6 +313,24 @@ schema_version= '1'
         for setting in settings._ignored_attrs:  # noqa: SLF001
             assert setting not in list_settings
 
+    def test_class_attrs_shared_across_instances(
+        self, settings: SettingsExample, fs: FakeFilesystem
+    ) -> None:
+        """Test that _ignored_attrs and _mutually_exclusive are ClassVars.
+
+        This verifies they are shared across all instances rather than
+        being created separately for each instance (efficiency).
+        """
+        instance2 = TOMLSettings("another_app")
+
+        # Both instances should reference the same frozenset object
+        assert settings._ignored_attrs is instance2._ignored_attrs  # noqa: SLF001
+        assert settings._mutually_exclusive is instance2._mutually_exclusive  # noqa: SLF001
+
+        # Verify they are frozensets (immutable)
+        assert isinstance(settings._ignored_attrs, frozenset)  # noqa: SLF001
+        assert isinstance(settings._mutually_exclusive, frozenset)  # noqa: SLF001
+
     def test_schema_version_mismatch_raises_error(
         self, fs: FakeFilesystem
     ) -> None:
