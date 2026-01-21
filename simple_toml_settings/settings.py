@@ -169,6 +169,11 @@ class TOMLSettings:
                 raise SettingsNotFoundError(message) from exc
             return
 
+        # Check if the app_name section exists in the config file
+        if self.app_name not in settings:
+            msg = f"Config file missing required [{self.app_name}] section"
+            raise SettingsNotFoundError(msg)
+
         # Check if 'schema_version' is present and matches the required one
         file_schema_version = str(
             settings[self.app_name].get("schema_version", None)

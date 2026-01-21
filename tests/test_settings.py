@@ -319,6 +319,21 @@ schema_version= '1'
         # this should NOT raise an exception
         TOMLSettings("test_app", local_file=True, schema_version="2")
 
+    def test_missing_app_section_raises_error(self, fs: FakeFilesystem) -> None:
+        """Test that missing [app_name] section raises SettingsNotFoundError."""
+        # Create a config file with a different section name
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents="[other_app]\ntest_var = 'value'\n",
+        )
+
+        # Should raise SettingsNotFoundError, not KeyError
+        with pytest.raises(
+            SettingsNotFoundError,
+            match=r"Config file missing required \[test_app\] section",
+        ):
+            TOMLSettings("test_app", local_file=True, auto_create=False)
+
     def test_get_instance(self, fs: FakeFilesystem) -> None:
         """Test that we can get the instance of the settings object."""
         fs.create_dir(Path.home())
