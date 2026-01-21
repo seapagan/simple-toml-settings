@@ -368,6 +368,17 @@ schema_version= '1'
         # this should NOT raise an exception
         TOMLSettings("test_app", local_file=True, schema_version="2")
 
+    def test_schema_version_case_insensitive(self, fs: FakeFilesystem) -> None:
+        """Test that schema version comparison is case-insensitive."""
+        # Create config with lowercase schema version
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents="[test_app]\ntest_var = 'value'\nschema_version='abc'\n",
+        )
+
+        # Should NOT raise even though code has uppercase ABC
+        TOMLSettings("test_app", local_file=True, schema_version="ABC")
+
     def test_missing_app_section_raises_error(self, fs: FakeFilesystem) -> None:
         """Test that missing [app_name] section raises SettingsNotFoundError."""
         # Create a config file with a different section name
