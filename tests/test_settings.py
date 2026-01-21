@@ -8,6 +8,7 @@ from pytest_mock import MockerFixture
 
 from simple_toml_settings.exceptions import (
     SettingsMutuallyExclusiveError,
+    SettingsNotFound,
     SettingsNotFoundError,
     SettingsSchemaError,
 )
@@ -71,6 +72,18 @@ schema_version= '1'
 
         with pytest.raises(SettingsNotFoundError):
             TOMLSettings("test_app", auto_create=False)
+
+    def test_settings_not_found_alias_deprecation_warning(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that SettingsNotFound alias emits deprecation warning."""
+        fs.create_dir(Path.home())
+
+        # Using the alias should emit a deprecation warning
+        with pytest.warns(
+            DeprecationWarning, match=r"'SettingsNotFound' is deprecated"
+        ):
+            SettingsNotFound("test message")
 
     def test_app_name_with_double_dot_raises_error(
         self, fs: FakeFilesystem
