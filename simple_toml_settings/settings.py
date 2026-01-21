@@ -41,7 +41,9 @@ class TOMLSettings:
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
 
-    _instances: ClassVar[dict[type[TOMLSettings], TOMLSettings]] = {}
+    _instances: ClassVar[
+        dict[tuple[type[TOMLSettings], str], TOMLSettings]
+    ] = {}
 
     _ignored_attrs: set[str] = field(
         default_factory=lambda: {
@@ -61,8 +63,29 @@ class TOMLSettings:
         default_factory=lambda: {"local_file", "flat_config", "xdg_config"}
     )
 
+    def _validate_app_name(self) -> None:
+        r"""Validate app_name doesn't contain path traversal characters.
+
+        Note: We check for '..' even though it's harmless without '/' or '\\'
+        because it's a well-known path traversal pattern with no legitimate
+        use case in an app name. This strict approach provides clearer
+        validation and defense in depth.
+
+        Raises:
+            ValueError: If app_name contains dangerous characters.
+        """
+        dangerous_chars = {"..", "/", "\\"}
+        for char in dangerous_chars:
+            if char in self.app_name:
+                msg = (
+                    f"app_name cannot contain '{char}' for security reasons. "
+                    "This prevents path traversal attacks."
+                )
+                raise ValueError(msg)
+
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
+        self._validate_app_name()
         self.settings_folder = self.get_settings_folder()
 
         # if we allow a missing file, we don't want to auto-create it
@@ -95,8 +118,7 @@ class TOMLSettings:
 
         if self.xdg_config:
             settings_folder = xdg_config_home() / f"{self.app_name}"
-        if not settings_folder.exists():
-            settings_folder.mkdir(parents=True)
+        settings_folder.mkdir(parents=True, exist_ok=True)
 
         return settings_folder
 
@@ -124,9 +146,10 @@ class TOMLSettings:
         singleton pattern in derived classes. It is not required to use this
         class.
         """
-        if cls not in cls._instances:
-            cls._instances[cls] = cls(app_name, *args, **kwargs)
-        return cast("Self", cls._instances[cls])
+        key = (cls, app_name)
+        if key not in cls._instances:
+            cls._instances[key] = cls(app_name, *args, **kwargs)
+        return cast("Self", cls._instances[key])
 
     def get_attrs(self, *, include_none: bool = False) -> dict[str, Any]:
         """Return a dictionary of our setting values.
@@ -166,6 +189,11 @@ class TOMLSettings:
                 message = "Cant find a Config File, please create one."
                 raise SettingsNotFoundError(message) from exc
             return
+
+        # Check if the app_name section exists in the config file
+        if self.app_name not in settings:
+            msg = f"Config file missing required [{self.app_name}] section"
+            raise SettingsNotFoundError(msg)
 
         # Check if 'schema_version' is present and matches the required one
         file_schema_version = str(

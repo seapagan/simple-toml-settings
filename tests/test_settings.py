@@ -44,6 +44,25 @@ schema_version= '1'
         assert settings.settings_folder.name == f".{self.TEST_APP_NAME}"
         assert settings.settings_file_name == self.SETTINGS_FILE_NAME
 
+    def test_settings_folder_created_when_already_exists(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that creating settings when folder exists doesn't fail.
+
+        This tests the fix for a TOCTOU race condition where the directory
+        could be created by another process between exists() and mkdir().
+        """
+        fs.create_dir(Path.home())
+
+        # Create the settings folder manually first
+        test_folder = Path.home() / ".test_app_race"
+        test_folder.mkdir(parents=True, exist_ok=False)
+
+        # Creating a settings instance should not fail even though dir exists
+        settings = TOMLSettings("test_app_race")
+        assert settings.settings_folder.exists()
+        assert settings.settings_folder == test_folder
+
     def test_exception_raised_on_missing_config_if_auto_create_is_false(
         self, fs: FakeFilesystem
     ) -> None:
@@ -52,6 +71,37 @@ schema_version= '1'
 
         with pytest.raises(SettingsNotFoundError):
             TOMLSettings("test_app", auto_create=False)
+
+    def test_app_name_with_double_dot_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that app_name with '..' raises ValueError for security."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(
+            ValueError, match=r"app_name cannot contain '\.\.' for security"
+        ):
+            TOMLSettings("test..app")
+
+    def test_app_name_with_forward_slash_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that app_name with '/' raises ValueError for security."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(
+            ValueError, match=r"app_name cannot contain '/' for security"
+        ):
+            TOMLSettings("test/app")
+
+    def test_app_name_with_backslash_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that app_name with backslash raises ValueError for security."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(ValueError, match="for security reasons"):
+            TOMLSettings(r"test\app")
 
     def test_allow_missing_file_disables_auto_create(
         self, fs: FakeFilesystem
@@ -300,6 +350,21 @@ schema_version= '1'
         # this should NOT raise an exception
         TOMLSettings("test_app", local_file=True, schema_version="2")
 
+    def test_missing_app_section_raises_error(self, fs: FakeFilesystem) -> None:
+        """Test that missing [app_name] section raises SettingsNotFoundError."""
+        # Create a config file with a different section name
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents="[other_app]\ntest_var = 'value'\n",
+        )
+
+        # Should raise SettingsNotFoundError, not KeyError
+        with pytest.raises(
+            SettingsNotFoundError,
+            match=r"Config file missing required \[test_app\] section",
+        ):
+            TOMLSettings("test_app", local_file=True, auto_create=False)
+
     def test_get_instance(self, fs: FakeFilesystem) -> None:
         """Test that we can get the instance of the settings object."""
         fs.create_dir(Path.home())
@@ -311,6 +376,25 @@ schema_version= '1'
         instance1 = TOMLSettings.get_instance("test_app")
         instance2 = TOMLSettings.get_instance("test_app")
         assert instance1 is instance2
+
+    def test_get_instance_with_different_app_names(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that different app_names return different instances.
+
+        This is a regression test for a bug where get_instance() only keyed
+        by class, not by app_name, causing different app names to return
+        the same instance.
+        """
+        fs.create_dir(Path.home())
+        instance1 = TOMLSettings.get_instance("app1")
+        instance2 = TOMLSettings.get_instance("app2")
+
+        # Different app names should return different instances
+        assert instance1 is not instance2
+        # Each instance should have the correct app_name
+        assert instance1.app_name == "app1"
+        assert instance2.app_name == "app2"
 
     def test_get_instance_with_custom_class_is_singleton(
         self, fs: FakeFilesystem
