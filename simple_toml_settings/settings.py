@@ -63,8 +63,29 @@ class TOMLSettings:
         default_factory=lambda: {"local_file", "flat_config", "xdg_config"}
     )
 
+    def _validate_app_name(self) -> None:
+        r"""Validate app_name doesn't contain path traversal characters.
+
+        Note: We check for '..' even though it's harmless without '/' or '\\'
+        because it's a well-known path traversal pattern with no legitimate
+        use case in an app name. This strict approach provides clearer
+        validation and defense in depth.
+
+        Raises:
+            ValueError: If app_name contains dangerous characters.
+        """
+        dangerous_chars = {"..", "/", "\\"}
+        for char in dangerous_chars:
+            if char in self.app_name:
+                msg = (
+                    f"app_name cannot contain '{char}' for security reasons. "
+                    "This prevents path traversal attacks."
+                )
+                raise ValueError(msg)
+
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
+        self._validate_app_name()
         self.settings_folder = self.get_settings_folder()
 
         # if we allow a missing file, we don't want to auto-create it

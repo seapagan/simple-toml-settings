@@ -72,6 +72,37 @@ schema_version= '1'
         with pytest.raises(SettingsNotFoundError):
             TOMLSettings("test_app", auto_create=False)
 
+    def test_app_name_with_double_dot_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that app_name with '..' raises ValueError for security."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(
+            ValueError, match=r"app_name cannot contain '\.\.' for security"
+        ):
+            TOMLSettings("test..app")
+
+    def test_app_name_with_forward_slash_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that app_name with '/' raises ValueError for security."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(
+            ValueError, match=r"app_name cannot contain '/' for security"
+        ):
+            TOMLSettings("test/app")
+
+    def test_app_name_with_backslash_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that app_name with backslash raises ValueError for security."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(ValueError, match="for security reasons"):
+            TOMLSettings(r"test\app")
+
     def test_allow_missing_file_disables_auto_create(
         self, fs: FakeFilesystem
     ) -> None:
