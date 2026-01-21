@@ -209,6 +209,13 @@ settings.save()
     created and when the `set` method is called respectively.  You should not
     need to call `load()` manually.
 
+!!! warning "Protected Attributes"
+
+    The `set()` method will raise a `ValueError` if you try to set protected
+    attributes such as `app_name`, `settings_folder`, or any attribute starting
+    with `_`. This prevents accidental corruption of the settings object's
+    internal state.
+
 ## Options
 
 There are a couple of options you can pass to the `TOMLSettings` constructor to

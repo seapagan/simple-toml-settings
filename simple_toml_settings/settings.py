@@ -234,7 +234,13 @@ class TOMLSettings:
 
         If autosave is True (the default), the settings will be saved to the
         settings file each time it is called.
+
+        Raises:
+            ValueError: If trying to set a protected or ignored attribute.
         """
+        if key in self._ignored_attrs or key.startswith("_"):
+            msg = f"Cannot set protected attribute: {key}"
+            raise ValueError(msg)
         setattr(self, key, value)
         if autosave:
             self.save()

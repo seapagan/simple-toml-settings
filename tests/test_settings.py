@@ -248,8 +248,29 @@ schema_version= '1'
 
     def test_set(self, settings: SettingsExample) -> None:
         """Test that a setting can be set."""
-        settings.set("app_name", "new_test_app")
-        assert settings.get("app_name") == "new_test_app"
+        settings.set("new_setting", "test_value")
+        assert settings.get("new_setting") == "test_value"
+
+    def test_set_protected_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that setting protected attributes raises ValueError."""
+        with pytest.raises(ValueError, match="Cannot set protected attribute"):
+            settings.set("app_name", "new_app_name")
+
+    def test_set_ignored_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that setting ignored attributes raises ValueError."""
+        with pytest.raises(ValueError, match="Cannot set protected attribute"):
+            settings.set("settings_folder", "/some/path")
+
+    def test_set_private_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test setting private attributes (starting with _) raises error."""
+        with pytest.raises(ValueError, match="Cannot set protected attribute"):
+            settings.set("_private_var", "value")
 
     def test_add_and_list_setting(self, settings: SettingsExample) -> None:
         """Add a new setting and list all settings."""
