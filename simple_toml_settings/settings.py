@@ -192,7 +192,7 @@ class TOMLSettings:
             elif self.allow_missing_file:
                 return
             else:
-                message = "Cant find a Config File, please create one."
+                message = "Can't find a Config File, please create one."
                 raise SettingsNotFoundError(message) from exc
             return
 
