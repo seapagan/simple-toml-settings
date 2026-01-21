@@ -1,5 +1,7 @@
 """Define exceptions for the simple_toml_settings package."""
 
+import warnings
+
 
 class SettingsError(Exception):
     """Base exception for settings errors."""
@@ -35,5 +37,18 @@ class SettingsMutuallyExclusiveError(SettingsError):
         super().__init__(f"Only one of {', '.join(self.attrs)} can be True.")
 
 
+class _SettingsNotFoundDeprecationError(SettingsNotFoundError):
+    """Wrapper that emits deprecation warning when instantiated."""
+
+    def __init__(self, *args: object, **kwargs: object) -> None:
+        """Initialize with deprecation warning."""
+        msg = (
+            "'SettingsNotFound' is deprecated, "
+            "use 'SettingsNotFoundError' instead"
+        )
+        warnings.warn(msg, DeprecationWarning, stacklevel=2)
+        super().__init__(*args, **kwargs)
+
+
 # temporary alias for backwards compatibility
-SettingsNotFound = SettingsNotFoundError
+SettingsNotFound = _SettingsNotFoundDeprecationError
