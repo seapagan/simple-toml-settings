@@ -37,6 +37,7 @@ class TOMLSettings:
     flat_config: bool = False
     xdg_config: bool = False
     allow_missing_file: bool = False
+    strict_get: bool = False
 
     # the schema_version is used to track changes to the settings file.
     schema_version: str = "none"
@@ -56,6 +57,7 @@ class TOMLSettings:
             "flat_config",
             "xdg_config",
             "allow_missing_file",
+            "strict_get",
         }
     )
 
@@ -216,12 +218,26 @@ class TOMLSettings:
     def get(
         self,
         key: str,
+        default: Any = None,  # noqa: ANN401
     ) -> Any:  # noqa: ANN401
-        """Get a setting by key."""
-        try:
+        """Get a setting by key.
+
+        Args:
+            key: The name of the setting to get.
+            default: Value to return if key doesn't exist. Defaults to None.
+
+        Returns:
+            The setting value, or default if the key doesn't exist.
+
+        Raises:
+            KeyError: If strict_get=True, key missing, and default=None.
+        """
+        if hasattr(self, key):
             return getattr(self, key)
-        except AttributeError:
-            return None
+        if self.strict_get and default is None:
+            msg = f"Setting '{key}' not found"
+            raise KeyError(msg)
+        return default
 
     def set(
         self,

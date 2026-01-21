@@ -246,6 +246,51 @@ schema_version= '1'
         """Test that 'None' is returned when a setting is missing."""
         assert settings.get("missing_setting") is None
 
+    def test_get_with_custom_default(self, settings: SettingsExample) -> None:
+        """Test that custom default value is returned for missing keys."""
+        result = settings.get("missing_setting", default="default_value")
+        assert result == "default_value"
+
+    def test_get_distinguishes_missing_from_none(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that get() can distinguish missing keys from None values."""
+        # Set a value to None
+        settings.set("explicit_none", None, autosave=False)
+
+        # Missing key returns custom default
+        assert settings.get("missing", default="DEFAULT") == "DEFAULT"
+
+        # Key set to None returns None, not the default
+        assert settings.get("explicit_none", default="DEFAULT") is None
+
+    def test_strict_get_raises_keyerror_for_missing(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that strict_get=True raises KeyError for missing keys."""
+        fs.create_dir(Path.home())
+        settings = TOMLSettings("test_app", strict_get=True)
+
+        with pytest.raises(KeyError, match="Setting 'missing' not found"):
+            settings.get("missing")
+
+    def test_strict_get_with_custom_default(self, fs: FakeFilesystem) -> None:
+        """Test that strict_get=True still works with custom defaults."""
+        fs.create_dir(Path.home())
+        settings = TOMLSettings("test_app", strict_get=True)
+
+        # Custom default takes precedence over strict behavior
+        assert settings.get("missing", default="my_default") == "my_default"
+
+    def test_strict_get_returns_none_value(self, fs: FakeFilesystem) -> None:
+        """Test that strict_get=True can return None as an actual value."""
+        fs.create_dir(Path.home())
+        settings = TOMLSettings("test_app", strict_get=True)
+        settings.set("explicit_none", None, autosave=False)
+
+        # Returns None (the value), not KeyError
+        assert settings.get("explicit_none") is None
+
     def test_set(self, settings: SettingsExample) -> None:
         """Test that a setting can be set."""
         settings.set("new_setting", "test_value")
