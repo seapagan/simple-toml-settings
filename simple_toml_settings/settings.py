@@ -245,6 +245,32 @@ class TOMLSettings:
         if autosave:
             self.save()
 
+    def delete(
+        self,
+        key: str,
+        *,
+        autosave: bool = True,
+    ) -> None:
+        """Delete a setting by key.
+
+        Args:
+            key: The name of the setting to delete.
+            autosave: If True (the default), save after deleting.
+
+        Raises:
+            ValueError: If trying to delete a protected or ignored attribute.
+            KeyError: If the setting doesn't exist.
+        """
+        if key in self._ignored_attrs or key.startswith("_"):
+            msg = f"Cannot delete protected attribute: {key}"
+            raise ValueError(msg)
+        if not hasattr(self, key):
+            msg = f"Setting '{key}' not found"
+            raise KeyError(msg)
+        delattr(self, key)
+        if autosave:
+            self.save()
+
     def list_settings(self) -> dict[str, Any]:
         """Return a dictionary of settings."""
         return self.get_attrs()

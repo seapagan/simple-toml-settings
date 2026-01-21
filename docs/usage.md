@@ -179,9 +179,11 @@ this is the preferred method though both methods are supported:
 settings = MySettings("my_app_name")
 name = settings.get("name")
 settings.set("name", "My New Name")
+settings.delete("old_setting")  # Remove a setting you no longer need
 ```
 
-The `get` method will return `None` if the setting does not exist.
+The `get` method will return `None` if the setting does not exist. The `delete`
+method will raise `KeyError` if you try to delete a setting that doesn't exist.
 
 The advantage of using the `set` method is that it will automatically save the
 changed variable to the config file.  If you use the class attributes directly,
@@ -211,10 +213,10 @@ settings.save()
 
 !!! warning "Protected Attributes"
 
-    The `set()` method will raise a `ValueError` if you try to set protected
-    attributes such as `app_name`, `settings_folder`, or any attribute starting
-    with `_`. This prevents accidental corruption of the settings object's
-    internal state.
+    The `set()` and `delete()` methods will raise a `ValueError` if you try to
+    modify or delete protected attributes such as `app_name`, `settings_folder`,
+    or any attribute starting with `_`. This prevents accidental corruption of
+    the settings object's internal state.
 
 ## Options
 

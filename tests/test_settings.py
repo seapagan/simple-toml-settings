@@ -272,6 +272,45 @@ schema_version= '1'
         with pytest.raises(ValueError, match="Cannot set protected attribute"):
             settings.set("_private_var", "value")
 
+    def test_delete_setting(self, settings: SettingsExample) -> None:
+        """Test that a setting can be deleted."""
+        # First set a value
+        settings.set("temp_setting", "temp_value", autosave=False)
+        assert settings.get("temp_setting") == "temp_value"
+
+        # Delete it
+        settings.delete("temp_setting", autosave=False)
+        assert settings.get("temp_setting") is None
+
+    def test_delete_nonexistent_setting_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that deleting a nonexistent setting raises KeyError."""
+        with pytest.raises(KeyError, match="Setting 'nonexistent' not found"):
+            settings.delete("nonexistent")
+
+    def test_delete_protected_attribute_raises_error(
+        self, settings: SettingsExample
+    ) -> None:
+        """Test that deleting protected attributes raises ValueError."""
+        with pytest.raises(
+            ValueError, match="Cannot delete protected attribute"
+        ):
+            settings.delete("app_name")
+
+    def test_delete_with_autosave(self, settings: SettingsExample) -> None:
+        """Test that delete() with autosave=True persists the change."""
+        # Set a value with autosave=False
+        settings.set("temp_value", "test", autosave=False)
+        assert settings.get("temp_value") == "test"
+
+        # Delete with autosave=True (default)
+        settings.delete("temp_value")
+
+        # Create a new instance to verify it was persisted
+        settings2 = TOMLSettings("test_app")
+        assert settings2.get("temp_value") is None
+
     def test_add_and_list_setting(self, settings: SettingsExample) -> None:
         """Add a new setting and list all settings."""
         settings.set("new_key", "new_value")
