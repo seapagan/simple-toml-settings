@@ -6,6 +6,26 @@ project since the first release.
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+
+**Breaking Changes**
+
+- Feat: Design improvements and new features ([#327](https://github.com/seapagan/simple-toml-settings/pull/327)) by [seapagan](https://github.com/seapagan)
+
+**New Features**
+
+- Fix: improve error messages, docstrings, and deprecation warnings ([#328](https://github.com/seapagan/simple-toml-settings/pull/328)) by [seapagan](https://github.com/seapagan)
+
+**Bug Fixes**
+
+- Fix: critical bug fixes (singleton, race conditions, path traversal) ([#326](https://github.com/seapagan/simple-toml-settings/pull/326)) by [seapagan](https://github.com/seapagan)
+
+**Refactoring**
+
+- Refactor: optimize get_attrs() to avoid double getattr() calls ([#329](https://github.com/seapagan/simple-toml-settings/pull/329)) by [seapagan](https://github.com/seapagan)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...HEAD) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...HEAD.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...HEAD.patch)
+
 ## [0.10.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.10.0) (2026-01-20)
 
 **New Features**
