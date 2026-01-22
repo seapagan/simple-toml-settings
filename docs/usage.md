@@ -283,10 +283,17 @@ the settings will always be the default values until a settings file is created.
 The user can then manually create the settings file if they want to change the
 defaults.
 
+!!! note
+
+    The settings folder will still be created even when `allow_missing_file=True`.
+    This ensures the folder is ready when you eventually save the config file.
+    Only the config file itself is not created automatically.
+
 This should really be the default setting, but for backwards compatibility it
 is set to `False` by default.  In future versions this may be changed.
 
 !!! note
+
     Setting this to `True` will disable the `auto_create` option, as there is no
     need to create the file if it is allowed to be missing.
 
