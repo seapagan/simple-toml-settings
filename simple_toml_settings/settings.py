@@ -164,12 +164,12 @@ class TOMLSettings:
         setting 'include_none' to True.
         """
         return {
-            a: getattr(self, a)
+            a: value
             for a in dir(self)
             if not a.startswith("_")
             and a not in self._ignored_attrs
-            and not callable(getattr(self, a))
-            and (include_none or getattr(self, a) is not None)
+            and not callable(value := getattr(self, a))
+            and (include_none or value is not None)
         }
 
     def save(self) -> None:
