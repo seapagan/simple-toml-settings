@@ -34,7 +34,7 @@ columnar==1.4.1
     # via pymarkdownlnt
 coverage==7.10.6
     # via pytest-cov
-cryptography==45.0.7
+cryptography==46.0.5
     # via pyjwt
 csscompressor==0.9.5
     # via mkdocs-minify-plugin
