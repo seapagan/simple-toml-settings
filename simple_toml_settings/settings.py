@@ -36,6 +36,7 @@ class TOMLSettings:
     auto_create: bool = True
     local_file: bool = False
     flat_config: bool = False
+    use_section_header: bool = True
     xdg_config: bool = False
     allow_missing_file: bool = False
     strict_get: bool = False
@@ -57,6 +58,7 @@ class TOMLSettings:
             "auto_create",
             "local_file",
             "flat_config",
+            "use_section_header",
             "xdg_config",
             "allow_missing_file",
             "strict_get",
@@ -194,9 +196,34 @@ class TOMLSettings:
     def save(self) -> None:
         """Save the settings to the settings file."""
         rtoml.dump(
-            {self.app_name: self.get_attrs()},
+            self._serialize_settings(),
             self.settings_folder / self.settings_file_name,
         )
+
+    def _serialize_settings(self) -> dict[str, Any]:
+        """Return the current settings in the configured TOML shape."""
+        if self.use_section_header:
+            return {self.app_name: self.get_attrs()}
+        return self.get_attrs()
+
+    def _extract_loaded_settings(
+        self, settings: dict[str, Any]
+    ) -> dict[str, Any]:
+        """Return the settings payload from the configured TOML shape."""
+        if self.use_section_header:
+            if self.app_name not in settings:
+                msg = f"Config file missing required [{self.app_name}] section"
+                raise SettingsNotFoundError(msg)
+            return cast("dict[str, Any]", settings[self.app_name])
+
+        app_settings = settings.get(self.app_name)
+        if isinstance(app_settings, dict):
+            msg = (
+                f"Config file must not contain [{self.app_name}] when "
+                "use_section_header=False"
+            )
+            raise SettingsNotFoundError(msg)
+        return settings
 
     def load(self) -> None:
         """Load the settings from the settings file."""
@@ -215,15 +242,10 @@ class TOMLSettings:
                 raise SettingsNotFoundError(message) from exc
             return
 
-        # Check if the app_name section exists in the config file
-        if self.app_name not in settings:
-            msg = f"Config file missing required [{self.app_name}] section"
-            raise SettingsNotFoundError(msg)
+        loaded_settings = self._extract_loaded_settings(settings)
 
         # Check if 'schema_version' is present and matches the required one
-        file_schema_version = str(
-            settings[self.app_name].get("schema_version", None)
-        )
+        file_schema_version = str(loaded_settings.get("schema_version", None))
         if file_schema_version.lower() not in {
             self.schema_version.lower(),
             "none",
@@ -231,7 +253,7 @@ class TOMLSettings:
             raise SettingsSchemaError(
                 expected=self.schema_version, found=file_schema_version
             )
-        for key, value in settings[self.app_name].items():
+        for key, value in loaded_settings.items():
             setattr(self, key, value)
 
     def get(
