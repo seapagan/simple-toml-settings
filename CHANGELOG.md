@@ -5,8 +5,16 @@ project since the first release.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.11.0) (2026-02-28)
 
-## [Unreleased](https://github.com/seapagan/simple-toml-settings/tree/HEAD)
+This release contains a minor breaking change:
+
+**set() validation** - Attempting to set protected attributes now raises
+`ValueError`
+
+- Previous code that set `app_name`, `settings_folder`, etc. via `set()` will
+need updates
+- This was a bug; the old behavior was incorrect
 
 **Breaking Changes**
 
@@ -14,6 +22,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 **New Features**
 
+- Feat: add settings_path option for custom config directories ([#332](https://github.com/seapagan/simple-toml-settings/pull/332)) by [seapagan](https://github.com/seapagan)
 - Fix: improve error messages, docstrings, and deprecation warnings ([#328](https://github.com/seapagan/simple-toml-settings/pull/328)) by [seapagan](https://github.com/seapagan)
 
 **Bug Fixes**
@@ -24,7 +33,12 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Refactor: optimize get_attrs() to avoid double getattr() calls ([#329](https://github.com/seapagan/simple-toml-settings/pull/329)) by [seapagan](https://github.com/seapagan)
 
-[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...HEAD) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...HEAD.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...HEAD.patch)
+**Dependency Updates**
+
+- Update some deps to close security alerts ([#333](https://github.com/seapagan/simple-toml-settings/pull/333)) by [seapagan](https://github.com/seapagan)
+- Chore(deps): update dependency uv_build to >=0.10.0,<0.11.0 ([#330](https://github.com/seapagan/simple-toml-settings/pull/330)) by [renovate[bot]](https://github.com/apps/renovate)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...0.11.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...0.11.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.10.0...0.11.0.patch)
 
 ## [0.10.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.10.0) (2026-01-20)
 
@@ -172,7 +186,6 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [0.5.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.5.0) (2024-03-07)
 
 **Closed Issues**
-
 
 **New Features**
 
