@@ -34,7 +34,7 @@ columnar==1.4.1
     # via pymarkdownlnt
 coverage==7.10.6
     # via pytest-cov
-cryptography==45.0.7
+cryptography==46.0.5
     # via pyjwt
 csscompressor==0.9.5
     # via mkdocs-minify-plugin
@@ -123,7 +123,7 @@ pluggy==1.6.0
     #   pytest-cov
 poethepoet==0.37.0 ; python_full_version < '3.10'
 poethepoet==0.38.0 ; python_full_version >= '3.10'
-prek==0.2.30
+prek==0.3.4
 pycparser==2.22 ; implementation_name != 'PyPy' and platform_python_implementation != 'PyPy'
     # via cffi
 pyfakefs==5.9.3
@@ -186,7 +186,7 @@ rtoml==0.13.0 ; python_full_version >= '3.10'
     # via
     #   github-changelog-md
     #   simple-toml-settings
-ruff==0.14.13
+ruff==0.15.4
 shellingham==1.5.4
     # via typer
 six==1.17.0
@@ -208,6 +208,7 @@ typer==0.17.4
 typing-extensions==4.15.0
     # via
     #   application-properties
+    #   cryptography
     #   exceptiongroup
     #   mypy
     #   pygithub
