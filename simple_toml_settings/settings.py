@@ -129,9 +129,7 @@ class TOMLSettings:
         Take into account any custom location options that were provided.
         """
         if self.settings_path is not None:
-            settings_folder = Path(self.settings_path).expanduser()
-            if not settings_folder.is_absolute():
-                settings_folder = Path.cwd() / settings_folder
+            settings_folder = Path(self.settings_path).expanduser().resolve()
             settings_folder.mkdir(parents=True, exist_ok=True)
             return settings_folder
 

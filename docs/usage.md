@@ -346,6 +346,11 @@ The directory will be created automatically if it does not exist. Relative
 paths are allowed and are interpreted relative to the current working
 directory.
 
+!!! note
+
+    `settings_path` is normalized internally before use. This means the path is
+    expanded to an absolute path and any symlinks in it will be resolved.
+
 !!! Danger "Mutually exclusive options"
 
     The `local_file`, `flat_config`, `xdg_config` and `settings_path` options
