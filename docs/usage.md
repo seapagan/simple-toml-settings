@@ -110,6 +110,31 @@ sub_setting_2 = "sub setting 2 text"
 The above shows how lists are saved as TOML arrays and dictionaries are saved as
 TOML tables.
 
+If you prefer a flat TOML file without the `[my_app_name]` section header, pass
+`use_section_header=False` when creating the settings object:
+
+```python
+settings = MySettings("my_app_name", use_section_header=False)
+```
+
+The file will then be written like this:
+
+```toml
+age = 53
+favourite_colour = "blue"
+favourite_number = 42
+name = "My Name"
+schema_version = "none"
+favourite_foods = ["pizza", "chocolate", "ice cream"]
+
+[sub_settings]
+sub_setting_1 = "sub setting 1 text"
+sub_setting_2 = "sub setting 2 text"
+```
+
+In this mode, the file must stay flat-rooted. A config containing
+`[my_app_name]` will be rejected.
+
 !!! note "`schema_version` key [optional]"
 
     This is used to track the version of the schema
@@ -307,6 +332,26 @@ utility apps that need different settings for different projects / filelists.
 This defaults to `False` and will cause the settings file to be created and read
 from the users home directory, but without the subfolder.  Use this when
 creating an extra folder in the user's home directory is overkill.
+
+This option only changes the file location. It does **not** change the TOML
+structure inside the file.
+
+### `use_section_header`
+
+This defaults to `True` and controls the TOML structure written to disk.
+
+- When `True`, settings are stored under a top-level `[app_name]` table.
+- When `False`, settings are stored as root-level TOML keys and tables.
+
+For example:
+
+```python
+settings = MySettings("my_app_name", use_section_header=False)
+```
+
+This will write `config.toml` without a `[my_app_name]` section. This option is
+independent of `local_file`, `flat_config`, `xdg_config`, and `settings_path`,
+which only control where the file is stored.
 
 ### `xdg_config`
 
