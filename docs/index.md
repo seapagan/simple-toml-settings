@@ -32,6 +32,8 @@ A Python library to save your settings in a TOML file.
 - Automatically create a folder in the user's home directory to store the
   settings, write directly to the home folder, or use the application's local
   directory.
+- Optionally store the settings file in any directory you choose by passing a
+  custom `settings_path`.
 - Option to use the `XDG_CONFIG_HOME` environment variable to store the settings
   in the `XDG` configuration directory, or default to `XDG` method of storing
   configuration files in the `~/.config/<app_name` folder if this is not set.
