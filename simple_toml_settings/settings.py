@@ -32,6 +32,7 @@ class TOMLSettings:
 
     app_name: str
     settings_file_name: str = "config.toml"
+    settings_path: str | Path | None = None
     auto_create: bool = True
     local_file: bool = False
     flat_config: bool = False
@@ -52,6 +53,7 @@ class TOMLSettings:
             "app_name",
             "settings_folder",
             "settings_file_name",
+            "settings_path",
             "auto_create",
             "local_file",
             "flat_config",
@@ -63,6 +65,7 @@ class TOMLSettings:
 
     _mutually_exclusive: ClassVar[frozenset[str]] = frozenset(
         {
+            "settings_path",
             "local_file",
             "flat_config",
             "xdg_config",
@@ -92,35 +95,53 @@ class TOMLSettings:
     def __post_init__(self) -> None:
         """Create the settings folder if it doesn't exist."""
         self._validate_app_name()
+
+        # ensure only one of the mutually exclusive options is set
+        check_exclusive = self._selected_location_options()
+        if len(check_exclusive) > 1:
+            raise SettingsMutuallyExclusiveError(attrs=check_exclusive)
+
         self.settings_folder = self.get_settings_folder()
 
         # if we allow a missing file, we don't want to auto-create it
         if self.allow_missing_file:
             self.auto_create = False
 
-        # ensure only one of the mutually exclusive options is set
-        check_exclusive = {
-            attr for attr in self._mutually_exclusive if getattr(self, attr)
-        }
-        if len(check_exclusive) > 1:
-            raise SettingsMutuallyExclusiveError(attrs=check_exclusive)
-
         # load (or create) the settings file
         self.load()
+
+    def _selected_location_options(self) -> set[str]:
+        """Return the set of enabled location-selection options."""
+        selected: set[str] = set()
+        for attr in self._mutually_exclusive:
+            value = getattr(self, attr)
+            if attr == "settings_path":
+                if value is not None:
+                    selected.add(attr)
+                continue
+            if value:
+                selected.add(attr)
+        return selected
 
     def get_settings_folder(self) -> Path:
         """Return the settings folder. If it doesn't exist, create it.
 
-        Take into account the `local_file` and `flat_config` settings.
-        Note that `local_file` takes precedence over `flat_config`.
+        Take into account any custom location options that were provided.
         """
+        if self.settings_path is not None:
+            settings_folder = Path(self.settings_path).expanduser()
+            if not settings_folder.is_absolute():
+                settings_folder = Path.cwd() / settings_folder
+            settings_folder.mkdir(parents=True, exist_ok=True)
+            return settings_folder
+
         if self.local_file:
             return Path.cwd()
 
         if self.flat_config:
             return Path.home()
 
-        settings_folder: Path = Path.home() / f".{self.app_name}"
+        settings_folder = Path.home() / f".{self.app_name}"
 
         if self.xdg_config:
             settings_folder = xdg_config_home() / f"{self.app_name}"

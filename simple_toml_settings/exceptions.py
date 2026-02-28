@@ -34,7 +34,8 @@ class SettingsMutuallyExclusiveError(SettingsError):
     def __init__(self, attrs: set[str]) -> None:
         """Define a custom response for this Exception."""
         self.attrs = attrs
-        super().__init__(f"Only one of {', '.join(self.attrs)} can be True.")
+        options = ", ".join(sorted(self.attrs))
+        super().__init__(f"Only one of {options} may be specified.")
 
 
 class _SettingsNotFoundDeprecationError(SettingsNotFoundError):
