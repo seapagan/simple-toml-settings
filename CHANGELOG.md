@@ -5,6 +5,14 @@ project since the first release.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.12.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.12.0) (2026-02-28)
+
+**New Features**
+
+- Feat: support optional flat root config files ([#335](https://github.com/seapagan/simple-toml-settings/pull/335)) by [seapagan](https://github.com/seapagan)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.11.0...0.12.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.11.0...0.12.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.11.0...0.12.0.patch)
+
 ## [0.11.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.11.0) (2026-02-28)
 
 This release contains a minor breaking change:
