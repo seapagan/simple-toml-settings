@@ -740,6 +740,24 @@ schema_version = '1'
         ):
             TOMLSettings("test_app", local_file=True, auto_create=False)
 
+    def test_non_table_app_section_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that a non-table app section raises SettingsNotFoundError."""
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents='test_app = "value"\n',
+        )
+
+        with pytest.raises(
+            SettingsNotFoundError,
+            match=(
+                r"Config file missing required \[test_app\] section "
+                r"or section is not a TOML table"
+            ),
+        ):
+            TOMLSettings("test_app", local_file=True, auto_create=False)
+
     def test_get_instance(self, fs: FakeFilesystem) -> None:
         """Test that we can get the instance of the settings object."""
         fs.create_dir(Path.home())

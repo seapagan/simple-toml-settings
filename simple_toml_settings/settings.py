@@ -211,10 +211,14 @@ class TOMLSettings:
     ) -> dict[str, Any]:
         """Return the settings payload from the configured TOML shape."""
         if self.use_section_header:
-            if self.app_name not in settings:
-                msg = f"Config file missing required [{self.app_name}] section"
+            app_settings = settings.get(self.app_name)
+            if not isinstance(app_settings, dict):
+                msg = (
+                    f"Config file missing required [{self.app_name}] section "
+                    "or section is not a TOML table"
+                )
                 raise SettingsNotFoundError(msg)
-            return cast("dict[str, Any]", settings[self.app_name])
+            return app_settings
 
         app_settings = settings.get(self.app_name)
         if isinstance(app_settings, dict):
