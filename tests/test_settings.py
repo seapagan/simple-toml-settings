@@ -197,6 +197,92 @@ schema_version= '1'
             == Path("/path/validity/matters/not") / "test_app"
         )
 
+    def test_settings_path_uses_exact_directory(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that settings_path uses the provided directory as-is."""
+        target_dir = Path("/custom-settings")
+        settings = TOMLSettings(
+            "test_app",
+            settings_path=target_dir,
+            schema_version="1",
+        )
+
+        assert settings.settings_folder == target_dir
+        assert settings.settings_folder.exists()
+        assert (target_dir / self.SETTINGS_FILE_NAME).exists()
+
+    def test_settings_path_combines_with_custom_filename(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that settings_path respects a custom settings filename."""
+        target_dir = Path("/custom-settings")
+        settings = TOMLSettings(
+            "test_app",
+            settings_path=target_dir,
+            settings_file_name="custom.toml",
+        )
+
+        assert settings.settings_file_name == "custom.toml"
+        assert (target_dir / "custom.toml").exists()
+
+    def test_settings_path_accepts_relative_paths(
+        self, fs: FakeFilesystem, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Test that relative settings_path values are resolved from cwd."""
+        cwd = Path("/workspace")
+        fs.create_dir(cwd)
+        monkeypatch.chdir(cwd)
+
+        settings = TOMLSettings("test_app", settings_path="configs/app")
+
+        assert settings.settings_folder == cwd / "configs/app"
+        assert (cwd / "configs/app" / self.SETTINGS_FILE_NAME).exists()
+
+    def test_settings_path_expands_user_home(self, fs: FakeFilesystem) -> None:
+        """Test that settings_path expands '~' to the user's home."""
+        fs.create_dir(Path.home())
+
+        settings = TOMLSettings("test_app", settings_path="~/my-configs")
+
+        assert settings.settings_folder == Path.home() / "my-configs"
+        assert (Path.home() / "my-configs" / self.SETTINGS_FILE_NAME).exists()
+
+    def test_settings_path_loads_existing_config(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that settings_path loads an existing config file."""
+        target_dir = Path("/custom-settings")
+        fs.create_file(
+            target_dir / self.SETTINGS_FILE_NAME,
+            contents=self.SETTINGS_FILE_CONTENT,
+        )
+
+        settings = TOMLSettings(
+            "test_app",
+            settings_path=target_dir,
+            schema_version="1",
+        )
+
+        assert settings.get("test_string_var") == "local_app"
+
+    def test_settings_path_with_allow_missing_file(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test allow_missing_file with a custom settings_path."""
+        target_dir = Path("/custom-settings")
+
+        settings = CustomSettings(
+            "test_app",
+            settings_path=target_dir,
+            allow_missing_file=True,
+        )
+
+        assert settings.settings_folder == target_dir
+        assert settings.settings_folder.exists()
+        assert not (target_dir / self.SETTINGS_FILE_NAME).exists()
+        assert settings.auto_create is False
+
     def test_post_create_hook_is_called(
         self, fs: FakeFilesystem, mocker: MockerFixture
     ) -> None:
@@ -579,10 +665,56 @@ schema_version= '1'
         """Test that mutually exclusive attributes are handled."""
         fs.create_dir(Path.home())
 
-        error_pattern = (
-            r"Only one of (flat_config|local_file), "
-            r"(flat_config|local_file) can be True\."
-        )
-
-        with pytest.raises(SettingsMutuallyExclusiveError, match=error_pattern):
+        with pytest.raises(
+            SettingsMutuallyExclusiveError,
+            match=r"Only one of flat_config, local_file may be specified\.",
+        ):
             CustomSettings("test_app", local_file=True, flat_config=True)
+
+    def test_settings_path_and_local_file_are_mutually_exclusive(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that settings_path cannot be combined with local_file."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(
+            SettingsMutuallyExclusiveError,
+            match=r"Only one of .*settings_path.* may be specified\.",
+        ):
+            CustomSettings(
+                "test_app",
+                settings_path="/custom-settings",
+                local_file=True,
+            )
+
+    def test_settings_path_and_flat_config_are_mutually_exclusive(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that settings_path cannot be combined with flat_config."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(
+            SettingsMutuallyExclusiveError,
+            match=r"Only one of .*settings_path.* may be specified\.",
+        ):
+            CustomSettings(
+                "test_app",
+                settings_path="/custom-settings",
+                flat_config=True,
+            )
+
+    def test_settings_path_and_xdg_config_are_mutually_exclusive(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that settings_path cannot be combined with xdg_config."""
+        fs.create_dir(Path.home())
+
+        with pytest.raises(
+            SettingsMutuallyExclusiveError,
+            match=r"Only one of .*settings_path.* may be specified\.",
+        ):
+            CustomSettings(
+                "test_app",
+                settings_path="/custom-settings",
+                xdg_config=True,
+            )

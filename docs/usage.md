@@ -145,9 +145,8 @@ name but with a `.` prepended to it.  So, for the above example, the settings
 will be saved as `~/.my_app_name/my_settings.toml`.
 
 !!! note
-    In future versions the folder name will be configurable, and the folder itself
-    will be optional, so the file can be stored in the user's home folder
-    directly.
+    If you need to store the file in a different directory entirely, use the
+    `settings_path` option described below.
 
 ## Using the settings
 
@@ -325,11 +324,38 @@ settings = MySettings("my_app_name", xdg_config=True)
 Assuming the `XDG_CONFIG_HOME` variable is not set, the settings file will be
 saved as `~/.config/my_app_name/config.toml`.
 
+### `settings_path`
+
+This defaults to `None`. When set, it must point to the directory where the
+settings file should be stored. The final path is built by combining it with
+`settings_file_name`.
+
+So, if our settings class is instantiated like this:
+
+```python
+settings = MySettings(
+    "my_app_name",
+    settings_path="~/custom-configs",
+    settings_file_name="my_settings.toml",
+)
+```
+
+The settings file will be saved as `~/custom-configs/my_settings.toml`.
+
+The directory will be created automatically if it does not exist. Relative
+paths are allowed and are interpreted relative to the current working
+directory.
+
+!!! note
+
+    `settings_path` is normalized internally before use. This means the path is
+    expanded to an absolute path and any symlinks in it will be resolved.
+
 !!! Danger "Mutually exclusive options"
 
-    The `local_file`, `flat_config` and `xdg_config` options are **mutually
-    exclusive**.  If more than one is `True`, a `SettingsMutuallyExclusiveError`
-    exception will be raised.
+    The `local_file`, `flat_config`, `xdg_config` and `settings_path` options
+    are **mutually exclusive**. If more than one is specified, a
+    `SettingsMutuallyExclusiveError` exception will be raised.
 
 ## Post-create hook
 
