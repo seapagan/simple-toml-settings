@@ -91,6 +91,24 @@ schema_version = "none"
 favourite_foods = ["pizza", "chocolate", "ice cream"]
 ```
 
+If you prefer a flat TOML file without the top-level section header, disable it
+when constructing the settings object:
+
+```python
+settings = MySettings("test_app", use_section_header=False)
+```
+
+This writes the same values at the TOML root:
+
+```toml
+age = 42
+favourite_colour = "blue"
+favourite_number = 42
+name = "My Name"
+schema_version = "none"
+favourite_foods = ["pizza", "chocolate", "ice cream"]
+```
+
 ---
 Once you have created your settings class, you can use it like any other class:
 

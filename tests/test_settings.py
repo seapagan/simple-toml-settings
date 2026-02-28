@@ -37,6 +37,10 @@ class TestSettings:
 test_string_var = 'local_app'
 schema_version= '1'
 """
+    FLAT_SETTINGS_FILE_CONTENT = """
+test_string_var = 'local_app'
+schema_version = '1'
+"""
 
     def test_config_file_auto_created(self, settings: SettingsExample) -> None:
         """Test that the settings file is created if it doesn't exist."""
@@ -172,6 +176,134 @@ schema_version= '1'
 
         assert flat_settings.settings_folder == Path.home()
         assert Path(Path.home() / self.SETTINGS_FILE_NAME).exists()
+
+    def test_config_file_can_be_saved_without_section_header(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that flat TOML mode writes root-level keys."""
+        fs.create_dir(Path.home())
+
+        settings = SettingsExample("test_app", use_section_header=False)
+        contents = (
+            settings.settings_folder / settings.settings_file_name
+        ).read_text()
+
+        assert 'test_string_var = "test_value"' in contents
+        assert 'schema_version = "none"' in contents
+        assert "[test_app]" not in contents
+
+    def test_flat_toml_mode_loads_root_level_keys(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that flat TOML mode loads settings from the file root."""
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents=self.FLAT_SETTINGS_FILE_CONTENT,
+        )
+
+        settings = TOMLSettings(
+            "test_app",
+            local_file=True,
+            schema_version="1",
+            use_section_header=False,
+        )
+
+        assert settings.get("test_string_var") == "local_app"
+
+    def test_flat_toml_mode_rejects_app_section(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that flat TOML mode rejects sectioned config files."""
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents=self.SETTINGS_FILE_CONTENT,
+        )
+
+        with pytest.raises(
+            SettingsNotFoundError,
+            match=(
+                r"Config file must not contain \[test_app\] when "
+                r"use_section_header=False"
+            ),
+        ):
+            TOMLSettings(
+                "test_app",
+                local_file=True,
+                use_section_header=False,
+            )
+
+    def test_sectioned_mode_rejects_flat_toml_file(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that sectioned mode still requires the app section."""
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents=self.FLAT_SETTINGS_FILE_CONTENT,
+        )
+
+        with pytest.raises(
+            SettingsNotFoundError,
+            match=r"Config file missing required \[test_app\] section",
+        ):
+            TOMLSettings("test_app", local_file=True, auto_create=False)
+
+    def test_flat_toml_mode_autosave_preserves_root_level_format(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that autosave keeps the flat TOML file structure."""
+        fs.create_dir(Path.home())
+        settings = SettingsExample("test_app", use_section_header=False)
+
+        settings.set("test_string_var", "updated")
+
+        contents = (
+            settings.settings_folder / settings.settings_file_name
+        ).read_text()
+        assert 'test_string_var = "updated"' in contents
+        assert "[test_app]" not in contents
+
+    def test_flat_toml_mode_ignores_none_values_when_saving(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that flat TOML mode still omits None values."""
+        fs.create_dir(Path.home())
+        settings = SettingsExample("test_app", use_section_header=False)
+
+        settings.set("new_key", None)
+        contents = (
+            settings.settings_folder / settings.settings_file_name
+        ).read_text()
+
+        assert "new_key" not in contents
+
+    def test_flat_toml_mode_saves_nested_dicts_as_root_tables(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that nested dicts become root-level TOML tables."""
+        fs.create_dir(Path.home())
+        settings = SettingsExample("test_app", use_section_header=False)
+
+        settings.set(
+            "sub_settings",
+            {"sub_setting_1": "value", "sub_setting_2": "other"},
+        )
+        contents = (
+            settings.settings_folder / settings.settings_file_name
+        ).read_text()
+
+        assert "[sub_settings]" in contents
+        assert "[test_app.sub_settings]" not in contents
+
+    def test_flat_toml_mode_allows_empty_file(self, fs: FakeFilesystem) -> None:
+        """Test that an empty flat TOML file leaves defaults intact."""
+        fs.create_file(self.SETTINGS_FILE_NAME, contents="")
+
+        settings = SettingsExample(
+            "test_app", local_file=True, use_section_header=False
+        )
+
+        assert settings.get("test_string_var") == "test_value"
+        assert settings.get("test_int_var") == SettingsExample.test_int_var
 
     def test_xdg_config(self, xdg_settings: SettingsExample) -> None:
         """Test that settings file is created in the xdg_config_home folder."""
@@ -517,6 +649,16 @@ schema_version= '1'
         for setting in settings._ignored_attrs:  # noqa: SLF001
             assert setting not in list_settings
 
+    def test_use_section_header_is_not_returned_by_list_settings(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that the file-shape option is not exposed as a setting."""
+        fs.create_dir(Path.home())
+
+        settings = TOMLSettings("test_app", use_section_header=False)
+
+        assert "use_section_header" not in settings.list_settings()
+
     def test_class_attrs_shared_across_instances(
         self, settings: SettingsExample, fs: FakeFilesystem
     ) -> None:
@@ -595,6 +737,24 @@ schema_version= '1'
         with pytest.raises(
             SettingsNotFoundError,
             match=r"Config file missing required \[test_app\] section",
+        ):
+            TOMLSettings("test_app", local_file=True, auto_create=False)
+
+    def test_non_table_app_section_raises_error(
+        self, fs: FakeFilesystem
+    ) -> None:
+        """Test that a non-table app section raises SettingsNotFoundError."""
+        fs.create_file(
+            self.SETTINGS_FILE_NAME,
+            contents='test_app = "value"\n',
+        )
+
+        with pytest.raises(
+            SettingsNotFoundError,
+            match=(
+                r"Config file missing required \[test_app\] section "
+                r"or section is not a TOML table"
+            ),
         ):
             TOMLSettings("test_app", local_file=True, auto_create=False)
 
