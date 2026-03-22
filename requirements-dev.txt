@@ -136,7 +136,7 @@ pygments==2.19.2
     #   rich
 pyjson5==1.6.9
     # via application-properties
-pyjwt==2.10.1
+pyjwt==2.12.1
     # via pygithub
 pymarkdownlnt==0.9.32
 pymdown-extensions==10.16.1
@@ -212,6 +212,7 @@ typing-extensions==4.15.0
     #   exceptiongroup
     #   mypy
     #   pygithub
+    #   pyjwt
     #   pymarkdownlnt
     #   typer
 tzdata==2025.2
