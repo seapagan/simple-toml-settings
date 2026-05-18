@@ -51,7 +51,7 @@ A Python library to save your settings in a TOML file.
   class, so you can use the same settings throughout your application. You can
   still create an instance directly if desired.
 - Full test suite with 100% coverage.
-- Supports Python 3.9 and above.
+- Supports Python 3.10 and above.
 - Maintained and updated regularly with new features and bug fixes.
 
 ## A Quick Example
