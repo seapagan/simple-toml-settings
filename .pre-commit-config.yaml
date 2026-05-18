@@ -31,7 +31,11 @@ repos:
     hooks:
       # Update the uv lockfile
       - id: uv-lock
+        env:
+          UV_FROZEN: "1"
       - id: uv-export
+        env:
+          UV_FROZEN: "1"
         name: "Export dependencies to 'requirements.txt'"
         args:
           [
@@ -41,6 +45,8 @@ repos:
             "--output-file=requirements.txt",
           ]
       - id: uv-export
+        env:
+          UV_FROZEN: "1"
         name: "Export dev dependencies to 'requirements-dev.txt'"
         args:
           [
