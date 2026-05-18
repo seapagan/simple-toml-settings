@@ -6,7 +6,7 @@ authors = [{ name = "Grant Ramsay", email = "grant@gnramsay.com" }]
 readme = "README.md"
 license = "MIT"
 
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -14,7 +14,6 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -130,7 +129,7 @@ lint.extend-ignore = [
 ] # these are ignored for ruff formatting
 
 src = ["simple_toml_settings"]
-target-version = "py39"        # minimum python version supported
+target-version = "py310"       # minimum python version supported
 
 [tool.ruff.format]
 indent-style = "space"
@@ -155,6 +154,9 @@ known-first-party = ["simple_toml_settings"]
 
 [tool.ruff.lint.pyupgrade]
 keep-runtime-typing = true
+
+[tool.mypy]
+python_version = "3.10"
 
 [[tool.mypy.overrides]]
 disable_error_code = ["method-assign", "no-untyped-def", "attr-defined"]
