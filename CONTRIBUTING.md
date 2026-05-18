@@ -29,7 +29,7 @@ Mac OS X. For Windows, you can use the
 [here](https://github.com/pyenv-win/pyenv-win#installation ) for installation
 instructions.
 
-- This project requires **Python 3.9** or higher.
+- This project requires **Python 3.10** or higher.
 
 ## Getting Started
 
