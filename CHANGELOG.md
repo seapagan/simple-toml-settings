@@ -5,6 +5,27 @@ project since the first release.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.13.0) (2026-05-18)
+
+**Breaking Changes**
+
+- Chore/remove python 3.9 ([#350](https://github.com/seapagan/simple-toml-settings/pull/350)) by [seapagan](https://github.com/seapagan)
+
+**Security**
+
+- Update some deps to clear security alerts, and some dev deps to latest versions ([#349](https://github.com/seapagan/simple-toml-settings/pull/349)) by [seapagan](https://github.com/seapagan)
+- Update pyjwt dependency to fx security alerts ([#339](https://github.com/seapagan/simple-toml-settings/pull/339)) by [seapagan](https://github.com/seapagan)
+
+**Dependency Updates**
+
+- Chore(deps): update actions/dependency-review-action action to v5 ([#348](https://github.com/seapagan/simple-toml-settings/pull/348)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update astral-sh/setup-uv action to v8 ([#347](https://github.com/seapagan/simple-toml-settings/pull/347)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update astral-sh/ruff-action action to v4 ([#346](https://github.com/seapagan/simple-toml-settings/pull/346)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update dependency uv_build to >=0.11.14,<0.12.0 ([#340](https://github.com/seapagan/simple-toml-settings/pull/340)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update j178/prek-action action to v2 ([#338](https://github.com/seapagan/simple-toml-settings/pull/338)) by [renovate[bot]](https://github.com/apps/renovate)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.12.0...0.13.0) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.12.0...0.13.0.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.12.0...0.13.0.patch)
+
 ## [0.12.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.12.0) (2026-02-28)
 
 **New Features**
