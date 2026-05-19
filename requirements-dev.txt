@@ -44,7 +44,7 @@ ghp-import==2.1.0
 github-changelog-md==0.9.9
 htmlmin2==0.1.13
     # via mkdocs-minify-plugin
-idna==3.10
+idna==3.15
     # via requests
 iniconfig==2.1.0
     # via pytest
