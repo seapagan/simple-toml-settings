@@ -59,6 +59,7 @@ A Python library to save your settings in a TOML file.
 ```python
 from simple_toml_settings import TOMLSettings
 
+
 class MySettings(TOMLSettings):
     """My settings class."""
 

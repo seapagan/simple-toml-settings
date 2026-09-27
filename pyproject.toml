@@ -2,16 +2,15 @@
 name = "simple-toml-settings"
 version = "0.13.0"
 description = "A Python library to save your settings in a TOML file."
-authors = [{ name = "Grant Ramsay", email = "grant@gnramsay.com" }]
 readme = "README.md"
 license = "MIT"
+authors = [{ name = "Grant Ramsay", email = "grant@gnramsay.com" }]
 
 requires-python = ">=3.10"
 
 classifiers = [
   "Development Status :: 4 - Beta",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
@@ -25,47 +24,53 @@ classifiers = [
 dependencies = ["rtoml>=0.12.0"]
 
 [project.urls]
-"Homepage" = "http://toml-settings.grantramsay.dev/"
-"Pull Requests" = "https://github.com/seapagan/simple-toml-settings/pulls"
 "Bug Tracker" = "https://github.com/seapagan/simple-toml-settings/issues"
 "Changelog" = "https://github.com/seapagan/simple-toml-settings/blob/main/CHANGELOG.md"
+"Homepage" = "http://toml-settings.grantramsay.dev/"
+"Pull Requests" = "https://github.com/seapagan/simple-toml-settings/pulls"
 "Repository" = "https://github.com/seapagan/simple-toml-settings"
 
 [dependency-groups]
 dev = [
-  "mypy>=1.11.1",
-  "pymarkdownlnt>=0.9.22",
-  "ruff>=0.6.1",
-  "poethepoet>=0.27.0",
-  "pytest>=8.3.2",
-  "pytest-cov>=5.0.0",
-  "pytest-xdist>=3.6.1",
-  "pytest-sugar>=1.0.0",
-  "pytest-randomly>=3.15.0",
-  "pytest-reverse>=1.7.0",
-  "pytest-mock>=3.14.0",
-  "mock>=5.1.0",
   "faker>=27.0.0",
-  "pyfakefs>=5.6.0",
   "github-changelog-md>=0.9.5",
   "mkdocs>=1.6.0",
   "mkdocs-autorefs>=1.0.1",
   "mkdocs-material>=9.5.32",
   "mkdocs-minify-plugin>=0.8.0",
-  "pymdown-extensions>=10.9",
-  "pygments>=2.18.0",
-  "pytest-watcher>=0.4.2",
+  "mock>=5.1.0",
+  "mypy>=1.11.1",
+  "poethepoet>=0.27.0",
   "prek>=0.2.30",
+  "pyfakefs>=5.6.0",
+  "pygments>=2.18.0",
+  "pymarkdownlnt>=0.9.22",
+  "pymdown-extensions>=10.9",
+  "pytest>=8.3.2",
+  "pytest-cov>=5.0.0",
+  "pytest-mock>=3.14.0",
+  "pytest-randomly>=3.15.0",
+  "pytest-reverse>=1.7.0",
+  "pytest-sugar>=1.0.0",
+  "pytest-watcher>=0.4.2",
+  "pytest-xdist>=3.6.1",
+  "ruff>=0.6.1",
 ]
-
 
 [build-system]
 requires = ["uv_build>=0.11.14,<0.12.0"]
 build-backend = "uv_build"
 
-[tool.uv.build-backend]
-module-name = "simple_toml_settings"
-module-root = ""
+[tool.coverage.run]
+source = ["simple_toml_settings"]
+omit = ["*/tests/*"]
+
+[tool.mypy]
+python_version = "3.10"
+
+[[tool.mypy.overrides]]
+disable_error_code = ["method-assign", "no-untyped-def", "attr-defined"]
+module = "tests.*"
 
 [tool.poe.tasks]
 pre.cmd = "prek run --all-files"
@@ -110,26 +115,21 @@ addopts = ["--cov", "--cov-report", "term-missing", "--cov-report", "html"]
 filterwarnings = []
 mock_use_standalone_module = true
 
-[tool.coverage.run]
-source = ["simple_toml_settings"]
-omit = ["*/tests/*"]
-
 [tool.ruff]
 line-length = 80
-lint.select = ["ALL"] # we are being very strict!
+lint.select = ["ALL"]  # we are being very strict!
 lint.ignore = [
   "PGH003",
   "FBT002",
   "FBT003",
   "B006",
-] # These rules are too strict even for us 😝
-lint.extend-ignore = [
-  "COM812",
-  "ISC001",
-] # these are ignored for ruff formatting
+  "CPY001",
+  "COM812",  # ignored for ruff formatting
+  "ISC001",  # ignored for ruff formatting
+]  # These rules are too strict even for us 😝
 
 src = ["simple_toml_settings"]
-target-version = "py310"       # minimum python version supported
+target-version = "py310"  # minimum python version supported
 
 [tool.ruff.format]
 indent-style = "space"
@@ -143,11 +143,10 @@ convention = "google"
 
 [tool.ruff.lint.extend-per-file-ignores]
 "tests/**/*.py" = [
-  "S101",   # we can (and MUST!) use 'assert' in test files.
-  "ANN001", # annotations for fixtures are sometimes a pain for test files
+  "S101",  # we can (and MUST!) use 'assert' in test files.
+  "ANN001",  # annotations for fixtures are sometimes a pain for test files
   "ARG00",  # test fixtures often are not directly used
 ]
-
 
 [tool.ruff.lint.isort]
 known-first-party = ["simple_toml_settings"]
@@ -155,9 +154,6 @@ known-first-party = ["simple_toml_settings"]
 [tool.ruff.lint.pyupgrade]
 keep-runtime-typing = true
 
-[tool.mypy]
-python_version = "3.10"
-
-[[tool.mypy.overrides]]
-disable_error_code = ["method-assign", "no-untyped-def", "attr-defined"]
-module = "tests.*"
+[tool.uv.build-backend]
+module-name = "simple_toml_settings"
+module-root = ""
