@@ -162,7 +162,7 @@ class TOMLSettings:
         """
 
     @classmethod
-    def get_instance(  # noqa: PYI019
+    def get_instance(
         cls: type[T],
         app_name: str,
         *args: Any,  # noqa: ANN401

@@ -118,6 +118,7 @@ mock_use_standalone_module = true
 [tool.ruff]
 line-length = 80
 lint.select = ["ALL"]  # we are being very strict!
+lint.typing-extensions = false
 lint.ignore = [
   "PGH003",
   "FBT002",
