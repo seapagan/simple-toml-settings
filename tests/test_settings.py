@@ -818,7 +818,7 @@ schema_version = '1'
     def test_get_instance_attribute(self, fs: FakeFilesystem) -> None:
         """Test that we can get the instance of the settings object."""
         fs.create_dir(Path.home())
-        settings = CustomSettings.get_instance("test_app")
+        settings: CustomSettings = CustomSettings.get_instance("test_app")
         assert settings.my_var is False
 
     def test_mutually_exclusive_attributes(self, fs: FakeFilesystem) -> None:

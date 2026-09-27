@@ -1934,33 +1934,33 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "rtoml", specifier = ">=0.12.0" }]
+requires-dist = [{ name = "rtoml", specifier = ">=0.13.0" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "faker", specifier = ">=27.0.0" },
-    { name = "github-changelog-md", specifier = ">=0.9.5" },
-    { name = "mkdocs", specifier = ">=1.6.0" },
-    { name = "mkdocs-autorefs", specifier = ">=1.0.1" },
-    { name = "mkdocs-material", specifier = ">=9.5.32" },
+    { name = "faker", specifier = ">=40.39.0" },
+    { name = "github-changelog-md", specifier = ">=0.10.0" },
+    { name = "mkdocs", specifier = ">=1.6.1" },
+    { name = "mkdocs-autorefs", specifier = ">=1.4.4" },
+    { name = "mkdocs-material", specifier = ">=9.7.7" },
     { name = "mkdocs-minify-plugin", specifier = ">=0.8.0" },
-    { name = "mock", specifier = ">=5.1.0" },
-    { name = "mypy", specifier = ">=1.11.1" },
-    { name = "poethepoet", specifier = ">=0.27.0" },
-    { name = "prek", specifier = ">=0.2.30" },
-    { name = "pyfakefs", specifier = ">=5.6.0" },
-    { name = "pygments", specifier = ">=2.18.0" },
-    { name = "pymarkdownlnt", specifier = ">=0.9.22" },
-    { name = "pymdown-extensions", specifier = ">=10.9" },
-    { name = "pytest", specifier = ">=8.3.2" },
-    { name = "pytest-cov", specifier = ">=5.0.0" },
-    { name = "pytest-mock", specifier = ">=3.14.0" },
-    { name = "pytest-randomly", specifier = ">=3.15.0" },
-    { name = "pytest-reverse", specifier = ">=1.7.0" },
-    { name = "pytest-sugar", specifier = ">=1.0.0" },
-    { name = "pytest-watcher", specifier = ">=0.4.2" },
-    { name = "pytest-xdist", specifier = ">=3.6.1" },
-    { name = "ruff", specifier = ">=0.6.1" },
+    { name = "mock", specifier = ">=5.2.0" },
+    { name = "mypy", specifier = ">=2.3.1" },
+    { name = "poethepoet", specifier = ">=0.48.0" },
+    { name = "prek", specifier = ">=0.5.3" },
+    { name = "pyfakefs", specifier = ">=6.2.0" },
+    { name = "pygments", specifier = ">=2.21.0" },
+    { name = "pymarkdownlnt", specifier = ">=0.9.40" },
+    { name = "pymdown-extensions", specifier = ">=12.1" },
+    { name = "pytest", specifier = ">=9.1.1" },
+    { name = "pytest-cov", specifier = ">=7.1.0" },
+    { name = "pytest-mock", specifier = ">=3.15.1" },
+    { name = "pytest-randomly", specifier = ">=5.0.0" },
+    { name = "pytest-reverse", specifier = ">=1.9.0" },
+    { name = "pytest-sugar", specifier = ">=1.1.1" },
+    { name = "pytest-watcher", specifier = ">=0.6.3" },
+    { name = "pytest-xdist", specifier = ">=3.8.0" },
+    { name = "ruff", specifier = ">=0.16.9" },
 ]
 
 [[package]]
