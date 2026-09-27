@@ -5,18 +5,35 @@ project since the first release.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.13.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.13.1) (2026-09-27)
+
+### Bug Fixes
+
+- Fix: remove undeclared typing extensions import ([#369](https://github.com/seapagan/simple-toml-settings/pull/369)) by [seapagan](https://github.com/seapagan)
+
+### Dependency Updates
+
+- Feat: Refresh deps and fix resulting linting issues ([#368](https://github.com/seapagan/simple-toml-settings/pull/368)) by [seapagan](https://github.com/seapagan)
+- Chore(deps): update astral-sh/setup-uv action to v10 ([#366](https://github.com/seapagan/simple-toml-settings/pull/366)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update j178/prek-action action to v3 ([#363](https://github.com/seapagan/simple-toml-settings/pull/363)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update astral-sh/ruff-action action to v4.1.0 ([#359](https://github.com/seapagan/simple-toml-settings/pull/359)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update actions/checkout action to v7 ([#358](https://github.com/seapagan/simple-toml-settings/pull/358)) by [renovate[bot]](https://github.com/apps/renovate)
+- Chore(deps): update astral-sh/setup-uv action to v8.3.2 ([#355](https://github.com/seapagan/simple-toml-settings/pull/355)) by [renovate[bot]](https://github.com/apps/renovate)
+
+[`Full Changelog`](https://github.com/seapagan/simple-toml-settings/compare/0.13.0...0.13.1) | [`Diff`](https://github.com/seapagan/simple-toml-settings/compare/0.13.0...0.13.1.diff) | [`Patch`](https://github.com/seapagan/simple-toml-settings/compare/0.13.0...0.13.1.patch)
+
 ## [0.13.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.13.0) (2026-05-18)
 
-**Breaking Changes**
+### Breaking Changes
 
 - Chore/remove python 3.9 ([#350](https://github.com/seapagan/simple-toml-settings/pull/350)) by [seapagan](https://github.com/seapagan)
 
-**Security**
+### Security
 
 - Update some deps to clear security alerts, and some dev deps to latest versions ([#349](https://github.com/seapagan/simple-toml-settings/pull/349)) by [seapagan](https://github.com/seapagan)
 - Update pyjwt dependency to fx security alerts ([#339](https://github.com/seapagan/simple-toml-settings/pull/339)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Chore(deps): update actions/dependency-review-action action to v5 ([#348](https://github.com/seapagan/simple-toml-settings/pull/348)) by [renovate[bot]](https://github.com/apps/renovate)
 - Chore(deps): update astral-sh/setup-uv action to v8 ([#347](https://github.com/seapagan/simple-toml-settings/pull/347)) by [renovate[bot]](https://github.com/apps/renovate)
@@ -28,7 +45,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [0.12.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.12.0) (2026-02-28)
 
-**New Features**
+### New Features
 
 - Feat: support optional flat root config files ([#335](https://github.com/seapagan/simple-toml-settings/pull/335)) by [seapagan](https://github.com/seapagan)
 
@@ -45,24 +62,24 @@ This release contains a minor breaking change:
 need updates
 - This was a bug; the old behavior was incorrect
 
-**Breaking Changes**
+### Breaking Changes
 
 - Feat: Design improvements and new features ([#327](https://github.com/seapagan/simple-toml-settings/pull/327)) by [seapagan](https://github.com/seapagan)
 
-**New Features**
+### New Features
 
 - Feat: add settings_path option for custom config directories ([#332](https://github.com/seapagan/simple-toml-settings/pull/332)) by [seapagan](https://github.com/seapagan)
 - Fix: improve error messages, docstrings, and deprecation warnings ([#328](https://github.com/seapagan/simple-toml-settings/pull/328)) by [seapagan](https://github.com/seapagan)
 
-**Bug Fixes**
+### Bug Fixes
 
 - Fix: critical bug fixes (singleton, race conditions, path traversal) ([#326](https://github.com/seapagan/simple-toml-settings/pull/326)) by [seapagan](https://github.com/seapagan)
 
-**Refactoring**
+### Refactoring
 
 - Refactor: optimize get_attrs() to avoid double getattr() calls ([#329](https://github.com/seapagan/simple-toml-settings/pull/329)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Update some deps to close security alerts ([#333](https://github.com/seapagan/simple-toml-settings/pull/333)) by [seapagan](https://github.com/seapagan)
 - Chore(deps): update dependency uv_build to >=0.10.0,<0.11.0 ([#330](https://github.com/seapagan/simple-toml-settings/pull/330)) by [renovate[bot]](https://github.com/apps/renovate)
@@ -71,11 +88,11 @@ need updates
 
 ## [0.10.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.10.0) (2026-01-20)
 
-**New Features**
+### New Features
 
 - Migrate from `pre-commit` to `prek` for Git pre-commit checks ([#321](https://github.com/seapagan/simple-toml-settings/pull/321)) by [seapagan](https://github.com/seapagan)
 
-**Security**
+### Security
 
 - Update deps to fix security alerts, and use latest versions of ruff and mypy ([#324](https://github.com/seapagan/simple-toml-settings/pull/324)) by [seapagan](https://github.com/seapagan)
 
@@ -83,11 +100,11 @@ need updates
 
 ## [0.9.2](https://github.com/seapagan/simple-toml-settings/releases/tag/0.9.2) (2025-12-09)
 
-**New Features**
+### New Features
 
 - Add Python 3.14 compatibility; update some dependencies. ([#316](https://github.com/seapagan/simple-toml-settings/pull/316)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Update actions/checkout action to v6 ([#314](https://github.com/seapagan/simple-toml-settings/pull/314)) by [renovate[bot]](https://github.com/apps/renovate)
 - Update astral-sh/setup-uv action to v7 ([#313](https://github.com/seapagan/simple-toml-settings/pull/313)) by [renovate[bot]](https://github.com/apps/renovate)
@@ -98,7 +115,7 @@ need updates
 
 ## [0.9.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.9.1) (2025-08-10)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Update some deps to clear security issues and update pre-commit tool versions ([#307](https://github.com/seapagan/simple-toml-settings/pull/307)) by [seapagan](https://github.com/seapagan)
 - Update astral-sh/setup-uv action to v6 ([#302](https://github.com/seapagan/simple-toml-settings/pull/302)) by [renovate[bot]](https://github.com/apps/renovate)
@@ -109,12 +126,12 @@ need updates
 
 ## [0.9.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.9.0) (2025-01-16)
 
-**New Features**
+### New Features
 
 - Fix compatibility with python 3.13 ([#296](https://github.com/seapagan/simple-toml-settings/pull/296)) by [seapagan](https://github.com/seapagan)
 - Migrate from poetry to uv ([#285](https://github.com/seapagan/simple-toml-settings/pull/285)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump jinja2 from 3.1.4 to 3.1.5 ([#295](https://github.com/seapagan/simple-toml-settings/pull/295)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Update astral-sh/setup-uv action to v5 ([#294](https://github.com/seapagan/simple-toml-settings/pull/294)) by [renovate[bot]](https://github.com/apps/renovate)
@@ -123,12 +140,12 @@ need updates
 
 ## [0.8.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.8.0) (2024-08-22)
 
-**New Features**
+### New Features
 
 - Add 'allow_missing_file' option ([#254](https://github.com/seapagan/simple-toml-settings/pull/254)) by [seapagan](https://github.com/seapagan)
 - Mark some options as mutually exclusive and raise exception if more than one used ([#245](https://github.com/seapagan/simple-toml-settings/pull/245)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump mkdocs-material from 9.5.31 to 9.5.32 ([#253](https://github.com/seapagan/simple-toml-settings/pull/253)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump github-changelog-md from 0.9.4 to 0.9.5 ([#252](https://github.com/seapagan/simple-toml-settings/pull/252)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -146,20 +163,20 @@ need updates
 
 ## [0.7.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.7.0) (2024-07-29)
 
-**New Features**
+### New Features
 
 - Add option to use the `XDG_CONFIG_HOME` env variable or standard default if not set ([#231](https://github.com/seapagan/simple-toml-settings/pull/231)) by [borland502](https://github.com/borland502)
 
-**Bug Fixes**
+### Bug Fixes
 
 - Disable coverage upload if token not set ([#232](https://github.com/seapagan/simple-toml-settings/pull/232)) by [seapagan](https://github.com/seapagan)
 
-**Documentation**
+### Documentation
 
 - Document the new XDG option ([#234](https://github.com/seapagan/simple-toml-settings/pull/234)) by [seapagan](https://github.com/seapagan)
 - Clarify contribution information ([#218](https://github.com/seapagan/simple-toml-settings/pull/218)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump ruff from 0.5.1 to 0.5.5 ([#233](https://github.com/seapagan/simple-toml-settings/pull/233)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mypy from 1.10.1 to 1.11.0 ([#229](https://github.com/seapagan/simple-toml-settings/pull/229)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -177,11 +194,11 @@ need updates
 
 ## [0.6.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.6.1) (2024-05-02)
 
-**New Features**
+### New Features
 
 - Relax some dependency version specs ([#179](https://github.com/seapagan/simple-toml-settings/pull/179)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump poethepoet from 0.25.0 to 0.26.1 ([#178](https://github.com/seapagan/simple-toml-settings/pull/178)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mkdocs-material from 9.5.17 to 9.5.20 ([#176](https://github.com/seapagan/simple-toml-settings/pull/176)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -199,11 +216,11 @@ need updates
 
 ## [0.6.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.6.0) (2024-03-11)
 
-**New Features**
+### New Features
 
 - Implement a `flat_config` option. ([#142](https://github.com/seapagan/simple-toml-settings/pull/142)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump ruff from 0.3.1 to 0.3.2 ([#141](https://github.com/seapagan/simple-toml-settings/pull/141)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mypy from 1.8.0 to 1.9.0 ([#140](https://github.com/seapagan/simple-toml-settings/pull/140)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -214,21 +231,21 @@ need updates
 
 ## [0.5.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.5.0) (2024-03-07)
 
-**Closed Issues**
+### Closed Issues
 
-**New Features**
+### New Features
 
 - Add an optional singleton method ([#136](https://github.com/seapagan/simple-toml-settings/pull/136)) by [seapagan](https://github.com/seapagan)
 
-**Refactoring**
+### Refactoring
 
 - Fix formatting to Ruff 3.0 standard ([#131](https://github.com/seapagan/simple-toml-settings/pull/131)) by [seapagan](https://github.com/seapagan)
 
-**Documentation**
+### Documentation
 
 - Fix some errors and typos in the docs ([#124](https://github.com/seapagan/simple-toml-settings/pull/124)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump mkdocs-material from 9.5.9 to 9.5.13 ([#135](https://github.com/seapagan/simple-toml-settings/pull/135)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump faker from 23.1.0 to 24.0.0 ([#134](https://github.com/seapagan/simple-toml-settings/pull/134)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -242,15 +259,15 @@ need updates
 
 ## [0.4.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.4.0) (2024-02-14)
 
-**New Features**
+### New Features
 
 - Raise schema error if the file schema does not match the required schema ([#111](https://github.com/seapagan/simple-toml-settings/pull/111)) by [seapagan](https://github.com/seapagan)
 
-**Documentation**
+### Documentation
 
 - Add a SECURITY file ([#120](https://github.com/seapagan/simple-toml-settings/pull/120)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump mypy from 1.7.1 to 1.8.0 ([#119](https://github.com/seapagan/simple-toml-settings/pull/119)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump pymarkdownlnt from 0.9.15 to 0.9.17 ([#118](https://github.com/seapagan/simple-toml-settings/pull/118)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -268,11 +285,11 @@ need updates
 
 ## [0.3.2](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.2) (2023-11-02)
 
-**Bug Fixes**
+### Bug Fixes
 
 - Don't save `None` values to the TOML file. ([#49](https://github.com/seapagan/simple-toml-settings/pull/49)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump pymarkdownlnt from 0.9.13.4 to 0.9.14 ([#48](https://github.com/seapagan/simple-toml-settings/pull/48)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump faker from 19.12.1 to 19.13.0 ([#47](https://github.com/seapagan/simple-toml-settings/pull/47)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -286,12 +303,12 @@ need updates
 
 ## [0.3.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.1) (2023-10-28)
 
-**Refactoring**
+### Refactoring
 
 - Change to new CHANGELOG generator. Mine :) ([#38](https://github.com/seapagan/simple-toml-settings/pull/38)) by [seapagan](https://github.com/seapagan)
 - Migrate to ruff linter and formatter ([#37](https://github.com/seapagan/simple-toml-settings/pull/37)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump black from 23.10.0 to 23.10.1 ([#36](https://github.com/seapagan/simple-toml-settings/pull/36)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump pylint from 3.0.1 to 3.0.2 ([#35](https://github.com/seapagan/simple-toml-settings/pull/35)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -307,16 +324,16 @@ need updates
 
 ## [0.3.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.3.0) (2023-10-18)
 
-**New Features**
+### New Features
 
 - Allow a Local config file ([#25](https://github.com/seapagan/simple-toml-settings/pull/25)) by [seapagan](https://github.com/seapagan)
 - Add 'auto_create' option for config file, default True ([#22](https://github.com/seapagan/simple-toml-settings/pull/22)) by [seapagan](https://github.com/seapagan)
 
-**Documentation**
+### Documentation
 
 - Add missing repo section to docs ([#21](https://github.com/seapagan/simple-toml-settings/pull/21)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump urllib3 from 2.0.6 to 2.0.7 ([#27](https://github.com/seapagan/simple-toml-settings/pull/27)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump flake8-type-checking from 2.4.2 to 2.5.0 ([#26](https://github.com/seapagan/simple-toml-settings/pull/26)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -329,7 +346,7 @@ need updates
 
 ## [0.2.2](https://github.com/seapagan/simple-toml-settings/releases/tag/0.2.2) (2023-10-12)
 
-**Bug Fixes**
+### Bug Fixes
 
 - Docs: fix same example error in README ([#18](https://github.com/seapagan/simple-toml-settings/pull/18)) by [seapagan](https://github.com/seapagan)
 - Fix error on docs front page example code ([#17](https://github.com/seapagan/simple-toml-settings/pull/17)) by [seapagan](https://github.com/seapagan)
@@ -338,11 +355,11 @@ need updates
 
 ## [0.2.1](https://github.com/seapagan/simple-toml-settings/releases/tag/0.2.1) (2023-10-12)
 
-**Bug Fixes**
+### Bug Fixes
 
 - Add 'py.typed' file so mypy can typecheck package ([#16](https://github.com/seapagan/simple-toml-settings/pull/16)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump faker from 19.8.0 to 19.9.0 ([#15](https://github.com/seapagan/simple-toml-settings/pull/15)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump mypy from 1.5.1 to 1.6.0 ([#14](https://github.com/seapagan/simple-toml-settings/pull/14)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -354,11 +371,11 @@ need updates
 
 ## [0.2.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.2.0) (2023-10-10)
 
-**New Features**
+### New Features
 
 - Add a hook, called if the config file is missing and freshly created ([#10](https://github.com/seapagan/simple-toml-settings/pull/10)) by [seapagan](https://github.com/seapagan)
 
-**Dependency Updates**
+### Dependency Updates
 
 - Bump pylint-pydantic from 0.2.4 to 0.3.0 ([#9](https://github.com/seapagan/simple-toml-settings/pull/9)) by [dependabot[bot]](https://github.com/apps/dependabot)
 - Bump actions/checkout from 3 to 4 ([#7](https://github.com/seapagan/simple-toml-settings/pull/7)) by [dependabot[bot]](https://github.com/apps/dependabot)
@@ -367,15 +384,15 @@ need updates
 
 ## [0.1.0](https://github.com/seapagan/simple-toml-settings/releases/tag/0.1.0) (2023-10-09)
 
-**Merged Pull Requests**
+### Merged Pull Requests
 
 - Add test workflow to Github Actions ([#2](https://github.com/seapagan/simple-toml-settings/pull/2)) by [seapagan](https://github.com/seapagan)
 
-**Refactoring**
+### Refactoring
 
 - Rename main settings class ([#5](https://github.com/seapagan/simple-toml-settings/pull/5)) by [seapagan](https://github.com/seapagan)
 
-**Documentation**
+### Documentation
 
 - Add basic documentation for the library ([#3](https://github.com/seapagan/simple-toml-settings/pull/3)) by [seapagan](https://github.com/seapagan)
 

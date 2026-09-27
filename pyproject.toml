@@ -1,6 +1,6 @@
 [project]
 name = "simple-toml-settings"
-version = "0.13.0"
+version = "0.13.1"
 description = "A Python library to save your settings in a TOML file."
 readme = "README.md"
 license = "MIT"
