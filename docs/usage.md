@@ -17,6 +17,7 @@ settings you want to save as class attributes:
 ```python
 from simple_toml_settings import TOMLSettings
 
+
 class MySettings(TOMLSettings):
     """My settings class."""
 
@@ -411,6 +412,7 @@ with some real data), you can override the
 
 ```python
 from simple_toml_settings import TOMLSettings
+
 
 class MySettings(TOMLSettings):
     """My settings class."""

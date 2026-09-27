@@ -73,6 +73,7 @@ Usage is simple:
 ```python
 from simple_toml_settings import TOMLSettings
 
+
 class MySettings(TOMLSettings):
     """My settings class."""
 

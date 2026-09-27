@@ -10,7 +10,7 @@ repos:
       - id: end-of-file-fixer
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.14.13
+    rev: v0.16.9
     hooks:
       - id: ruff
         name: "lint with ruff"
@@ -18,7 +18,7 @@ repos:
         name: "format with ruff"
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "v1.19.1" # Use the sha / tag you want to point at
+    rev: "v2.3.1" # Use the sha / tag you want to point at
     hooks:
       - id: mypy
         name: "run mypy"
@@ -27,15 +27,11 @@ repos:
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.
-    rev: 0.9.26
+    rev: 0.12.19
     hooks:
       # Update the uv lockfile
       - id: uv-lock
-        env:
-          UV_FROZEN: "1"
       - id: uv-export
-        env:
-          UV_FROZEN: "1"
         name: "Export dependencies to 'requirements.txt'"
         args:
           [
@@ -45,8 +41,6 @@ repos:
             "--output-file=requirements.txt",
           ]
       - id: uv-export
-        env:
-          UV_FROZEN: "1"
         name: "Export dev dependencies to 'requirements-dev.txt'"
         args:
           [
