@@ -21,7 +21,7 @@ classifiers = [
   "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-dependencies = ["rtoml>=0.12.0"]
+dependencies = ["rtoml>=0.13.0"]
 
 [project.urls]
 "Bug Tracker" = "https://github.com/seapagan/simple-toml-settings/issues"
@@ -32,29 +32,29 @@ dependencies = ["rtoml>=0.12.0"]
 
 [dependency-groups]
 dev = [
-  "faker>=27.0.0",
-  "github-changelog-md>=0.9.5",
-  "mkdocs>=1.6.0",
-  "mkdocs-autorefs>=1.0.1",
-  "mkdocs-material>=9.5.32",
+  "faker>=40.39.0",
+  "github-changelog-md>=0.10.0",
+  "mkdocs>=1.6.1",
+  "mkdocs-autorefs>=1.4.4",
+  "mkdocs-material>=9.7.7",
   "mkdocs-minify-plugin>=0.8.0",
-  "mock>=5.1.0",
-  "mypy>=1.11.1",
-  "poethepoet>=0.27.0",
-  "prek>=0.2.30",
-  "pyfakefs>=5.6.0",
-  "pygments>=2.18.0",
-  "pymarkdownlnt>=0.9.22",
-  "pymdown-extensions>=10.9",
-  "pytest>=8.3.2",
-  "pytest-cov>=5.0.0",
-  "pytest-mock>=3.14.0",
-  "pytest-randomly>=3.15.0",
-  "pytest-reverse>=1.7.0",
-  "pytest-sugar>=1.0.0",
-  "pytest-watcher>=0.4.2",
-  "pytest-xdist>=3.6.1",
-  "ruff>=0.6.1",
+  "mock>=5.2.0",
+  "mypy>=2.3.1",
+  "poethepoet>=0.48.0",
+  "prek>=0.5.3",
+  "pyfakefs>=6.2.0",
+  "pygments>=2.21.0",
+  "pymarkdownlnt>=0.9.40",
+  "pymdown-extensions>=12.1",
+  "pytest>=9.1.1",
+  "pytest-cov>=7.1.0",
+  "pytest-mock>=3.15.1",
+  "pytest-randomly>=5.0.0",
+  "pytest-reverse>=1.9.0",
+  "pytest-sugar>=1.1.1",
+  "pytest-watcher>=0.6.3",
+  "pytest-xdist>=3.8.0",
+  "ruff>=0.16.9",
 ]
 
 [build-system]
